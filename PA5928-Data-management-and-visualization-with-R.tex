@@ -154,76 +154,177 @@ Remember each Rmd file contains one and only one chapter, and a chapter is defin
 
 To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.name/tinytex/}.
 
-\hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\hypertarget{introduction-to-rstudio}{%
+\chapter{Introduction to RStudio}\label{introduction-to-rstudio}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+\hypertarget{what-is-r}{%
+\subsection{What is R}\label{what-is-r}}
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+\textbf{R} is a type of programming language and supports many tasks including statistical computation and grapics.
+
+\hypertarget{what-is-r-studio}{%
+\subsection{What is R Studio}\label{what-is-r-studio}}
+
+\textbf{RStudio} is a programming software for editing and running R code.
+
+\hypertarget{install-r-rstudio}{%
+\subsection{Install R + RStudio}\label{install-r-rstudio}}
+
+For better coding and running R, you should install both R and RStudio.You could only code R with the installation with R only, however, RStudio provides you with more conveinece during the working process. In this course, we will use RStudio to do all the course stuff. So please make sure you install both two!
+R could be downloaded \href{https://www.r-project.org/}{here} and RStudio could be downloaded \href{https://www.rstudio.com/products/rstudio/download/}{here}.
+
+\hypertarget{familiar-with-the-user-interface-of-r-studio}{%
+\subsection{Familiar with the user interface of R Studio}\label{familiar-with-the-user-interface-of-r-studio}}
+
+Below is the figure showing a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Manu/Tool Bar}
+\item
+  \textbf{Source} The pane where you write and edit your code.
+\item
+  \textbf{Environment/History} Environment lists all the variables that you are using. History presents the codes you have runned before.
+\item
+  \textbf{Console} Console is original R interactive window. You could input codes and see the results here.
+\item
+  \textbf{Plots/Help} Plots window shows the output figures. Help windows presents the information of the function or package you check.
+\end{enumerate}
+
+\includegraphics{Pics/RStudio.JPG}
+
+\hypertarget{create-and-save-r-file}{%
+\subsection{Create and save R file}\label{create-and-save-r-file}}
+
+Three ways to create a R file in the RStudio:
+
+\begin{verbatim}
+1. Manu -> File -> New File -> R Script
+2. Shortcut: Ctrl + Shift + N
+3. Tool Bar -> New file button
+\end{verbatim}
+
+Also three ways to save R file
+
+\begin{verbatim}
+1. Manu -> File -> Save
+2. Shortcut: Ctrl + S
+3. Tool Bar -> Save file button
+\end{verbatim}
+
+\hypertarget{print-hello-world}{%
+\subsection{Print Hello, world}\label{print-hello-world}}
+
+Now, let's try to input some codes and run them! Let's let R print the very classic ``Hello, world!'' with \texttt{print()} function.
+We could run the codes in several ways:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Select the codes or put the cursor in the line of your code, and click the Run button located in the right-top position of the console pane.
+\item
+  Select the codes or put the cursor in the line of your code, and use shortcut: Ctrl + Enter
+\item
+  You could also click the Re-run button near the Run button to re-run the codes you runned last time
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\StringTok{'Hello, world!'}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
+\begin{verbatim}
+## [1] "Hello, world!"
+\end{verbatim}
 
-{\centering \includegraphics[width=0.8\linewidth]{PA5928-Data-management-and-visualization-with-R_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+Because what we need to output here is a \textbf{string varible}, we have to put them in the quotation mark. Either single quotation or double quotation mark works well. Let's see another example.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\DecValTok{5928}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}[t]
+\begin{verbatim}
+## [1] 5928
+\end{verbatim}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+Here, 5928 is an integer and we do not need to put them in the quotation mark.
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\hypertarget{install-and-use-r-packages}{%
+\subsection{Install and use R Packages}\label{install-and-use-r-packages}}
+
+R is easy to use because it has many packages with different usages. These packages could help you acomplish some complex tasks with several lines of codes.
+Some packages have been already been installed and you could use them directly. However, most of the packages have to be installed before you want to use them. There are couple of ways you could install a package. Let's take the \texttt{gbm} package for example.
+
+\begin{verbatim}
+1. Manu -> Tools -> Install Packages... -> Input the package name -> Click Install button
+\end{verbatim}
+
+\includegraphics[width=0.35\textwidth,height=\textheight]{Pics/InstallPackages.JPG}
+
+\begin{verbatim}
+2. Use the code below:
+install.packages("gbm")
+\end{verbatim}
+
+After the installation of the package, you have import the it with \texttt{library()} function before you use the functions in it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(gbm)}
+\end{Highlighting}
+\end{Shaded}
+
+We will spend more time in the future classes to explore the various R packages and their different usages.
+
+\hypertarget{make-notes}{%
+\subsection{Make notes}\label{make-notes}}
+
+It is important to write notes for your codes. It could help others or even yourself understand your codes easily. Use hash tag to indicate the notes. For example,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gbm1 <-}\StringTok{ }\KeywordTok{gbm}\NormalTok{(AvgMet}\OperatorTok{~}\NormalTok{PkAreaH}\OperatorTok{+}\NormalTok{StpNumH}\OperatorTok{+}\NormalTok{DisToMin,  }\CommentTok{# formula}
+            \DataTypeTok{data=}\NormalTok{MetM,                        }\CommentTok{# dataset  }
+            \DataTypeTok{var.monotone=}\KeywordTok{c}\NormalTok{(}\OperatorTok{+}\DecValTok{1}\NormalTok{, }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{),}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{15}\NormalTok{)), }
+            \DataTypeTok{distribution=}\StringTok{"gaussian"}\NormalTok{,          }\CommentTok{# see the help for other choices  }
+            \DataTypeTok{n.trees=}\DecValTok{5000}\NormalTok{,                     }\CommentTok{# number of trees  }
+            \DataTypeTok{shrinkage=}\FloatTok{0.001}\NormalTok{,                  }\CommentTok{# shrinkage or learning rate, 0.001 to 0.1 usually work  }
+            \DataTypeTok{interaction.depth=}\DecValTok{6}\NormalTok{,              }\CommentTok{# 1: additive model, 2: two-way interactions, etc.  }
+            \DataTypeTok{bag.fraction =} \FloatTok{0.5}\NormalTok{,               }\CommentTok{# subsampling fraction, 0.5 is probably best  }
+            \DataTypeTok{n.minobsinnode =} \DecValTok{10}\NormalTok{,              }\CommentTok{# minimum total weight needed in each node}
+            \DataTypeTok{cv.folds =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+R will not run the codes after hash tags in each line.
+
+Please try to write simple but necessary notes for the codes. Keep this as a good habbit and you will thank yourself in the future.
+
+\hypertarget{tips-updating}{%
+\subsection{Tips (Updating)}\label{tips-updating}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You could divide your codes into sections by interting chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.
+\end{enumerate}
+
+\hypertarget{reference}{%
+\subsection{Reference}\label{reference}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://datascienceplus.com/introduction-to-rstudio/}{Introduction to RStudio}
+\end{enumerate}
 
 \hypertarget{literature}{%
 \chapter{Literature}\label{literature}}
