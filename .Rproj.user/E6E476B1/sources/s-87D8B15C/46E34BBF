@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2791391532",
+    "hash" : "2750101551",
     "id" : "46E34BBF",
-    "lastKnownWriteTime" : 1565749822,
-    "last_content_update" : 1565749822,
+    "lastKnownWriteTime" : 1565751035,
+    "last_content_update" : 1565751035950,
     "path" : "C:/UMN/Course/R_course/PA5928-Data-management-and-visualization-with-R/README.md",
     "project_path" : "README.md",
     "properties" : {
+        "cursorPosition" : "0,66",
+        "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
