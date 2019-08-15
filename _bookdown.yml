@@ -2,5 +2,5 @@ book_filename: "PA5928-Data-management-and-visualization-with-R"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Lecture "
 output_dir: "docs"

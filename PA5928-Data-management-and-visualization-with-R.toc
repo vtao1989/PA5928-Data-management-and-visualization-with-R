@@ -1,8 +1,12 @@
 \contentsline {chapter}{\numberline {1}Prerequisites}{5}{chapter.1}% 
-\contentsline {chapter}{\numberline {2}Introduction}{7}{chapter.2}% 
-\contentsline {chapter}{\numberline {3}Literature}{9}{chapter.3}% 
-\contentsline {chapter}{\numberline {4}Methods}{11}{chapter.4}% 
-\contentsline {chapter}{\numberline {5}Applications}{13}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Example one}{13}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Example two}{13}{section.5.2}% 
-\contentsline {chapter}{\numberline {6}Final Words}{15}{chapter.6}% 
+\contentsline {chapter}{\numberline {2}Introduction to RStudio}{7}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}What is R}{7}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}What is R Studio}{7}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Install R + RStudio}{7}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Familiar with the user interface of R Studio}{7}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}Create and save R file}{8}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Print Hello, world}{8}{section.2.6}% 
+\contentsline {section}{\numberline {2.7}Install and use R Packages}{9}{section.2.7}% 
+\contentsline {section}{\numberline {2.8}Make notes}{9}{section.2.8}% 
+\contentsline {section}{\numberline {2.9}Tips (Updating)}{10}{section.2.9}% 
+\contentsline {section}{\numberline {2.10}Reference}{10}{section.2.10}% 

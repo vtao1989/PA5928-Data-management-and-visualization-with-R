@@ -1,0 +1,278 @@
+# Introduction to RStudio
+
+## Variable types
+There are several variables which R could recoganise. Here, we use ``class()`` function to check the type of each value.
+
+**Charactor**
+```{r}
+class("Hello, world!")
+```
+
+**Numeric** (real or decimal)
+```{r}
+class(59.28)
+```
+
+**Integer** (``L`` tells R that this number is an integer)
+```{r}
+class(2L)
+```
+
+**Logical**
+```{r}
+class(TRUE)
+class(FALSE)
+```
+
+**Complex** (complex number, is a type of number, with respect to real number)
+```{r}
+class(1+4i)
+```
+
+It is important to know clearly what is the type of the variable you are using because different types of variables may have different methods to be dealed with. Another caveat is that the outlook of the variable may not show its real variable type. For example, a common situation is that a variable contains numbers could be charactor.
+```{r}
+class("59.28")
+```
+Here, the number has a quotation number, which means it has been transferred to type charactor. **Therefore, please be careful about this!**
+
+## Operations
+### Assignment operations
+**Left assignment**
+```{r}
+a <- 1
+b <<- "Hello, world!"
+c = c(1, 3, 4)
+```
+**Right assignment**
+```{r}
+1 -> a
+2 ->> b
+```
+
+### Arithmetic operations
+**Add**
+```{r}
+1 + 1
+```
+
+**Subtract**
+```{r}
+5 - 3
+```
+
+**Multiple**
+```{r}
+3 * 5
+```
+
+**Divide**
+```{r}
+5 - 3
+```
+**Power**
+```{r}
+5 ^ 2
+```
+**Mode**
+```{r}
+5 %% 2
+```
+
+### Relational operations
+**Larger**
+```{r}
+3 > 4
+5 > 3
+```
+
+**Smaller**
+```{r}
+3 < 5
+4 < 2
+```
+
+**Equal**
+```{r}
+4 == 4
+5 == 4
+```
+
+**No less than** (larger or equal to)
+```{r}
+3 >= 4
+3 >= 2
+```
+
+**No larger than** (samller or equal to)
+```{r}
+5 <= 2
+5 <= 5
+```
+
+**Not equal**
+```{r}
+3 != 4
+```
+
+### Logical operations
+**And**
+```{r}
+TRUE & TRUE
+FALSE & TRUE
+FALSE & FALSE
+```
+
+**Or**
+```{r}
+TRUE | TRUE
+FALSE | TRUE
+FALSE | FALSE
+```
+
+**Not**
+```{r}
+! TRUE
+! FALSE
+```
+
+## Data types
+**Vetor**
+You could create a vetor by using ``c()`` function.
+```{r}
+a <- c(5, 9, 2, 8) # create a numeric vector
+a # show the value of this vetor
+```
+```{r}
+b <- c('hello', 'world', '!') # charactor vector
+b
+```
+```{r}
+c <- c(5, 'good') # if you create a vector containing mixed variable types, such as numeric and charactor, R will restrict them to be the same variable type, here, charactor
+c
+```
+You could select elements in the vetor by using ``varaible[#]``.
+```{r}
+a[3] # select the 3rd element
+b[1:3] # select from the 1st to the 3rd element
+c[2] # select the 2nd element
+```
+
+**Matrice**
+You could create a matrix using ``matrix()`` function.
+```{r}
+a <- matrix(1:6,      # the data to be put in the matrix, here we use numbers from 1 to 6
+            nrow = 2, # number of rows in the matrix
+            ncol = 3, # number of columns in the matrix
+            byrow = FALSE) # how to put the data in the matrix, FALSE means by columns, TURE means by rows.
+a
+```
+For variable selection, the intuitive way is using coordinates.
+```{r}
+a[2,3] # select the elements in the 2nd row and 3rd column
+```
+You could also select the entire row or column.
+```{r}
+a[,2] # the 2nd column
+a[1,] # the 1st row
+```
+
+**Data frame**
+Data frame is a frequently-used data type in R. It could include columns with different types of values stored in them. Let's create a dataframe with mixed variables types using ``data.frame()`` function.
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', 'B', 'C', 'D') # create variable Name
+Score <- c(69.5, 77.5, 81.5, 90) # create variable Score
+df <- data.frame(ID, Name, Score) # combine the varibles into one data frame called df
+df
+```
+We created a data frame stored the students' ID, name, and their test scores. If we want to select elements from this data frame, there are couple of ways.
+```{r}
+df[2,3] # 2nd row and 3rd column
+df['ID'] # column of variable ID
+df[c('ID', 'Score')] # column of ID and Score
+```
+There is another way to select the column by its name. When you type ``$`` after the data frame name, the RStudio will list all the variable names in that columns and makes it easier to choose the variable you want. It is more commonly used.
+```{r}
+df$Name # column of variable Name
+```
+
+* **List**
+List could store mixed types of values.
+```{r}
+a <- list(ID = 1, Name = 'A', Score = 69.5)
+a
+```
+
+* **Factor**
+Factor is the nominal variable in R. This type will be very useful when we want to analyize data from different groups, such as gender.
+```{r}
+a <- c(1, 2, 1, 2, 3, 3, 1, 1)
+class(a)
+```
+```{r}
+afactor <- factor(a)
+class(afactor)
+```
+
+## Conditional statements
+Conditional statement, also known as if statement.
+```{r, eval=FALSE}
+if (test_expression){
+  statement_1
+} else {
+  statement_2
+}
+```
+If the ``test_expression`` returns ``TRUE``, then the codes will contitue to ``statement_1``, if it returns ``FALSE``, the codes will continue to ``statement_2``. You could also omit the ``else`` part.
+```{r, eval=FALSE}
+if (test_expression){
+  statement_1
+}
+```
+If the ``test_expression`` returns ``FALSE``, the codes will continue to next line.
+```{r}
+x <- 5
+if (x > 3){
+  print('x is larger than 3')
+} else {
+  print('x is not larger than 3')
+}
+```
+```{r}
+x <- 1
+if (x > 3){
+  print('x is larger than 3')
+} 
+```
+
+## Loops
+Loops help us repeat the codes we want.
+```{r, eval=FALSE}
+for (range){
+  statement
+}
+```
+``range`` will provide the range for a variable.
+```{r}
+for (i in 1:3){
+  print(i)
+}
+```
+
+## Functions
+Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, ``sum()`` function could help you add the all the numbers in a list or dataframe and return the sum.
+```{r}
+sum(c(1, 4, 10, 5))
+```
+Another example is ``mean()`` function could help you average the numbers in a list or data frame and reture the mean value.
+```{r}
+mean(c(1, 4, 10, 5))
+```
+It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.
+
+**Reference**
+
+1. [Data types](https://www.statmethods.net/input/datatypes.html)
+2. [Data Types and Structures](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)
+3. [R operators](https://www.tutorialspoint.com/r/r_operators.htm)
+
