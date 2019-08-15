@@ -1,0 +1,230 @@
+# Data Manipulation
+
+## import and save data
+
+### import data
+**CSV file**
+```{r, eval=FALSE}
+mydata <- read.csv('c:/mydata.csv', # file location and name
+                   header=TRUE, # read the first 
+                   sep=",") # which type of separation
+```
+
+**EXCEL file**
+```{r, eval=FALSE}
+library(readxl)
+dataset <- read_excel('c:/mydata.xlsx', # file location and name
+                      sheet = 'data') # name or index of the sheet
+```
+
+**dta STATA file**
+```{r, eval=FALSE}
+library(foreign)
+mydata <- read.dta('c:/mydata.csv') # file location and name
+```
+
+**System tool**
+Besides importing data by codes, you could also import data with the system tool.
+```
+File -> Import dataset -> choose the type of dataset you want to import
+```
+
+### save file
+**CSV file**
+```{r, eval=FALSE}
+write.csv(df, # data
+          'c:/filename.csv') # file location and name
+```
+
+**EXCEL file**
+```{r, eval=FALSE}
+library(xlsx)
+write.xlsx(mydata, # data
+           "c:/mydata.xlsx") # file location and name
+```
+
+**dta STATA file**
+```{r, eval=FALSE}
+library(foreign)
+write.dta(mydata, "c:/mydata.dta")
+```
+
+## View data
+You could view the variable names and simple discription in the Environment pane in the righttop position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset ``mtcars`` as a example. By importing this dataset, use ``data()`` function.
+```{r}
+data(mtcars)
+```
+
+
+You could also view the data in the new window by ``View()`` function.
+```{r, eval=FALSE}
+View(mtcars)
+```
+
+View the first ten observations in the dataset.
+```{r}
+head(mtcars, n = 10)
+```
+view the last five observations in the dataset.
+```{r}
+tail(mtcars, n = 5)
+```
+
+
+List the variables in the dataset.
+```{r}
+names(mtcars)
+colnames(mtcars)
+```
+List the structure of the dataset.
+```{r}
+str(mtcars)
+```
+
+List the dimentions of the dataset
+```{r}
+dim(mtcars)
+```
+
+List the number of rows in the dataset
+```{r}
+nrow(mtcars)
+```
+
+List the number of columns in the dataset.
+```{r}
+ncol(mtcars)
+```
+Class of an object (numeric, matrix, data frame, etc)
+```{r}
+class(mtcars)
+```
+
+## Data selection
+Select one column
+```{r}
+head(mtcars$mpg, n = 5) # by name
+head(mtcars[1], n = 5) # by index
+```
+Select several column
+```{r}
+head(mtcars[c('mpg', 'disp')], n = 5) # by name
+head(mtcars[c(1, 3, 5)], n = 5) # by index
+```
+Select one row
+```{r}
+mtcars[1,] # by index
+mtcars['Valiant',] # by name
+```
+Select several rows
+```{r}
+mtcars[2:3,] # by index
+mtcars[c(1,5,9),] # by index
+mtcars[c('Valiant', 'Hornet Sportabout'),] # by name
+```
+
+## Conditional selection
+
+```{r}
+mtcars[mtcars$mpg > 25,]
+```
+```{r}
+mtcars[(mtcars$mpg > 25) & (mtcars$qsec < 19), ]
+```
+```{r}
+mtcars$mpg[mtcars$gear == 4]
+```
+
+## Deal with missing values
+In R, the missing values is presented as ``NA``.
+
+Test the existence of missing values with ``is.na()`` function. We used an old example here.
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', NA, 'C', 'D') # create variable Name
+Score <- c(69.5, 77.5, NA, 90) # create variable Score
+df <- data.frame(ID, Name, Score) # combine the varibles into one data frame called df
+is.na(df)
+```
+Assign missing values
+```{r}
+df$Score[df$Score == 90] <- NA
+df
+```
+NAs will influence some functions.
+```{r}
+mean(df$Score) # get the mean value (does not ignore NA)
+mean(df$Score, na.rm=TRUE) # (ignore NA)
+```
+Test if the observationsin the dataset has NAs.
+```{r}
+complete.cases(df)
+```
+Find the observations with no NAs.
+```{r}
+na.omit(df)
+```
+
+## Subset
+```{r}
+data(mtcars)
+newdata <- subset(mtcars, mpg > 30)
+newdata
+```
+```{r}
+newdata <- subset(mtcars, select = c('mpg', 'cyl'))
+head(newdata, n = 5)
+```
+
+## Merge two datasets
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', 'B', 'C', 'D') # create variable Name
+Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
+df1 <- data.frame(ID, Name, Score1) # combine the varibles into one data frame called df1
+df1
+
+Name <- c('A', 'D', 'C') # create variable Name
+Score2 <- c(98, 46, 55) # create variable Score2
+df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
+df2
+```
+```{r}
+merge(df1, df2,       # dataframes needs to be merged
+      by = 'Name',    # name of the columns used for merging
+      all.x = TRUE)   # keep all observations in the first dataframe after merging
+```
+```{r}
+merge(df1, df2, 
+      by = 'Name',
+      all.y = TRUE) # keep all observations in the first dataframe after merging
+```
+
+## column operations
+```{r}
+ID <- c(1:4) # create variable ID
+Name <- c('A', 'B', 'C', 'D') # create variable Name
+Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
+Score2 <- c(98, 46, 55, 70) # create variable Score2
+df <- data.frame(ID, Name, Score1, Score2) # combine the varibles into one data frame called df
+df
+```
+Create a new column in the dataframe to calculate the sum of score 1 and score 2
+```{r}
+df$totalsocre <- df$Score1 + df$Score2
+df
+```
+Create a new column in the dataframe to calculate the mean of score 1 and score 2
+```{r}
+df$meansocre <- (df$Score1 + df$Score2)/2
+df
+```
+
+
+**Reference**
+
+1.[Importing Data](https://www.statmethods.net/input/importingdata.html)
+2.[Exporting Data](https://www.statmethods.net/input/exportingdata.html)
+3.[Getting Information on a Dataset](https://www.statmethods.net/input/contents.html)
+
+
