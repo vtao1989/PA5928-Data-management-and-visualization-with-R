@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="data-manipulation.html">
-
+<link rel="next" href="statistics-in-r.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,6 +178,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#bar-plot-1"><i class="fa fa-check"></i><b>4.5</b> bar plot</a></li>
 <li class="chapter" data-level="4.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#line-plot-1"><i class="fa fa-check"></i><b>4.6</b> line plot</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>5</b> Statistics in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>5.1</b> simple statistics</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#mean-and-median"><i class="fa fa-check"></i><b>5.1.1</b> Mean and median</a></li>
+<li class="chapter" data-level="5.1.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#minimum-and-maximum-value"><i class="fa fa-check"></i><b>5.1.2</b> Minimum and maximum value</a></li>
+<li class="chapter" data-level="5.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#quantiles"><i class="fa fa-check"></i><b>5.1.3</b> Quantiles</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.2</b> Simple Linear regression</a></li>
+<li class="chapter" data-level="5.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#multiple-regression"><i class="fa fa-check"></i><b>5.3</b> Multiple Regression</a></li>
+<li class="chapter" data-level="5.4" data-path="statistics-in-r.html"><a href="statistics-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>5.4</b> Logistic regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="spatial-visualization.html"><a href="spatial-visualization.html"><i class="fa fa-check"></i><b>6</b> Spatial Visualization</a><ul>
+<li class="chapter" data-level="6.1" data-path="spatial-visualization.html"><a href="spatial-visualization.html#basics-of-spatial-data"><i class="fa fa-check"></i><b>6.1</b> Basics of spatial data</a></li>
+<li class="chapter" data-level="6.2" data-path="spatial-visualization.html"><a href="spatial-visualization.html#basic-plotting"><i class="fa fa-check"></i><b>6.2</b> Basic plotting</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -205,42 +219,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We would focus on the base plotting functions in R first and then switch to the ggplot2 part.</p>
 <div id="scater-plot" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Scater plot</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1998</span><span class="op">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></a>
-<a class="sourceLine" id="cb1-2" title="2">sales &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></a>
-<a class="sourceLine" id="cb1-3" title="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(year, sales) <span class="co"># combine the varibles into one data frame called df</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">plot</span>(df)</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1">year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1998</span><span class="op">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></a>
+<a class="sourceLine" id="cb209-2" title="2">sales &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></a>
+<a class="sourceLine" id="cb209-3" title="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(year, sales) <span class="co"># combine the varibles into one data frame called df</span></a>
+<a class="sourceLine" id="cb209-4" title="4"><span class="kw">plot</span>(df)</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <p>Or, you could use the variable names directly and indicate the dataset as the codes below. You will get the same result.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">plot</span>(sales <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df)</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">plot</span>(sales <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df)</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
 <div id="line-plot" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Line plot</h3>
 <p>You could transfer the scatter plot above to a line plot by just adding a <code>type</code> variable to indicate that you are plotting a line.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">plot</span>(df,</a>
-<a class="sourceLine" id="cb3-2" title="2">     <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>) <span class="co"># type indicates the line type</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">plot</span>(df,</a>
+<a class="sourceLine" id="cb211-2" title="2">     <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>) <span class="co"># type indicates the line type</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>You could also choose another type by changing the value of <code>type</code>, as the one below.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">plot</span>(df,</a>
-<a class="sourceLine" id="cb4-2" title="2">     <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>) <span class="co"># type indicates the line type</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">plot</span>(df,</a>
+<a class="sourceLine" id="cb212-2" title="2">     <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>) <span class="co"># type indicates the line type</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
 </div>
 <div id="bar-plot" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> Bar plot</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">barplot</span>(df<span class="op">$</span>sales,</a>
-<a class="sourceLine" id="cb5-2" title="2">        <span class="dt">names.arg =</span> df<span class="op">$</span>year) <span class="co"># names.org indicates the vector of names to be plotted under each bar</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="kw">barplot</span>(df<span class="op">$</span>sales,</a>
+<a class="sourceLine" id="cb213-2" title="2">        <span class="dt">names.arg =</span> df<span class="op">$</span>year) <span class="co"># names.org indicates the vector of names to be plotted under each bar</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 </div>
 <div id="add-more-elements-in-the-plots" class="section level3">
 <h3><span class="header-section-number">4.1.4</span> Add more elements in the plots</h3>
 <p>For a reader-friendly plots, you have to add more information such as titile, labels, and legend. For the plot above, we could use the codes below to make it more informative.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">barplot</span>(df<span class="op">$</span>sales,</a>
-<a class="sourceLine" id="cb6-2" title="2">        <span class="dt">names.arg =</span> df<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb6-3" title="3">        <span class="dt">main =</span> <span class="st">&#39;Bar plot of the sales for each year from 1998 to 2003&#39;</span>, <span class="co"># add title for the plot</span></a>
-<a class="sourceLine" id="cb6-4" title="4">        <span class="dt">xlab =</span> <span class="st">&#39;Year&#39;</span>, <span class="co"># add label tag for the x-axis</span></a>
-<a class="sourceLine" id="cb6-5" title="5">        <span class="dt">ylab =</span> <span class="st">&#39;Sales (million dollors)&#39;</span>,  <span class="co"># add label for the y-axis</span></a>
-<a class="sourceLine" id="cb6-6" title="6">        <span class="dt">legend =</span> <span class="st">&#39;Sales&#39;</span>) <span class="co"># add lengend name</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">barplot</span>(df<span class="op">$</span>sales,</a>
+<a class="sourceLine" id="cb214-2" title="2">        <span class="dt">names.arg =</span> df<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb214-3" title="3">        <span class="dt">main =</span> <span class="st">&#39;Bar plot of the sales for each year from 1998 to 2003&#39;</span>, <span class="co"># add title for the plot</span></a>
+<a class="sourceLine" id="cb214-4" title="4">        <span class="dt">xlab =</span> <span class="st">&#39;Year&#39;</span>, <span class="co"># add label tag for the x-axis</span></a>
+<a class="sourceLine" id="cb214-5" title="5">        <span class="dt">ylab =</span> <span class="st">&#39;Sales (million dollors)&#39;</span>,  <span class="co"># add label for the y-axis</span></a>
+<a class="sourceLine" id="cb214-6" title="6">        <span class="dt">legend =</span> <span class="st">&#39;Sales&#39;</span>) <span class="co"># add lengend name</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 </div>
 </div>
 <div id="grammer-of-graphics-gg" class="section level2">
@@ -285,37 +299,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Let’s take the codes below as a simple example to show how those different elements work in ggplots. From this example, we might have a general idea what is each element and how does it work. If you are still confused, don’t worry about it. We will talk about each element in details latter.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb7-4" title="4">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Geometries</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>gear) <span class="op">+</span><span class="st"> </span><span class="co"># Facets</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Statistics</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&#39;Miles/(US) gallon&#39;</span>,</a>
-<a class="sourceLine" id="cb7-9" title="9">                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&#39;Weight (1000 lbs)&#39;</span>,</a>
-<a class="sourceLine" id="cb7-11" title="11">                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">7</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Coordinates</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="co"># Themes</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb215-2" title="2"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb215-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
+<a class="sourceLine" id="cb215-4" title="4">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
+<a class="sourceLine" id="cb215-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Geometries</span></a>
+<a class="sourceLine" id="cb215-6" title="6"><span class="st">  </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>gear) <span class="op">+</span><span class="st"> </span><span class="co"># Facets</span></a>
+<a class="sourceLine" id="cb215-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Statistics</span></a>
+<a class="sourceLine" id="cb215-8" title="8"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&#39;Miles/(US) gallon&#39;</span>,</a>
+<a class="sourceLine" id="cb215-9" title="9">                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb215-10" title="10"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&#39;Weight (1000 lbs)&#39;</span>,</a>
+<a class="sourceLine" id="cb215-11" title="11">                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">7</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Coordinates</span></a>
+<a class="sourceLine" id="cb215-12" title="12"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="co"># Themes</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 </div>
 <div id="data-aesthetics-and-geometries" class="section level2">
 <h2><span class="header-section-number">4.3</span> Data, Aesthetics, and Geometries</h2>
 <p>Generally, if you want to draw figures with <code>ggplot2</code>, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. GEometry indicates the plot type and related attributes. Take the example above again. We want to visualize the varialbes of <code>mpg</code> and <code>wp</code> (aesthetic) of the dataset <code>mtcars</code> (data) with a scatter plot (geometry).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb8-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
+<a class="sourceLine" id="cb216-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
+<a class="sourceLine" id="cb216-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <p>We could add attributes in the aesthetic element. For example, we could use color to indicate the value of <code>hp</code> by adding <code>col = hp</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb9-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">col =</span> hp)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
+<a class="sourceLine" id="cb217-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">col =</span> hp)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
+<a class="sourceLine" id="cb217-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p>Here, <code>hp</code> is a continous variable, so <code>ggplot2</code> uses the darkness of the color to indicate the value. However, if we use a categorical varibable (e.g. binomial variable), <code>ggplot2</code> will use different colors to show different types.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb10-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">col =</span> <span class="kw">factor</span>(am))) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
+<a class="sourceLine" id="cb218-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">col =</span> <span class="kw">factor</span>(am))) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
+<a class="sourceLine" id="cb218-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>Here, <code>am</code> stands for the types of transmission system (0 = automatic, 1 = manual). We use <code>factor()</code> to transfer this variable to a categorical one. Then, the <code>ggplot2</code> uses one color for automatic transmission and another color for mannual transmission.</p>
 <p>Besides <code>color</code>, there are other parameters to show different aspects of the plots.</p>
 <table>
@@ -388,25 +402,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="scatter-plot" class="section level2">
 <h2><span class="header-section-number">4.4</span> Scatter plot</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb11-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">alpha =</span> hp)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
+<a class="sourceLine" id="cb219-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">alpha =</span> hp)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
+<a class="sourceLine" id="cb219-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 </div>
 <div id="bar-plot-1" class="section level2">
 <h2><span class="header-section-number">4.5</span> bar plot</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb12-2" title="2">       <span class="kw">aes</span>(am)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="co"># Geometries</span></a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
+<a class="sourceLine" id="cb220-2" title="2">       <span class="kw">aes</span>(am)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
+<a class="sourceLine" id="cb220-3" title="3"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="co"># Geometries</span></a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 </div>
 <div id="line-plot-1" class="section level2">
 <h2><span class="header-section-number">4.6</span> line plot</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">data</span>(economics)</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw">ggplot</span>(economics,</a>
-<a class="sourceLine" id="cb13-3" title="3">       <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">data</span>(economics)</a>
+<a class="sourceLine" id="cb221-2" title="2"><span class="kw">ggplot</span>(economics,</a>
+<a class="sourceLine" id="cb221-3" title="3">       <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p><strong>Reference</strong></p>
 <p>1.<a href="https://www.datacamp.com/courses/data-visualization-with-ggplot2-1">Datacamp.com Data Visualization with ggplot2</a></p>
 
@@ -417,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-manipulation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistics-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

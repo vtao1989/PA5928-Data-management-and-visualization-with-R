@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>PA 5928 Data management &amp; visualization with R</title>
+  <title>Chapter 5 Statistics in R | PA 5928 Data management &amp; visualization with R</title>
   <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="PA 5928 Data management &amp; visualization with R" />
+  <meta property="og:title" content="Chapter 5 Statistics in R | PA 5928 Data management &amp; visualization with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="PA 5928 Data management &amp; visualization with R" />
+  <meta name="twitter:title" content="Chapter 5 Statistics in R | PA 5928 Data management &amp; visualization with R" />
   
   <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-r.html">
+<link rel="prev" href="data-visualization-with-ggplot2.html">
+<link rel="next" href="spatial-visualization.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -212,109 +212,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">PA 5928 Data management &amp; visualization with R</h1>
-<p class="author"><em>Tao Tao</em></p>
-<p class="date"><em>2019-08-31</em></p>
+<div id="statistics-in-r" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Statistics in R</h1>
+<div id="simple-statistics" class="section level2">
+<h2><span class="header-section-number">5.1</span> simple statistics</h2>
+<div id="mean-and-median" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Mean and median</h3>
+<p>We could use the base functions to do some simple statistical analysis directly.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">33</span>, <span class="dv">29</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="fl">4.5</span>)</a>
+<a class="sourceLine" id="cb222-2" title="2"><span class="kw">mean</span>(a) <span class="co"># mean</span></a></code></pre></div>
+<pre><code>## [1] 28.77273</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">median</span>(a) <span class="co"># median</span></a></code></pre></div>
+<pre><code>## [1] 29</code></pre>
 </div>
-<div id="introduction-to-rstudio" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction to RStudio</h1>
-<div id="what-is-r" class="section level2">
-<h2><span class="header-section-number">1.1</span> What is R</h2>
-<p><strong>R</strong> is a type of programming language and supports many tasks including statistical computation and grapics.</p>
+<div id="minimum-and-maximum-value" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Minimum and maximum value</h3>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">min</span>(a) <span class="co"># minimum value</span></a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">max</span>(a) <span class="co"># maximum value</span></a></code></pre></div>
+<pre><code>## [1] 100</code></pre>
 </div>
-<div id="what-is-r-studio" class="section level2">
-<h2><span class="header-section-number">1.2</span> What is R Studio</h2>
-<p><strong>RStudio</strong> is a programming software for editing and running R code.</p>
+<div id="quantiles" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Quantiles</h3>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1">x &lt;-<span class="st"> </span><span class="kw">quantile</span>(a)</a>
+<a class="sourceLine" id="cb230-2" title="2">x <span class="co"># list of quantiles</span></a></code></pre></div>
+<pre><code>##    0%   25%   50%   75%  100% 
+##   0.0  10.0  29.0  31.5 100.0</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1">x[<span class="dv">2</span>] <span class="co"># select the value by its index</span></a></code></pre></div>
+<pre><code>## 25% 
+##  10</code></pre>
 </div>
-<div id="install-r-rstudio" class="section level2">
-<h2><span class="header-section-number">1.3</span> Install R + RStudio</h2>
-<p>For better coding and running R, you should install both R and RStudio.You could only code R with the installation with R only, however, RStudio provides you with more conveinece during the working process. In this course, we will use RStudio to do all the course stuff. So please make sure you install both two!
-R could be downloaded <a href="https://www.r-project.org/">here</a> and RStudio could be downloaded <a href="https://www.rstudio.com/products/rstudio/download/">here</a>.</p>
 </div>
-<div id="familiar-with-the-user-interface-of-r-studio" class="section level2">
-<h2><span class="header-section-number">1.4</span> Familiar with the user interface of R Studio</h2>
-<p>Below is the figure showing a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.</p>
-<ol style="list-style-type: decimal">
-<li><strong>Manu/Tool Bar</strong></li>
-<li><strong>Source</strong> The pane where you write and edit your code.</li>
-<li><strong>Environment/History</strong> Environment lists all the variables that you are using. History presents the codes you have runned before.</li>
-<li><strong>Console</strong> Console is original R interactive window. You could input codes and see the results here.</li>
-<li><strong>Plots/Help</strong> Plots window shows the output figures. Help windows presents the information of the function or package you check.</li>
-</ol>
-<p><img src="Pics/RStudio.JPG" /></p>
+<div id="simple-linear-regression" class="section level2">
+<h2><span class="header-section-number">5.2</span> Simple Linear regression</h2>
+<p>Our example is the dataset <code>mtcars</code>, and we want to explore the relationship between <code>mpg</code> (Miles/(US) gallon) and <code>wt</code> (Weight (1000 lbs)).</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb234-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb234-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg, wt)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb234-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p>It seems there is a linear relationship between these two variables. We then add a linear line to fit them.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg, wt)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb235-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb235-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>We then use the <code>lm()</code> function to fit this linear relationship and use <code>summary()</code> function to see the result.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1">lm_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(wt <span class="op">~</span><span class="st"> </span>mpg,      <span class="co"># formula</span></a>
+<a class="sourceLine" id="cb236-2" title="2">             mtcars)        <span class="co"># dataset</span></a>
+<a class="sourceLine" id="cb236-3" title="3"><span class="kw">summary</span>(lm_fit)             <span class="co"># check result</span></a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = wt ~ mpg, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.6516 -0.3490 -0.1381  0.3190  1.3684 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  6.04726    0.30869  19.590  &lt; 2e-16 ***
+## mpg         -0.14086    0.01474  -9.559 1.29e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4945 on 30 degrees of freedom
+## Multiple R-squared:  0.7528, Adjusted R-squared:  0.7446 
+## F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="kw">summary</span>(lm_fit)<span class="op">$</span>r.squared   <span class="co"># value of R2</span></a></code></pre></div>
+<pre><code>## [1] 0.7528328</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1"><span class="kw">coefficients</span>(lm_fit)        <span class="co"># only check the coefficient</span></a></code></pre></div>
+<pre><code>## (Intercept)         mpg 
+##    6.047255   -0.140862</code></pre>
 </div>
-<div id="create-and-save-r-file" class="section level2">
-<h2><span class="header-section-number">1.5</span> Create and save R file</h2>
-<p>Three ways to create a R file in the RStudio:</p>
-<pre><code>1. Manu -&gt; File -&gt; New File -&gt; R Script
-2. Shortcut: Ctrl + Shift + N
-3. Tool Bar -&gt; New file button</code></pre>
-<p>Also three ways to save R file</p>
-<pre><code>1. Manu -&gt; File -&gt; Save
-2. Shortcut: Ctrl + S
-3. Tool Bar -&gt; Save file button</code></pre>
+<div id="multiple-regression" class="section level2">
+<h2><span class="header-section-number">5.3</span> Multiple Regression</h2>
+<p>Most of the time, we need to examine the relationship between one dependent variable with several independent variables. Then we have carry out multiple regression. Here, <code>multiple</code> indicates more than one independent variables.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1">mlm_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>disp<span class="op">+</span>hp<span class="op">+</span>wt,</a>
+<a class="sourceLine" id="cb242-2" title="2">          mtcars)</a>
+<a class="sourceLine" id="cb242-3" title="3"><span class="kw">summary</span>(mlm_fit)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ disp + hp + wt, data = mtcars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.891 -1.640 -0.172  1.061  5.861 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 37.105505   2.110815  17.579  &lt; 2e-16 ***
+## disp        -0.000937   0.010350  -0.091  0.92851    
+## hp          -0.031157   0.011436  -2.724  0.01097 *  
+## wt          -3.800891   1.066191  -3.565  0.00133 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.639 on 28 degrees of freedom
+## Multiple R-squared:  0.8268, Adjusted R-squared:  0.8083 
+## F-statistic: 44.57 on 3 and 28 DF,  p-value: 8.65e-11</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">summary</span>(mlm_fit)<span class="op">$</span>r.squared</a></code></pre></div>
+<pre><code>## [1] 0.8268361</code></pre>
 </div>
-<div id="print-hello-world" class="section level2">
-<h2><span class="header-section-number">1.6</span> Print Hello, world</h2>
-<p>Now, let’s try to input some codes and run them! Let’s let R print the very classic “Hello, world!” with <code>print()</code> function.
-We could run the codes in several ways:</p>
-<ol style="list-style-type: decimal">
-<li>Select the codes or put the cursor in the line of your code, and click the Run button located in the right-top position of the console pane.</li>
-<li>Select the codes or put the cursor in the line of your code, and use shortcut: Ctrl + Enter</li>
-<li>You could also click the Re-run button near the Run button to re-run the codes you runned last time</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">print</span>(<span class="st">&#39;Hello, world!&#39;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
-<p>Because what we need to output here is a <strong>string varible</strong>, we have to put them in the quotation mark. Either single quotation or double quotation mark works well. Let’s see another example.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">print</span>(<span class="dv">5928</span>)</a></code></pre></div>
-<pre><code>## [1] 5928</code></pre>
-<p>Here, 5928 is an integer and we do not need to put them in the quotation mark.</p>
-</div>
-<div id="install-and-use-r-packages" class="section level2">
-<h2><span class="header-section-number">1.7</span> Install and use R Packages</h2>
-<p>R is easy to use because it has many packages with different usages. These packages could help you acomplish some complex tasks with several lines of codes.
-Some packages have been already been installed and you could use them directly. However, most of the packages have to be installed before you want to use them. There are couple of ways you could install a package. Let’s take the <code>gbm</code> package for example.</p>
-<pre><code>1. Manu -&gt; Tools -&gt; Install Packages... -&gt; Input the package name -&gt; Click Install button</code></pre>
-<center>
-<img src="Pics/InstallPackages.JPG" style="width:35.0%" />
-</center>
-<pre><code>2. Use the code below:
-install.packages(&quot;gbm&quot;)</code></pre>
-<p>After the installation of the package, you have import the it with <code>library()</code> function before you use the functions in it.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">library</span>(gbm)</a></code></pre></div>
-<pre><code>## Loaded gbm 2.1.4</code></pre>
-<p>We will spend more time in the future classes to explore the various R packages and their different usages.</p>
-</div>
-<div id="make-notes" class="section level2">
-<h2><span class="header-section-number">1.8</span> Make notes</h2>
-<p>It is important to write notes for your codes. It could help others or even yourself understand your codes easily. Use hash tag to indicate the notes. For example,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">gbm1 &lt;-<span class="st"> </span><span class="kw">gbm</span>(AvgMet<span class="op">~</span>PkAreaH<span class="op">+</span>StpNumH<span class="op">+</span>DisToMin,  <span class="co"># formula</span></a>
-<a class="sourceLine" id="cb11-2" title="2">            <span class="dt">data=</span>MetM,                        <span class="co"># dataset  </span></a>
-<a class="sourceLine" id="cb11-3" title="3">            <span class="dt">var.monotone=</span><span class="kw">c</span>(<span class="op">+</span><span class="dv">1</span>, <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">10</span>),<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">15</span>)), </a>
-<a class="sourceLine" id="cb11-4" title="4">            <span class="dt">distribution=</span><span class="st">&quot;gaussian&quot;</span>,          <span class="co"># see the help for other choices  </span></a>
-<a class="sourceLine" id="cb11-5" title="5">            <span class="dt">n.trees=</span><span class="dv">5000</span>,                     <span class="co"># number of trees  </span></a>
-<a class="sourceLine" id="cb11-6" title="6">            <span class="dt">shrinkage=</span><span class="fl">0.001</span>,                  <span class="co"># shrinkage or learning rate, 0.001 to 0.1 usually work  </span></a>
-<a class="sourceLine" id="cb11-7" title="7">            <span class="dt">interaction.depth=</span><span class="dv">6</span>,              <span class="co"># 1: additive model, 2: two-way interactions, etc.  </span></a>
-<a class="sourceLine" id="cb11-8" title="8">            <span class="dt">bag.fraction =</span> <span class="fl">0.5</span>,               <span class="co"># subsampling fraction, 0.5 is probably best  </span></a>
-<a class="sourceLine" id="cb11-9" title="9">            <span class="dt">n.minobsinnode =</span> <span class="dv">10</span>,              <span class="co"># minimum total weight needed in each node</span></a>
-<a class="sourceLine" id="cb11-10" title="10">            <span class="dt">cv.folds =</span> <span class="dv">5</span>)</a></code></pre></div>
-<p>R will not run the codes after hash tags in each line.</p>
-<p>Please try to write simple but necessary notes for the codes. Keep this as a good habbit and you will thank yourself in the future.</p>
-</div>
-<div id="tips-updating" class="section level2">
-<h2><span class="header-section-number">1.9</span> Tips (Updating)</h2>
-<ol style="list-style-type: decimal">
-<li>You could divide your codes into sections by interting chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.</li>
-<li>Use <code>?</code> or <code>help()</code> function to find the related instruction or help page, for example, if you want to find the instruction of <code>library()</code> function, just</li>
-</ol>
-<pre><code>?library</code></pre>
-<p>or</p>
-<pre><code>help(library)</code></pre>
-<p>Both will direct you to the instruction page you are looking for.</p>
+<div id="logistic-regression" class="section level2">
+<h2><span class="header-section-number">5.4</span> Logistic regression</h2>
+<p>The above two examples both use continuous variables as their dependent variables. How about using a binomial variable a dependent variable? Then we need to do logistic regression. There are many functions to do this. Here, we introduced the <code>glm()</code> function.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1">logit_reg &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="dt">formula =</span> am <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>wt,</a>
+<a class="sourceLine" id="cb246-2" title="2">                 mtcars,</a>
+<a class="sourceLine" id="cb246-3" title="3">                 <span class="dt">family =</span> binomial)</a>
+<a class="sourceLine" id="cb246-4" title="4"><span class="kw">summary</span>(logit_reg)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = am ~ cyl + hp + wt, family = binomial, data = mtcars)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.17272  -0.14907  -0.01464   0.14116   1.27641  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept) 19.70288    8.11637   2.428   0.0152 *
+## cyl          0.48760    1.07162   0.455   0.6491  
+## hp           0.03259    0.01886   1.728   0.0840 .
+## wt          -9.14947    4.15332  -2.203   0.0276 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 43.2297  on 31  degrees of freedom
+## Residual deviance:  9.8415  on 28  degrees of freedom
+## AIC: 17.841
+## 
+## Number of Fisher Scoring iterations: 8</code></pre>
 <p><strong>Reference</strong></p>
 <ol style="list-style-type: decimal">
-<li><a href="https://datascienceplus.com/introduction-to-rstudio/">Introduction to RStudio</a></li>
+<li><a href="https://www.tutorialspoint.com/r/r_mean_median_mode.htm">R - Mean, Median and Mode</a></li>
 </ol>
 
 </div>
@@ -324,8 +356,8 @@ install.packages(&quot;gbm&quot;)</code></pre>
           </div>
         </div>
       </div>
-
-<a href="introduction-to-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visualization-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
