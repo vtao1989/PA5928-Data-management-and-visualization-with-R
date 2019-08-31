@@ -1,4 +1,4 @@
-# Introduction to RStudio
+# Introduction to R
 
 ## Variable types
 There are several variables which R could recoganise. Here, we use ``class()`` function to check the type of each value.
