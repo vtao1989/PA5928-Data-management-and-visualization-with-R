@@ -13,22 +13,23 @@ description: "This is the website for couse PA 5928 in the University of Minneso
 # Introduction to RStudio
 
 ## What is R
-**R** is a type of programming language and supports many tasks including statistical computation and grapics.
+**R** is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, [statistics](https://r-statistics.co/Linear-Regression.html), [machine learning](https://vtao1989.github.io/DisToTransit_statistics/)) and grapics ([static plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) and [interactive plots](https://plot.ly/r/3d-surface-plots/)). You can also use it to create website, write papers, analyze texts, etc. The most important thing is that **R is free and easy to use**, that's why it has been applied in many fileds.
 
 ## What is R Studio
-**RStudio** is a programming software for editing and running R code.
+**RStudio** is a programming software for editing and running R code. It has many great features to make R programming easier and more fun!
 
 ## Install R + RStudio
-For better coding and running R, you should install both R and RStudio.You could only code R with the installation with R only, however, RStudio provides you with more conveinece during the working process. In this course, we will use RStudio to do all the course stuff. So please make sure you install both two!
-R could be downloaded [here](https://www.r-project.org/) and RStudio could be downloaded [here](https://www.rstudio.com/products/rstudio/download/).
+For better coding and running R, you should install both R and RStudio. You could code R with the installation of R only, however, RStudio provides you with more conveinece during the working process. In this course, we will use RStudio to do all the course lectures and exercises. So please make sure you install both of them!  
+R could be downloaded [here](https://www.r-project.org/) and RStudio could be downloaded [here](https://www.rstudio.com/products/rstudio/download/). Both Windows OS and Mac OS are supported, so please choose the one you need for your own system.  
+Or you could use the computers in the lab when there is no lecture.
 
 ## Familiar with the user interface of R Studio
-Below is the figure showing a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.
+Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.
 
-1. **Manu/Tool Bar**
+1. **Menu/Tool Bar**
 2. **Source**  The pane where you write and edit your code.
-3. **Environment/History** Environment lists all the variables that you are using. History presents the codes you have runned before.
-4. **Console** Console is original R interactive window. You could input codes and see the results here.
+3. **Environment/History** Environment lists all the variables that you are currently using. History presents the codes you have runned before.
+4. **Console** Console is the original R interactive window. You could run codes and see the results here.
 5. **Plots/Help** Plots window shows the output figures. Help windows presents the information of the function or package you check.
 
 ![](Pics/RStudio.JPG)
@@ -36,20 +37,20 @@ Below is the figure showing a screenshot of the user interface of RStudio. You w
 ## Create and save R file
 Three ways to create a R file in the RStudio:
 ```
-1. Manu -> File -> New File -> R Script
+1. Menu -> File -> New File -> R Script
 2. Shortcut: Ctrl + Shift + N
 3. Tool Bar -> New file button
 ```
 
 Also three ways to save R file
 ```
-1. Manu -> File -> Save
+1. Menu -> File -> Save
 2. Shortcut: Ctrl + S
 3. Tool Bar -> Save file button
 ```
 
 ## Print Hello, world
-Now, let's try to input some codes and run them! Let's let R print the very classic "Hello, world!" with ``print()`` function.
+Now, let's try to input some codes and run them! Let's print the very classic "Hello, world!" with ``print()`` function.  
 We could run the codes in several ways:
 
 1. Select the codes or put the cursor in the line of your code, and click the Run button located in the right-top position of the console pane.
@@ -59,15 +60,18 @@ We could run the codes in several ways:
 ```{r}
 print('Hello, world!')
 ```
+
 Because what we need to output here is a **string varible**, we have to put them in the quotation mark. Either single quotation or double quotation mark works well. Let's see another example.
+
 ```{r}
 print(5928)
 ```
+
 Here, 5928 is an integer and we do not need to put them in the quotation mark.
 
 ## Install and use R Packages
-R is easy to use because it has many packages with different usages. These packages could help you acomplish some complex tasks with several lines of codes.
-Some packages have been already been installed and you could use them directly. However, most of the packages have to be installed before you want to use them. There are couple of ways you could install a package. Let's take the ``gbm`` package for example.
+R is easy to use because it has many packages with different usages. These packages could help you acomplish some complex tasks with just several lines of codes.  
+Some packages have been already been installed and you could use them directly, which are base packages. However, most of the packages have to be installed before you use them. There are couple of ways you could install a package. Let's take the ``gbm`` package for example.
 ```
 1. Manu -> Tools -> Install Packages... -> Input the package name -> Click Install button
 ```

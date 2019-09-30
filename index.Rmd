@@ -14,7 +14,7 @@ description: "This is the website for couse PA 5928 in the University of Minneso
 
 ## Course Description
 
-Introduction to R Studio software. Use of R Studio to carry out R file and related database management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data and spatial visualization (including charts, plots, histograms, maps, and other graphs). 
+Introduction to R Studio software. Use of R Studio to carry out R file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs). 
 
 ## Course Prerequisites
 
@@ -25,7 +25,8 @@ Introductory statistics; ability to create bar graphs, line graphs, and scatter 
 Instructor: Tao Tao, taotao@umn.edu  
 Location: HHH 85  
 Time: Starting 10/8: Tuesdays 9:45AM to 11:00AM   
-Office hours: Monday Friday 10:00 - 11:00 am at HHH 271
+Office hours: Monday Friday 10:00 - 11:00 am at HHH 271  
+Canvas: All course notes will be posted in this course website, but links will be provided on ``Canvas``. ``Canvas`` will also be used to submit your homework, final project, and grades.  So you only need to pay attention to ``Canvas`` to check everything!
 
 ## Course Learning Outcomes
 
@@ -35,11 +36,12 @@ At the end of this course, students will be able to:
 2. Use R to work with different types of datasets and conduct basic data management
 3. Use R to visualize data with different types of plots
 
-## Workload
+## In-class exercise and final project
 
-1. An in-class exercise will be assigned during each class for the students to practice what they have learned. The in-class exercises will be mostly finished during the class time, and students are still required to submit their codes after class with necessary notes to indicate their ideas.
-2. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and write a short report about it).
-3. Grading policy
+1. An in-class exercise will be assigned during each class for the students to practice what they have learned. [Chime](https://chimein2.cla.umn.edu/chimeParticipant/189) will be used in class to check the class performance in a anonymous way.
+2. The in-class exercises will be mostly finished during the class time, and students are still required to submit their codes after class with necessary notes to indicate their ideas.
+3. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and write a short report about it).
+4. Grading policy
 
 * In-class exercise codes: 50%
 * Final project: 40%
@@ -50,12 +52,12 @@ At the end of this course, students will be able to:
 
 | #  | Date  | Topic                               | Notes |
 |----|-------|-------------------------------------|-------|
-| 1  | 10/8  | Introduction to R Studio            |       |
-| 2  | 10/15 | Introduction to R                   |       |
-| 3  | 10/22 | Data manipulation with dplyr (I)    |       |
-| 4  | 10/29 | Data manipulation with dplyr (II)   |       |
-| 5  | 11/5  | Data visualization with ggplot (I)  |       |
-| 6  | 11/12 | Data visualization with ggplot (II) |       |
+| 1  | 10/8  | Introduction to ``R Studio``            |       |
+| 2  | 10/15 | Introduction to ``R``                   |       |
+| 3  | 10/22 | Data manipulation with ``dplyr`` (I)    |       |
+| 4  | 10/29 | Data manipulation with ``dplyr`` (II)   |       |
+| 5  | 11/5  | Data visualization with ``ggplot2`` (I)  |       |
+| 6  | 11/12 | Data visualization with ``ggplot2`` (II) |       |
 | 7  | 11/19 | R Statistics (I)                    |       |
 | 8  | 11/26 | R Statistics (II)                   |       |
 | 9  | 12/3  | Spatial visualization (I)           |       |
@@ -65,4 +67,4 @@ At the end of this course, students will be able to:
 
 1. **Students can discuss their works with other students, but must code and write up notes by themselves [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
 2. In-class exercises and projects should be submitted through **Canvas**. **Late homework will not be accepted!**
-3. When you communicate me with emails, please include ``PA 5928`` at the beginning of your title.
+3. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
