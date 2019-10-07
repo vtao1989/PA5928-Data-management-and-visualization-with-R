@@ -67,3 +67,62 @@ At the end of this course, students will be able to:
 1. **Students can discuss their works with other students, but must code and write up notes by themselves [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
 2. In-class exercises and projects should be submitted through **Canvas**. **Late homework will not be accepted!**
 3. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
+
+## some results from our online survey
+
+### Question 1
+
+```{r echo = F, warning =  F, message = FALSE}
+library(readr)
+survey<- read_csv("survey_results.csv", na = "empty")
+
+library(ggplot2)
+
+ggplot(survey, aes(x = Q2)) +
+  geom_bar() +
+  coord_flip() +
+  scale_x_discrete(name ="Are you a?", 
+                   limits=c('1st Y Master', '2 nd Y Master', '3rd Y Master', 'PhD'))
+```
+
+### Question 2
+
+```{r echo = F, warning =  F, message = FALSE}
+survey[is.na(survey)] <- 0
+sum <- c(sum(survey$Q3_1), sum(survey$Q3_2), sum(survey$Q3_3), sum(survey$Q3_4), sum(survey$Q3_5), sum(survey$Q3_6))
+option <- c('Mean, median, and mode', 'Quantile', 'Simple linear regression', 'Multi-variable regression', 'Logistic regression', 'None of them')
+df <- data.frame('Q3' = option, 'count' = sum)
+ggplot(df, aes(x = Q3, y = count)) +
+  geom_col() +
+  coord_flip() +
+  scale_x_discrete(name = 'Which part should be reviewed in class?', limits=df$Q3)
+
+```
+
+### Question 3
+
+```{r echo = F, warning =  F, message = FALSE}
+# Load
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+
+text <- readLines('survey_result.txt')
+docs <- Corpus(VectorSource(text))
+
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removePunctuation)
+docs <- tm_map(docs, removeWords, stopwords("english"))
+
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+
+set.seed(5928)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+
+```

@@ -1,0 +1,20 @@
+I want to learn R as an alternative to Stata and Excel that I can use to make data visualizations for future research.
+Regression was not listed as a prerequisite for this course. Given that, do you think students who have not taken regression will do well in this course? The primary way I plan to use this knowledge is to help analyze survey data I have collected. I can use SPSS and STATA, and would also like to learn R.  
+Data Vis, integration with ArcGIS
+I am interested in learning more about data visualization very broadly, perhaps especially with maps. That being said, I'm very much a beginning statistician and R user (I'm currently taking PA 5031 and I've only taken an introductory course in Rstudio), so my goal with this class is to continue to build my tool box of statistical tools that I can apply broadly.
+I usually use excel for financial data analysis. I would like to learn how do I use R for similar data analysis purposes and also for social research purposes. 
+Data visualization 
+Data visualization, web sleuthing,
+Data analysis and visualization
+I want to learn the basics of R to build on in the future. This will be my first exposure to R.
+I would like to use R for database management and analysis. I'd also like to use it for regression modeling
+transportation system performance analysis
+generate summary statistics, linear regression, data visualization
+Regression and the models
+Perform and visualize statistical analysis. 
+I want to become more familiar with R to utilize it in the same manner that students currently use Stata (for making causal inference). I am hoping to increase the breadth of my programming language knowledge and I've heard that R is often utilized. Furthermore, I've heard it has great graphic capabilities and would love to learn more on how to utilize those. 
+I'm interested in doing more data visualization work using R, instead of/in addition to using Excel. In general, I am just interested in how I can use R for work in the Public Health and Public Policy fields. 
+Basic regression analysis and correlation matrices. Currently using STATA, but R would compliment future work since it is an open and free software package.
+Multivariate regression on large data sets to identify patterns and correlations
+Not sure, thought would be helpful to learn another form of presenting and analyzing data
+bi variate and multi variate regression analysis and basic data visualizations (translate what I know about Stata to R!)

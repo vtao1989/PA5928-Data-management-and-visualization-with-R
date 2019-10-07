@@ -1,0 +1,23 @@
+StartDate,EndDate,Duration (in seconds),RecordedDate,Q2,Q3_1,Q3_2,Q3_3,Q3_4,Q3_5,Q3_6,Q7
+9/30/2019 8:47,9/30/2019 8:51,261,9/30/2019 8:51,4,,1,,,1,,I want to learn R as an alternative to Stata and Excel that I can use to make data visualizations for future research.
+9/30/2019 8:48,9/30/2019 8:52,220,9/30/2019 8:52,1,,,1,1,1,,"Regression was not listed as a prerequisite for this course. Given that, do you think students who have not taken regression will do well in this course? The primary way I plan to use this knowledge is to help analyze survey data I have collected. I can use SPSS and STATA, and would also like to learn R.  "
+9/30/2019 8:53,9/30/2019 8:54,53,9/30/2019 8:54,2,,,,1,1,,
+9/30/2019 8:56,9/30/2019 8:57,43,9/30/2019 8:57,2,,,,1,,,"Data Vis, integration with ArcGIS"
+9/30/2019 8:47,9/30/2019 9:01,828,9/30/2019 9:01,1,,,,1,1,,"I am interested in learning more about data visualization very broadly, perhaps especially with maps. That being said, I'm very much a beginning statistician and R user (I'm currently taking PA 5031 and I've only taken an introductory course in Rstudio), so my goal with this class is to continue to build my tool box of statistical tools that I can apply broadly."
+9/30/2019 8:59,9/30/2019 9:01,153,9/30/2019 9:01,2,,,1,1,1,,I usually use excel for financial data analysis. I would like to learn how do I use R for similar data analysis purposes and also for social research purposes. 
+9/30/2019 9:04,9/30/2019 9:04,46,9/30/2019 9:04,2,,1,1,1,1,,Data visualization 
+9/30/2019 9:07,9/30/2019 9:08,44,9/30/2019 9:08,2,,,,1,1,,"Data visualization, web sleuthing,"
+9/30/2019 9:11,9/30/2019 9:12,69,9/30/2019 9:12,3,,,1,1,1,,Data analysis and visualization
+9/30/2019 9:25,9/30/2019 9:26,48,9/30/2019 9:26,1,,,,1,1,,I want to learn the basics of R to build on in the future. This will be my first exposure to R.
+9/30/2019 10:21,9/30/2019 10:22,52,9/30/2019 10:22,2,,,,,,1,I would like to use R for database management and analysis. I'd also like to use it for regression modeling
+9/30/2019 10:56,9/30/2019 10:57,73,9/30/2019 10:57,2,,,,,1,,transportation system performance analysis
+9/30/2019 11:08,9/30/2019 11:09,49,9/30/2019 11:09,2,,,,1,1,,"generate summary statistics, linear regression, data visualization"
+9/30/2019 8:48,9/30/2019 11:23,9310,9/30/2019 11:23,3,,,,1,1,,Regression and the models
+9/30/2019 10:09,9/30/2019 11:50,6089,9/30/2019 11:50,2,,,,1,1,,Perform and visualize statistical analysis. 
+9/30/2019 13:05,9/30/2019 13:07,120,9/30/2019 13:07,2,,,1,1,1,,"I want to become more familiar with R to utilize it in the same manner that students currently use Stata (for making causal inference). I am hoping to increase the breadth of my programming language knowledge and I've heard that R is often utilized. Furthermore, I've heard it has great graphic capabilities and would love to learn more on how to utilize those. "
+9/30/2019 14:01,9/30/2019 14:07,327,9/30/2019 14:07,2,,,1,1,1,,"I'm interested in doing more data visualization work using R, instead of/in addition to using Excel. In general, I am just interested in how I can use R for work in the Public Health and Public Policy fields. "
+10/1/2019 6:44,10/1/2019 6:50,378,10/1/2019 6:50,2,,,,,1,,"Basic regression analysis and correlation matrices. Currently using STATA, but R would compliment future work since it is an open and free software package."
+10/1/2019 11:28,10/1/2019 11:29,59,10/1/2019 11:29,2,,,,,1,,Multivariate regression on large data sets to identify patterns and correlations
+10/2/2019 11:04,10/2/2019 11:05,24,10/2/2019 11:05,1,,,,1,1,,"Not sure, thought would be helpful to learn another form of presenting and analyzing data"
+10/4/2019 1:44,10/4/2019 1:44,32,10/4/2019 1:44,2,1,1,1,1,1,,
+10/4/2019 13:01,10/4/2019 13:02,72,10/4/2019 13:02,2,,,,1,1,,bi variate and multi variate regression analysis and basic data visualizations (translate what I know about Stata to R!)
