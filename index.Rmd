@@ -65,10 +65,10 @@ At the end of this course, students will be able to:
 ## Homework and projects collaboration and submission policy
 
 1. **Students can discuss their works with other students, but must code and write up notes by themselves [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
-2. In-class exercises and projects should be submitted through **Canvas**. **Late homework will not be accepted!**
+2. In-class exercises and projects should be submitted through **Canvas**. If you cannot attend the class, please write a email to the instuctor including a valid reason before the class. Then you can make up the in-class exercise in the following one week after the class.
 3. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
 
-## some results from our online survey
+## some results from the online survey
 
 ### Question 1
 
@@ -77,7 +77,6 @@ library(readr)
 survey<- read_csv("survey_results.csv", na = "empty")
 
 library(ggplot2)
-
 ggplot(survey, aes(x = Q2)) +
   geom_bar() +
   coord_flip() +
@@ -124,5 +123,4 @@ set.seed(5928)
 wordcloud(words = d$word, freq = d$freq, min.freq = 1,
           max.words=100, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
-
 ```
