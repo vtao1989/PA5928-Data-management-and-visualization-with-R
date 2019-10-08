@@ -1,5 +1,5 @@
 --- 
-title: "PA 5928 Data management & visualization with R"
+title: "PA 5928 Data Management & Visualization with R (Updating)"
 author: "Tao Tao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -14,25 +14,25 @@ description: "This is the website for couse PA 5928 in the University of Minneso
 
 ## Course Description
 
-Introduction to R Studio software. Use of R Studio to carry out R file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs). 
+Introduction to ``RStudio`` software. Use of ``RStudio`` to carry out ``R`` file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs). 
 
 ## Course Prerequisites
 
-Introductory statistics; ability to create bar graphs, line graphs, and scatter plots in MS Excel; and familiarity with principles of data visualization.
+Introductory statistics (regression is not necessary); ability to create bar graphs, line graphs, and scatter plots in MS Excel; and familiarity with principles of data visualization.
 
 ## Logistics
 
 Instructor: Tao Tao, taotao@umn.edu  
 Location: HHH 85  
 Time: Starting 10/8: Tuesdays 9:45AM to 11:00AM   
-Office hours: Monday Friday 10:00 - 11:00 am at HHH 271  
-Canvas: All course notes will be posted in this course website, but links will be provided on ``Canvas``. ``Canvas`` will also be used to submit your homework, final project, and grades.  So you only need to pay attention to ``Canvas`` to check everything!
+Office hours: Monday Friday 10:00 - 11:00 am at HHH 271 (Any need for office hours in Tue pm?)  
+Canvas: All course notes will be posted in this course website, but links will be provided on ``Canvas``. ``Canvas`` will also be used to submit your in-class exercises, final project, and grades.  So you only need to pay attention to ``Canvas`` to check everything!
 
 ## Course Learning Outcomes
 
 At the end of this course, students will be able to:
 
-1. Use R Studio to carry out R file and related dataset management
+1. Use RStudio to carry out R file and related dataset management
 2. Use R to work with different types of datasets and conduct basic data management
 3. Use R to visualize data with different types of plots
 
@@ -51,7 +51,7 @@ At the end of this course, students will be able to:
 
 | #  | Date  | Topic                               | Notes |
 |----|-------|-------------------------------------|-------|
-| 1  | 10/8  | Introduction to ``R Studio``            |Uploaded       |
+| 1  | 10/8  | Introduction to ``RStudio``            |Uploaded       |
 | 2  | 10/15 | Introduction to ``R``                   |       |
 | 3  | 10/22 | Data manipulation with ``dplyr`` (I)    |       |
 | 4  | 10/29 | Data manipulation with ``dplyr`` (II)   |       |
@@ -64,11 +64,11 @@ At the end of this course, students will be able to:
 
 ## Homework and projects collaboration and submission policy
 
-1. **Students can discuss their works with other students, but must code and write up notes by themselves [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
+1. **Students can discuss their works with other students, but must code and write up notes by themselves. [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
 2. In-class exercises and projects should be submitted through **Canvas**. If you cannot attend the class, please write a email to the instuctor including a valid reason before the class. Then you can make up the in-class exercise in the following one week after the class.
 3. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
 
-## some results from the online survey
+## Some results from the online survey
 
 ### Question 1
 

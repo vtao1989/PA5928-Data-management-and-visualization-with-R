@@ -1,36 +1,25 @@
---- 
-title: "PA 5928 Data management & visualization with R"
-author: "Tao Tao"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
-link-citations: yes
-description: "This is the website for couse PA 5928 in the University of Minnesota"
----
 
 # Introduction to RStudio
 
 ## What is R
-**R** is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, [statistics](https://r-statistics.co/Linear-Regression.html), [machine learning](https://vtao1989.github.io/DisToTransit_statistics/)) and grapics ([static plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) and [interactive plots](https://plot.ly/r/3d-surface-plots/)). You can also use it to create website, write papers, analyze texts, etc. The most important thing is that **R is free and easy to use**, that's why it has been applied in many fileds.
+**R** is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, [statistics](https://r-statistics.co/Linear-Regression.html), [machine learning](https://vtao1989.github.io/DisToTransit_statistics/)) and graphics ([static plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) and [interactive plots](https://plot.ly/r/3d-surface-plots/)). You can also use it to create website (like this course website), write papers, analyze texts, *etc*. The most important thing is that **R is free and easy to use**, that's why it has been applied in many fileds.
 
-## What is R Studio
-**RStudio** is a programming software for editing and running R code. It has many great features to make R programming easier and more fun!
+## What is RStudio
+**RStudio** is a programming software for editing and running R code. It has many great features to make R programming easier!
 
 ## Install R + RStudio
-For better coding and running R, you should install both R and RStudio. You could code R with the installation of R only, however, RStudio provides you with more conveinece during the working process. In this course, we will use RStudio to do all the course lectures and exercises. So please make sure you install both of them!  
-R could be downloaded [here](https://www.r-project.org/) and RStudio could be downloaded [here](https://www.rstudio.com/products/rstudio/download/). Both Windows OS and Mac OS are supported, so please choose the one you need for your own system.  
+For better coding and running R, you should install both R and RStudio. You could code R with the installation of R only, however, RStudio provides you with more conveinece in coding. In this course, we will use RStudio to do all the course lectures and exercises. So please make sure you install both of them!  
+R could be downloaded [here](https://www.r-project.org/) and RStudio could be downloaded [here](https://www.rstudio.com/products/rstudio/download/). Both Windows OS (Operating System) and Mac OS are supported, so please choose the right one you need for your own system. (If you have any questions about the installation of R or RStudio, please come to me in the office hours or ask [IT](https://it.umn.edu/) for help)  
 Or you could use the computers in the lab when there is no lecture.
 
-## Familiar with the user interface of R Studio
+## Familiar with the user interface of RStudio
 Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.
 
 1. **Menu/Tool Bar**
-2. **Source**  The pane where you write and edit your code.
+2. **Source**  The pane where you write and edit your codes.
 3. **Environment/History** Environment lists all the variables that you are currently using. History presents the codes you have runned before.
 4. **Console** Console is the original R interactive window. You could run codes and see the results here.
-5. **Plots/Help** Plots window shows the output figures. Help windows presents the information of the function or package you check.
+5. **Plot/Help** Plot window shows the output figures. Help window presents the information of the function or package you are checking.
 
 ![](Pics/RStudio.JPG)
 
@@ -50,12 +39,12 @@ Also three ways to save R file
 ```
 
 ## Print Hello, world
-Now, let's try to input some codes and run them! Let's print the very classic "Hello, world!" with ``print()`` function.  
+Now, let's try to code something and run them! Let's print the very classic "Hello, world!" with ``print()`` function.  
 We could run the codes in several ways:
 
-1. Select the codes or put the cursor in the line of your code, and click the Run button located in the right-top position of the console pane.
+1. Select the codes or put the cursor in the line of your code, and click the Run button located in the right-top position of the ``source`` pane.
 2. Select the codes or put the cursor in the line of your code, and use shortcut: Ctrl + Enter
-3. You could also click the Re-run button near the Run button to re-run the codes you runned last time
+3. You could also click the Re-run button near the Run button to re-run the codes you ran last time.
 
 ```{r}
 print('Hello, world!')
@@ -67,11 +56,11 @@ Because what we need to output here is a **string varible**, we have to put them
 print(5928)
 ```
 
-Here, 5928 is an integer and we do not need to put them in the quotation mark.
+Here, 5928 is an integer and we do not need to put them in the quotation marks.
 
 ## Install and use R Packages
-R is easy to use because it has many packages with different usages. These packages could help you acomplish some complex tasks with just several lines of codes.  
-Some packages have been already been installed and you could use them directly, which are base packages. However, most of the packages have to be installed before you use them. There are couple of ways you could install a package. Let's take the ``gbm`` package for example.
+R is easy to use because it has many packages with different usages. These packages could help you accomplish some complex tasks with just several lines of codes.  
+Some packages have been already been installed and you could use them directly, which are ``base packages``. However, most of the packages have to be installed before you use them. There are couple of ways you could install a package. Let's take the ``gbm`` package for example.
 ```
 1. Manu -> Tools -> Install Packages... -> Input the package name -> Click Install button
 ```
@@ -84,12 +73,12 @@ Some packages have been already been installed and you could use them directly, 
 install.packages("gbm")
 ```
 
-After the installation of the package, you have import the it with ``library()`` function before you use the functions in it.
+After the installation of the package, you have import it with ``library()`` function before you use the related functions.
 ```{r}
 library(gbm)
 ```
 
-We will spend more time in the future classes to explore the various R packages and their different usages.
+We will spend more time in future classes to explore the various R packages and their different usages.
 
 ## Make notes
 It is important to write notes for your codes. It could help others or even yourself understand your codes easily. Use hash tag to indicate the notes. For example,
@@ -109,9 +98,9 @@ R will not run the codes after hash tags in each line.
 
 Please try to write simple but necessary notes for the codes. Keep this as a good habbit and you will thank yourself in the future.
 
-## Tips (Updating)
-1. You could divide your codes into sections by interting chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.
-2. Use ``?`` or ``help()`` function to find the related instruction or help page, for example, if you want to find the instruction of ``library()`` function, just
+## Tips
+1. You could divide your codes into sections by enterting chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.
+2. Use ``?`` or ``help()`` function to find the related instruction or help page, for example, if you want to find the instruction of ``library()`` function, just code
 ```
 ?library
 ```
@@ -119,7 +108,7 @@ or
 ```
 help(library)
 ```
-Both will direct you to the instruction page you are looking for.
+Both will direct you to the instruction page you are looking for in the help window.
 
 **Reference**
 
