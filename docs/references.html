@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Introduction to RStudio | PA 5928 Data Management &amp; Visualization with R (Updating)</title>
+  <title>Chapter 4 References | PA 5928 Data Management &amp; Visualization with R (Updating)</title>
   <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Introduction to RStudio | PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  <meta property="og:title" content="Chapter 4 References | PA 5928 Data Management &amp; Visualization with R (Updating)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Introduction to RStudio | PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  <meta name="twitter:title" content="Chapter 4 References | PA 5928 Data Management &amp; Visualization with R (Updating)" />
   
   <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-to-r.html"/>
+<link rel="prev" href="introduction-to-r.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -187,110 +187,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-to-rstudio" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Introduction to RStudio</h1>
-<p>In this chapter, we will go through some basic operations of RStudio.</p>
-<div id="what-is-r" class="section level2">
-<h2><span class="header-section-number">2.1</span> What is R</h2>
-<p><strong>R</strong> is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, <a href="https://r-statistics.co/Linear-Regression.html">statistics</a>, <a href="https://vtao1989.github.io/DisToTransit_statistics/">machine learning</a>) and graphics (<a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">static plots</a> and <a href="https://plot.ly/r/3d-surface-plots/">interactive plots</a>). You can also use it to create website (like this course website), write papers, analyze texts, <em>etc</em>. The most important thing is that <strong>R is free and easy to use</strong>, that’s why it has been applied in many fileds.</p>
-</div>
-<div id="what-is-rstudio" class="section level2">
-<h2><span class="header-section-number">2.2</span> What is RStudio</h2>
-<p><strong>RStudio</strong> is a programming software for editing and running R code. It has many great features to make R programming easier!</p>
-</div>
-<div id="install-r-rstudio" class="section level2">
-<h2><span class="header-section-number">2.3</span> Install R + RStudio</h2>
-<p>For better coding and running R, you should install both R and RStudio. You could code R with the installation of R only, however, RStudio provides you with more conveinece in coding. In this course, we will use RStudio to do all the course lectures and exercises. So please make sure you install both of them!<br />
-R could be downloaded <a href="https://www.r-project.org/">here</a> and RStudio could be downloaded <a href="https://www.rstudio.com/products/rstudio/download/">here</a>. Both Windows OS (Operating System) and Mac OS are supported, so please choose the right one you need for your own system. (If you have any questions about the installation of R or RStudio, please come to me in the office hours or ask <a href="https://it.umn.edu/">IT</a> for help)<br />
-Or you could use the computers in the lab when there is no lecture.</p>
-</div>
-<div id="familiar-with-the-user-interface-of-rstudio" class="section level2">
-<h2><span class="header-section-number">2.4</span> Familiar with the user interface of RStudio</h2>
-<p>Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.<span class="citation">(Selvam <a href="#ref-Selvam2019">2019</a>)</span></p>
-<ol style="list-style-type: decimal">
-<li><strong>Menu/Tool Bar</strong></li>
-<li><strong>Source</strong> The pane where you write and edit your codes.</li>
-<li><strong>Environment/History</strong> Environment lists all the variables that you are currently using. History presents the codes you have runned before.</li>
-<li><strong>Console</strong> Console is the original R interactive window. You could run codes and see the results here.</li>
-<li><strong>Plot/Help</strong> Plot window shows the output figures. Help window presents the information of the function or package you are checking.</li>
-</ol>
-<p><img src="Pics/RStudio.JPG" /></p>
-</div>
-<div id="create-and-save-r-file" class="section level2">
-<h2><span class="header-section-number">2.5</span> Create and save R file</h2>
-<p>Three ways to create a R file in the RStudio:</p>
-<pre><code>1. Menu -&gt; File -&gt; New File -&gt; R Script
-2. Shortcut: Ctrl + Shift + N
-3. Tool Bar -&gt; New file button</code></pre>
-<p>Also three ways to save R file</p>
-<pre><code>1. Menu -&gt; File -&gt; Save
-2. Shortcut: Ctrl + S
-3. Tool Bar -&gt; Save file button</code></pre>
-</div>
-<div id="print-hello-world" class="section level2">
-<h2><span class="header-section-number">2.6</span> Print Hello, world</h2>
-<p>Now, let’s try to code something and run them! Let’s print the very classic “Hello, world!” with <code>print()</code> function.<br />
-We could run the codes in several ways:</p>
-<ol style="list-style-type: decimal">
-<li>Select the codes or put the cursor in the line of your code, and click the Run button located in the right-top position of the <code>source</code> pane.</li>
-<li>Select the codes or put the cursor in the line of your code, and use shortcut: Ctrl + Enter</li>
-<li>You could also click the Re-run button near the Run button to re-run the codes you ran last time.</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">print</span>(<span class="st">&#39;Hello, world!&#39;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
-<p>Because what we need to output here is a <strong>string varible</strong>, we have to put them in the quotation mark. Either single quotation or double quotation mark works well. Let’s see another example.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">print</span>(<span class="dv">5928</span>)</a></code></pre></div>
-<pre><code>## [1] 5928</code></pre>
-<p>Here, 5928 is an integer and we do not need to put them in the quotation marks.</p>
-</div>
-<div id="install-and-use-r-packages" class="section level2">
-<h2><span class="header-section-number">2.7</span> Install and use R Packages</h2>
-<p>R is easy to use because it has many packages with different usages. These packages could help you accomplish some complex tasks with just several lines of codes.<br />
-Some packages have been already been installed and you could use them directly, which are <code>base packages</code>. However, most of the packages have to be installed before you use them. There are couple of ways you could install a package. Let’s take the <code>gbm</code> package for example.</p>
-<pre><code>1. Manu -&gt; Tools -&gt; Install Packages... -&gt; Input the package name -&gt; Click Install button</code></pre>
-<center>
-<img src="Pics/InstallPackages.JPG" style="width:35.0%" />
-</center>
-<pre><code>2. Use the code below:
-install.packages(&quot;gbm&quot;)</code></pre>
-<p>After the installation of the package, you have import it with <code>library()</code> function before you use the related functions.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">library</span>(gbm)</a></code></pre></div>
-<pre><code>## Loaded gbm 2.1.5</code></pre>
-<p>We will spend more time in future classes to explore the various R packages and their different usages.</p>
-</div>
-<div id="make-notes" class="section level2">
-<h2><span class="header-section-number">2.8</span> Make notes</h2>
-<p>It is important to write notes for your codes. It could help others or even yourself understand your codes easily. Use hash tag to indicate the notes. For example,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">gbm1 &lt;-<span class="st"> </span><span class="kw">gbm</span>(AvgMet<span class="op">~</span>PkAreaH<span class="op">+</span>StpNumH<span class="op">+</span>DisToMin,  <span class="co"># formula</span></a>
-<a class="sourceLine" id="cb11-2" title="2">            <span class="dt">data=</span>MetM,                        <span class="co"># dataset  </span></a>
-<a class="sourceLine" id="cb11-3" title="3">            <span class="dt">var.monotone=</span><span class="kw">c</span>(<span class="op">+</span><span class="dv">1</span>, <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">10</span>),<span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">15</span>)), </a>
-<a class="sourceLine" id="cb11-4" title="4">            <span class="dt">distribution=</span><span class="st">&quot;gaussian&quot;</span>,          <span class="co"># see the help for other choices  </span></a>
-<a class="sourceLine" id="cb11-5" title="5">            <span class="dt">n.trees=</span><span class="dv">5000</span>,                     <span class="co"># number of trees  </span></a>
-<a class="sourceLine" id="cb11-6" title="6">            <span class="dt">shrinkage=</span><span class="fl">0.001</span>,                  <span class="co"># shrinkage or learning rate, 0.001 to 0.1 usually work  </span></a>
-<a class="sourceLine" id="cb11-7" title="7">            <span class="dt">interaction.depth=</span><span class="dv">6</span>,              <span class="co"># 1: additive model, 2: two-way interactions, etc.  </span></a>
-<a class="sourceLine" id="cb11-8" title="8">            <span class="dt">bag.fraction =</span> <span class="fl">0.5</span>,               <span class="co"># subsampling fraction, 0.5 is probably best  </span></a>
-<a class="sourceLine" id="cb11-9" title="9">            <span class="dt">n.minobsinnode =</span> <span class="dv">10</span>,              <span class="co"># minimum total weight needed in each node</span></a>
-<a class="sourceLine" id="cb11-10" title="10">            <span class="dt">cv.folds =</span> <span class="dv">5</span>)</a></code></pre></div>
-<p>R will not run the codes after hash tags in each line.</p>
-<p>Please try to write simple but necessary notes for the codes. Keep this as a good habbit and you will thank yourself in the future.</p>
-</div>
-<div id="tips" class="section level2">
-<h2><span class="header-section-number">2.9</span> Tips</h2>
-<ol style="list-style-type: decimal">
-<li>You could divide your codes into sections by enterting chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.</li>
-<li>Use <code>?</code> or <code>help()</code> function to find the related instruction or help page, for example, if you want to find the instruction of <code>library()</code> function, just code</li>
-</ol>
-<pre><code>?library</code></pre>
-<p>or</p>
-<pre><code>help(library)</code></pre>
-<p>Both will direct you to the instruction page you are looking for in the help window.</p>
+<div id="references" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> References</h1>
 
-</div>
-</div>
-<h3> References</h3>
 <div id="refs" class="references">
-<div id="ref-Selvam2019">
+<div>
+<p>Blischak, John, Daniel Chen, Harriet Dashnow, and Denis Haine. 2019. “Data Types and Structures.” October 8, 2019. <a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/">https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/</a>.</p>
+</div>
+<div>
+<p>Kabacoff, Robert I. 2019. “Data Types.” October 8, 2019. <a href="https://www.statmethods.net/input/datatypes.html">https://www.statmethods.net/input/datatypes.html</a>.</p>
+</div>
+<div>
 <p>Selvam, Sindhu. 2019. “Introduction to Rstudio.” October 8, 2019. <a href="https://datascienceplus.com/introduction-to-rstudio/">https://datascienceplus.com/introduction-to-rstudio/</a>.</p>
+</div>
+<div>
+<p>tutorialspoint. 2019. “R - Operators.” October 8, 2019. <a href="https://www.tutorialspoint.com/r/r_operators.htm">https://www.tutorialspoint.com/r/r_operators.htm</a>.</p>
+</div>
 </div>
 </div>
             </section>
@@ -298,8 +210,8 @@ install.packages(&quot;gbm&quot;)</code></pre>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

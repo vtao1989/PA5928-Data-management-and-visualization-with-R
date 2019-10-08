@@ -1,6 +1,6 @@
 # Introduction to R
 
-## Variable types
+## Variable types [@Blischak2019]
 There are several variables which R could recoganise. Here, we use ``class()`` function to check the type of each value.
 
 **Charactor**
@@ -35,7 +35,7 @@ class("59.28")
 ```
 Here, the number has a quotation number, which means it has been transferred to type charactor. **Therefore, please be careful about this!**
 
-## Operations
+## Operations [@tutorialspoint2019]
 ### Assignment operations
 **Left assignment**
 ```{r}
@@ -135,7 +135,7 @@ FALSE | FALSE
 ! FALSE
 ```
 
-## Data types
+## Data types [@Kabacoff2019]
 **Vetor**
 You could create a vetor by using ``c()`` function.
 ```{r}
@@ -269,10 +269,3 @@ Another example is ``mean()`` function could help you average the numbers in a l
 mean(c(1, 4, 10, 5))
 ```
 It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.
-
-**Reference**
-
-1. [Data types](https://www.statmethods.net/input/datatypes.html)
-2. [Data Types and Structures](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)
-3. [R operators](https://www.tutorialspoint.com/r/r_operators.htm)
-
