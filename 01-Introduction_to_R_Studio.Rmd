@@ -1,6 +1,8 @@
 
 # Introduction to RStudio
 
+In this chapter, we will go through some basic operations of RStudio.
+
 ## What is R
 **R** is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, [statistics](https://r-statistics.co/Linear-Regression.html), [machine learning](https://vtao1989.github.io/DisToTransit_statistics/)) and graphics ([static plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) and [interactive plots](https://plot.ly/r/3d-surface-plots/)). You can also use it to create website (like this course website), write papers, analyze texts, *etc*. The most important thing is that **R is free and easy to use**, that's why it has been applied in many fileds.
 
@@ -13,7 +15,7 @@ R could be downloaded [here](https://www.r-project.org/) and RStudio could be do
 Or you could use the computers in the lab when there is no lecture.
 
 ## Familiar with the user interface of RStudio
-Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.
+Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.[@Sindhu2019]
 
 1. **Menu/Tool Bar**
 2. **Source**  The pane where you write and edit your codes.
@@ -109,8 +111,4 @@ or
 help(library)
 ```
 Both will direct you to the instruction page you are looking for in the help window.
-
-**Reference**
-
-1. [Introduction to RStudio](https://datascienceplus.com/introduction-to-rstudio/)
 

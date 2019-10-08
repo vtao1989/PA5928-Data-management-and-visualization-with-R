@@ -14,7 +14,7 @@ description: "This is the website for couse PA 5928 in the University of Minneso
 
 ## Course Description
 
-Introduction to ``RStudio`` software. Use of ``RStudio`` to carry out ``R`` file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs). 
+Introduction to ``RStudio`` software. Use of ``RStudio`` to carry out ``R`` file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs).
 
 ## Course Prerequisites
 

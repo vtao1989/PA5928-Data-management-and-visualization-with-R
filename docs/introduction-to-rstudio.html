@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-
+<link rel="next" href="introduction-to-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -153,6 +153,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
 <li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.1</b> Variable types</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.2.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.2.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.2.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.2.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-types"><i class="fa fa-check"></i><b>3.3</b> Data types</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statements"><i class="fa fa-check"></i><b>3.4</b> Conditional statements</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.6</b> Functions</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -175,6 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction-to-rstudio" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Introduction to RStudio</h1>
+<p>In this chapter, we will go through some basic operations of RStudio.</p>
 <div id="what-is-r" class="section level2">
 <h2><span class="header-section-number">2.1</span> What is R</h2>
 <p><strong>R</strong> is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, <a href="https://r-statistics.co/Linear-Regression.html">statistics</a>, <a href="https://vtao1989.github.io/DisToTransit_statistics/">machine learning</a>) and graphics (<a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">static plots</a> and <a href="https://plot.ly/r/3d-surface-plots/">interactive plots</a>). You can also use it to create website (like this course website), write papers, analyze texts, <em>etc</em>. The most important thing is that <strong>R is free and easy to use</strong>, that’s why it has been applied in many fileds.</p>
@@ -191,7 +205,7 @@ Or you could use the computers in the lab when there is no lecture.</p>
 </div>
 <div id="familiar-with-the-user-interface-of-rstudio" class="section level2">
 <h2><span class="header-section-number">2.4</span> Familiar with the user interface of RStudio</h2>
-<p>Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.</p>
+<p>Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.<span class="citation">(Selvam <a href="#ref-Sindhu2019">2019</a>)</span></p>
 <ol style="list-style-type: decimal">
 <li><strong>Menu/Tool Bar</strong></li>
 <li><strong>Source</strong> The pane where you write and edit your codes.</li>
@@ -269,11 +283,13 @@ install.packages(&quot;gbm&quot;)</code></pre>
 <p>or</p>
 <pre><code>help(library)</code></pre>
 <p>Both will direct you to the instruction page you are looking for in the help window.</p>
-<p><strong>Reference</strong></p>
-<ol style="list-style-type: decimal">
-<li><a href="https://datascienceplus.com/introduction-to-rstudio/">Introduction to RStudio</a></li>
-</ol>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Sindhu2019">
+<p>Selvam, Sindhu. 2019. “Introduction to Rstudio.” February 4, 2019. <a href="https://datascienceplus.com/introduction-to-rstudio/">https://datascienceplus.com/introduction-to-rstudio/</a>.</p>
 </div>
 </div>
             </section>
@@ -281,8 +297,8 @@ install.packages(&quot;gbm&quot;)</code></pre>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
