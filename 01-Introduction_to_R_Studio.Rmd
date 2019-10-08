@@ -15,7 +15,7 @@ R could be downloaded [here](https://www.r-project.org/) and RStudio could be do
 Or you could use the computers in the lab when there is no lecture.
 
 ## Familiar with the user interface of RStudio
-Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.[@Sindhu2019]
+Below is a screenshot of the user interface of RStudio. You will find couple of panes/windows with different usages.[@Selvam2019]
 
 1. **Menu/Tool Bar**
 2. **Source**  The pane where you write and edit your codes.
