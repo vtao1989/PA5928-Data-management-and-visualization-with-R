@@ -25,7 +25,7 @@ Introductory statistics (regression is not necessary); ability to create bar gra
 Instructor: Tao Tao, taotao@umn.edu  
 Location: HHH 85  
 Time: Starting 10/8: Tuesdays 9:45AM to 11:00AM   
-Office hours: Monday Friday 10:00 - 11:00 am at HHH 271 (Any need for office hours in Tue pm?)  
+Office hours: Tuesday from 2:00 pm to 4:00 pm at HHH 271  
 Canvas: All course notes will be posted in this course website, but links will be provided on ``Canvas``. ``Canvas`` will also be used to submit your in-class exercises, final project, and grades.  So you only need to pay attention to ``Canvas`` to check everything!
 
 ## Course Learning Outcomes
