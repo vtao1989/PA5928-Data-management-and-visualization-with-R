@@ -38,7 +38,7 @@ At the end of this course, students will be able to:
 
 ## In-class exercise and final project
 
-1. An in-class exercise will be assigned during each class for the students to practice what they have learned. [ChimeIn](https://chimein2.cla.umn.edu/chimeParticipant/189) will be used in class to check the class performance in a anonymous way.
+1. An in-class exercise will be assigned during each class for the students to practice what they have learned. [ChimeIn](https://chimein2.cla.umn.edu) will be used in class to check the class performance in a anonymous way.
 2. The in-class exercises will be mostly finished during the class time, and students are still required to submit their codes on the same day with necessary notes to indicate their ideas.
 3. Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and write a short report about it).
 4. Grading policy
