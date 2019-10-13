@@ -1,0 +1,27 @@
+# Miscellaneous
+
+## Comparison between R and Stata
+
+As some students asked in class, 
+
+*Why the school still teaches students Stata when no one uses them?*
+
+I covered several points in class simply which I think is not enough. I think this question is more related to the comparison between ``R`` and ``Stata``. I read several articles [@john2014;@michael2014] online and list some key points in the table below. I hope this will give a better understanding of both ``R`` and ``Stata``.
+
+**Advantages of R** (More Flexible but less Formal)
+
+* Free and Open source
+* More advanced technique packages
+* Deal with more than one datasets (big data) at the same time
+* Deal with not only data analysis tasks
+
+**Advantages of Stata** (More Formal but less flexible)
+
+* Has many more algorithms, packages, and implementations of econometircs
+* Faster
+* It is supported by Statacorp so the the result is reliable
+* It presents results in a clear format
+* Syntax is simple and standard for most data analysis
+* Help document is formal
+
+Besides those advantages, they have a lot of overlaps with each other. People cannot say one is absolutely better than the other. People choose them based on their task requirements. Sometimes, people install both of them in their computers (e.g. my laptop has both of them).

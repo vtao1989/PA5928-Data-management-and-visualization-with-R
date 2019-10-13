@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>PA 5928 Data Management &amp; Visualization with R (Updating)</title>
+  <title>Chapter 4 Miscellaneous | PA 5928 Data Management &amp; Visualization with R (Updating)</title>
   <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  <meta property="og:title" content="Chapter 4 Miscellaneous | PA 5928 Data Management &amp; Visualization with R (Updating)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  <meta name="twitter:title" content="Chapter 4 Miscellaneous | PA 5928 Data Management &amp; Visualization with R (Updating)" />
   
   <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-rstudio.html"/>
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -190,149 +190,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">PA 5928 Data Management &amp; Visualization with R (Updating)</h1>
-<p class="author"><em>Tao Tao (University of Minnesota)</em></p>
-<p class="date"><em>2019-10-13</em></p>
-</div>
-<div id="course-syllabus" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Course Syllabus</h1>
-<div id="course-description" class="section level2">
-<h2><span class="header-section-number">1.1</span> Course Description</h2>
-<p>Introduction to <code>RStudio</code> software. Use of <code>RStudio</code> to carry out <code>R</code> file and related dataset management functions. Tools and techniques for data analysis and statistical programming in quantitative research or related applied areas. Topics include data selection, data manipulation, and data visualization (including charts, plots, histograms, maps, and other graphs).</p>
-</div>
-<div id="course-prerequisites" class="section level2">
-<h2><span class="header-section-number">1.2</span> Course Prerequisites</h2>
-<p>Introductory statistics (regression is not necessary); ability to create bar graphs, line graphs, and scatter plots in MS Excel; and familiarity with principles of data visualization.</p>
-</div>
-<div id="logistics" class="section level2">
-<h2><span class="header-section-number">1.3</span> Logistics</h2>
-<p>Instructor: Tao Tao, <a href="mailto:taotao@umn.edu" class="email">taotao@umn.edu</a><br />
-Location: HHH 85<br />
-Time: Starting 10/8: Tuesdays 9:45AM to 11:00AM<br />
-Office hours: Tuesday from 2:00 pm to 4:00 pm at HHH 271<br />
-Canvas: All course notes will be posted in this course website, but links will be provided on <code>Canvas</code>. <code>Canvas</code> will also be used to submit your in-class exercises, final project, and grades. So you only need to pay attention to <code>Canvas</code> to check everything!</p>
-</div>
-<div id="course-learning-outcomes" class="section level2">
-<h2><span class="header-section-number">1.4</span> Course Learning Outcomes</h2>
-<p>At the end of this course, students will be able to:</p>
-<ol style="list-style-type: decimal">
-<li>Use RStudio to carry out R file and related dataset management</li>
-<li>Use R to work with different types of datasets and conduct basic data management</li>
-<li>Use R to visualize data with different types of plots</li>
-</ol>
-</div>
-<div id="in-class-exercise-and-final-project" class="section level2">
-<h2><span class="header-section-number">1.5</span> In-class exercise and final project</h2>
-<ol style="list-style-type: decimal">
-<li>An in-class exercise will be assigned during each class for the students to practice what they have learned. <a href="https://chimein2.cla.umn.edu">ChimeIn</a> will be used in class to check the class performance in a anonymous way.</li>
-<li>The in-class exercises will be mostly finished during the class time, and students are still required to submit their codes on the same day with necessary notes to indicate their ideas.</li>
-<li>Students will use the knowledge from this course to complete a final project (data analysis for a interested research question and write a short report about it).</li>
-<li>Grading policy</li>
-</ol>
+<div id="miscellaneous" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Miscellaneous</h1>
+<div id="comparison-between-r-and-stata" class="section level2">
+<h2><span class="header-section-number">4.1</span> Comparison between R and Stata</h2>
+<p>As some students asked in class,</p>
+<p><em>Why the school still teaches students Stata when no one uses them?</em></p>
+<p>I covered several points in class simply which I think is not enough. I think this question is more related to the comparison between <code>R</code> and <code>Stata</code>. I read several articles <span class="citation">(Thompson <a href="#ref-john2014">2019</a>; Bailey <a href="#ref-michael2014">2019</a>)</span> online and list some key points in the table below. I hope this will give a better understanding of both <code>R</code> and <code>Stata</code>.</p>
+<p><strong>Advantages of R</strong> (More Flexible but less Formal)</p>
 <ul>
-<li>In-class exercise codes: 60%</li>
-<li>Final project: 40%</li>
+<li>Free and Open source</li>
+<li>More advanced technique packages</li>
+<li>Deal with more than one datasets (big data) at the same time</li>
+<li>Deal with not only data analysis tasks</li>
 </ul>
-</div>
-<div id="course-schedule-tentative" class="section level2">
-<h2><span class="header-section-number">1.6</span> Course Schedule (Tentative)</h2>
-<table>
-<thead>
-<tr class="header">
-<th>#</th>
-<th>Date</th>
-<th>Topic</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>10/8</td>
-<td>Introduction to <code>RStudio</code></td>
-<td>Uploaded</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>10/15</td>
-<td>Introduction to <code>R</code></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>10/22</td>
-<td>Data manipulation with <code>dplyr</code> (I)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>10/29</td>
-<td>Data manipulation with <code>dplyr</code> (II)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>11/5</td>
-<td>Data visualization with <code>ggplot2</code> (I)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>11/12</td>
-<td>Data visualization with <code>ggplot2</code> (II)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>11/19</td>
-<td>R Statistics (I)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>11/26</td>
-<td>R Statistics (II)</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>12/3</td>
-<td>Spatial visualization (I)</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>12/10</td>
-<td>Spatial visualization (II)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="homework-and-projects-collaboration-and-submission-policy" class="section level2">
-<h2><span class="header-section-number">1.7</span> Homework and projects collaboration and submission policy</h2>
-<ol style="list-style-type: decimal">
-<li><strong>Students can discuss their works with other students, but must code and write up notes by themselves. <a href="https://communitystandards.umn.edu/content/plagiarism">Plagiarism</a> is not allowed by the university policies. Please do be careful about this.</strong></li>
-<li>In-class exercises and projects should be submitted through <strong>Canvas</strong>. If you cannot attend the class, please write a email to the instuctor including a valid reason before the class. Then you can make up the in-class exercise in the following one week after the class.</li>
-<li>When you communicate the instructor with emails, please include <code>PA 5928</code> at the beginning of your title.</li>
-</ol>
-</div>
-<div id="some-results-from-the-online-survey" class="section level2">
-<h2><span class="header-section-number">1.8</span> Some results from the online survey</h2>
-<div id="question-1" class="section level3">
-<h3><span class="header-section-number">1.8.1</span> Question 1</h3>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<div id="question-2" class="section level3">
-<h3><span class="header-section-number">1.8.2</span> Question 2</h3>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
-<div id="question-3" class="section level3">
-<h3><span class="header-section-number">1.8.3</span> Question 3</h3>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><strong>Advantages of Stata</strong> (More Formal but less flexible)</p>
+<ul>
+<li>Has many more algorithms, packages, and implementations of econometircs</li>
+<li>Faster</li>
+<li>It is supported by Statacorp so the the result is reliable</li>
+<li>It presents results in a clear format</li>
+<li>Syntax is simple and standard for most data analysis</li>
+<li>Help document is formal</li>
+</ul>
+<p>Besides those advantages, they have a lot of overlaps with each other. People cannot say one is absolutely better than the other. People choose them based on their task requirements. Sometimes, people install both of them in their computers (e.g. my laptop has both of them).</p>
 
 </div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references">
+<div id="ref-michael2014">
+<p>Bailey, Michael. 2019. “What Advantages and Disadvantages Does R Have over Stata, I.e., What Is R’s Ability to Quickly Put Together a Picture of the Development of a Firm, Country, City, or of Other Macro-Data Versus Strata’s Capability to Do the Same?” October 13, 2019. <a href="https://www.quora.com/What-advantages-and-disadvantages-does-R-have-over-Stata-i-e-what-is-R’s-ability-to-quickly-put-together-a-picture-of-the-development-of-a-firm-country-city-or-of-other-macro-data-versus-Strata’s-capability-to-do-the-same">https://www.quora.com/What-advantages-and-disadvantages-does-R-have-over-Stata-i-e-what-is-R’s-ability-to-quickly-put-together-a-picture-of-the-development-of-a-firm-country-city-or-of-other-macro-data-versus-Strata’s-capability-to-do-the-same</a>.</p>
+</div>
+<div id="ref-john2014">
+<p>Thompson, John. 2019. “Stata Vs R.” October 13, 2019. <a href="https://staffblogs.le.ac.uk/bayeswithstata/2014/11/13/stata-vs-r/">https://staffblogs.le.ac.uk/bayeswithstata/2014/11/13/stata-vs-r/</a>.</p>
 </div>
 </div>
             </section>
@@ -340,8 +231,8 @@ Canvas: All course notes will be posted in this course website, but links will b
           </div>
         </div>
       </div>
-
-<a href="introduction-to-rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

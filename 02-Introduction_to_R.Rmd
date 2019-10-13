@@ -1,48 +1,79 @@
 # Introduction to R
 
-## Variable types [@Blischak2019]
-There are several variables which R could recoganise. Here, we use ``class()`` function to check the type of each value.
+A variable is used to store data including value, vector, data frame, *etc*, which ``R`` could use to manipulate [@tutorialspoint2]. This chapter introduces variable types, operations between variables, data structures, conditional statements, loops, and functions.
 
-**Charactor**
+Before we start, let's first see how to name a variable. The valid variable name could be constructed with letters, numbers, the dot character (``.``), and underline character (``_``). Besides that, a valid variable name should start with a letter or the dot charater not followed with a number.
+
+| Examples   | Validity | Discussion                                                                |
+|------------|----------|---------------------------------------------------------------------------|
+| var.name   | ✓        |                                                                           |
+| var_name   | ✓        |                                                                           |
+| _var_name  | ☓        | Cannot start with the underline                                           |
+| .var_name  | ✓        |                                                                           |
+| var%name   | ☓        | Cannot contain %                                                          |
+| .2var_name | ☓        | Cannot use the dot following with a number to start with a variable name  |
+| 2var_name  | ☓        | Cannot start with a number                                                |
+
+## Variable types 
+There are several types of variables which R could recognise, including character, numeric, integer, logical, and complex [@Blischak2019]. The type of one variable is decided by the type of value it stores. We can use ``class()`` function to check the type of each variable.
+
+**Character** (also known as strings)
+
 ```{r}
-class("Hello, world!")
+v <- "Hello, world!"
+class(v)
 ```
 
-**Numeric** (real or decimal)
+**Numeric** (real or decimal number)
 ```{r}
-class(59.28)
+v <- 59.28
+class(v)
 ```
 
 **Integer** (``L`` tells R that this number is an integer)
 ```{r}
-class(2L)
+v <- 2L
+class(v)
 ```
 
-**Logical**
+**Logical** (Usually True or false)
 ```{r}
-class(TRUE)
-class(FALSE)
+v <- TRUE
+class(v)
+v <- FALSE
+class(v)
 ```
 
-**Complex** (complex number, is a type of number, with respect to real number)
+**Complex** (complex number is another type of number, different with real number)
 ```{r}
-class(1+4i)
+v <- 1 + 4i
+class(v)
 ```
 
-It is important to know clearly what is the type of the variable you are using because different types of variables may have different methods to be dealed with. Another caveat is that the outlook of the variable may not show its real variable type. For example, a common situation is that a variable contains numbers could be charactor.
+It is important to know clearly what is the type of the variable you are using since different types of variables may have different methods to deal with. Another caveat is that the outlook of the variable may not show its real variable type. For example, a common situation is that a variable contains numbers could be characters.
+
 ```{r}
-class("59.28")
+v <- "59.28"
+class(v)
 ```
-Here, the number has a quotation number, which means it has been transferred to type charactor. **Therefore, please be careful about this!**
 
-## Operations [@tutorialspoint2019]
+Here, the number has quotation marks outside, which means it has been transferred to type character. **Therefore, please be careful about this!**
+
+## Operations
+
+An operation tells ``R`` the mathematical or logical munipulations [@tutorialspoint2019].
+
 ### Assignment operations
+
+Assignment operators assign values to variables.
+
 **Left assignment**
 ```{r}
 a <- 1
 b <<- "Hello, world!"
 c = c(1, 3, 4)
 ```
+
 **Right assignment**
 ```{r}
 1 -> a
@@ -50,6 +81,7 @@ c = c(1, 3, 4)
 ```
 
 ### Arithmetic operations
+
 **Add**
 ```{r}
 1 + 1
@@ -69,16 +101,20 @@ c = c(1, 3, 4)
 ```{r}
 5 - 3
 ```
+
 **Power**
 ```{r}
 5 ^ 2
 ```
-**Mode**
+**Mode** (find the remainder)
 ```{r}
 5 %% 2
 ```
 
 ### Relational operations
+
+The relational operators compare the two elements and return a logical value (``TRUE`` or ``FALSE``)
+
 **Larger**
 ```{r}
 3 > 4
@@ -112,53 +148,70 @@ c = c(1, 3, 4)
 **Not equal**
 ```{r}
 3 != 4
+3 != 3
 ```
 
 ### Logical operations
-**And**
+
+Logical operators are only for operations are possible only for logical, numeric, or complex types. Most of the time, we apply them on logical values or variables. For numeric variables, 0 is considered ``FALSE`` and non-zero numbers are taken as ``TRUE`` [@DM2019].
+
+**Logical And**
 ```{r}
 TRUE & TRUE
 FALSE & TRUE
 FALSE & FALSE
 ```
 
-**Or**
+**Logical Or**
 ```{r}
 TRUE | TRUE
 FALSE | TRUE
 FALSE | FALSE
 ```
 
-**Not**
+**Logical Not**
 ```{r}
 ! TRUE
 ! FALSE
 ```
 
-## Data types [@Kabacoff2019]
+## Data structures
+
+Variables and values could construct different data structures including vector, matrix, data frame, list, and factor [@Kabacoff2019].
+
 **Vetor**
-You could create a vetor by using ``c()`` function.
+
+You could create a vetor with ``c()`` function.
+
 ```{r}
 a <- c(5, 9, 2, 8) # create a numeric vector
 a # show the value of this vetor
 ```
+
 ```{r}
-b <- c('hello', 'world', '!') # charactor vector
+b <- c('hello', 'world', '!') # character vector
 b
 ```
+
 ```{r}
-c <- c(5, 'good') # if you create a vector containing mixed variable types, such as numeric and charactor, R will restrict them to be the same variable type, here, charactor
+c <- c(5, 'good') # if you create a vector containing mixed variable types, such as numeric and character, R will restrict them to be the same variable type, here, character
 c
 ```
-You could select elements in the vetor by using ``varaible[#]``.
+
+You could select elements in the vetor by using ``varaible[#]``. Please pay attention how ``R`` indexes its elements in the data structure.
+
 ```{r}
 a[3] # select the 3rd element
 b[1:3] # select from the 1st to the 3rd element
-c[2] # select the 2nd element
+c[1] # select the 2nd element
 ```
 
-**Matrice**
+``1:3`` means from 1 to 3, so it is actually three numbers here, which are 1, 2, 3.
+
+**Matrix**
+
 You could create a matrix using ``matrix()`` function.
+
 ```{r}
 a <- matrix(1:6,      # the data to be put in the matrix, here we use numbers from 1 to 6
             nrow = 2, # number of rows in the matrix
@@ -166,18 +219,24 @@ a <- matrix(1:6,      # the data to be put in the matrix, here we use numbers fr
             byrow = FALSE) # how to put the data in the matrix, FALSE means by columns, TURE means by rows.
 a
 ```
+
 For variable selection, the intuitive way is using coordinates.
+
 ```{r}
 a[2,3] # select the elements in the 2nd row and 3rd column
 ```
+
 You could also select the entire row or column.
+
 ```{r}
-a[,2] # the 2nd column
-a[1,] # the 1st row
+a[ ,2] # the 2nd column
+a[1, ] # the 1st row
 ```
 
 **Data frame**
-Data frame is a frequently-used data type in R. It could include columns with different types of values stored in them. Let's create a dataframe with mixed variables types using ``data.frame()`` function.
+
+Data frame is a **frequently-used** data type in R. It could include columns with different types of values stored in them. Let's create a dataframe with mixed variables types using ``data.frame()`` function.
+
 ```{r}
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
@@ -185,37 +244,56 @@ Score <- c(69.5, 77.5, 81.5, 90) # create variable Score
 df <- data.frame(ID, Name, Score) # combine the varibles into one data frame called df
 df
 ```
+
 We created a data frame stored the students' ID, name, and their test scores. If we want to select elements from this data frame, there are couple of ways.
+
 ```{r}
 df[2,3] # 2nd row and 3rd column
 df['ID'] # column of variable ID
 df[c('ID', 'Score')] # column of ID and Score
 ```
-There is another way to select the column by its name. When you type ``$`` after the data frame name, the RStudio will list all the variable names in that columns and makes it easier to choose the variable you want. It is more commonly used.
+
+There is another way to select the column by its name. When you type ``$`` after the name of the data frame, RStudio will list all the variable names in that data frame which makes it easier to choose the variable you want. It is more commonly used.
+
 ```{r}
 df$Name # column of variable Name
 ```
 
-* **List**
-List could store mixed types of values.
+**List**
+
+A list could store mixed types of values, which is different from vetor.
+
 ```{r}
-a <- list(ID = 1, Name = 'A', Score = 69.5)
-a
+a <- list(ID = c(1, 2), Name = c('A', 'B'), Score = c(69.5, 89))
 ```
 
-* **Factor**
-Factor is the nominal variable in R. This type will be very useful when we want to analyize data from different groups, such as gender.
+When you want to select elements from a list, you could do it in a similar way as a vector. However, list does not define row or column, so you cannot use 2-D coordinates to select elements like a data frame.
+
+```{r}
+a[1]
+a[2:3]
+```
+
+Someone might be confusing since list looks silimar to data frame. [Here](https://stackoverflow.com/questions/15901224/what-is-difference-between-dataframe-and-list-in-r) is a good discussion about it. Due to the time limitation, we will not cover this discussion in class.
+
+**Factor**
+
+Factor is the nominal variable in R. This type will be very useful when we want to analyze data from different groups, such as gender, school, *etc*.
+
 ```{r}
 a <- c(1, 2, 1, 2, 3, 3, 1, 1)
 class(a)
 ```
+
 ```{r}
 afactor <- factor(a)
 class(afactor)
 ```
 
 ## Conditional statements
-Conditional statement, also known as if statement.
+
+
+
 ```{r, eval=FALSE}
 if (test_expression){
   statement_1
@@ -223,13 +301,17 @@ if (test_expression){
   statement_2
 }
 ```
-If the ``test_expression`` returns ``TRUE``, then the codes will contitue to ``statement_1``, if it returns ``FALSE``, the codes will continue to ``statement_2``. You could also omit the ``else`` part.
+
+If the ``test_expression`` returns ``TRUE``, then the codes will go to ``statement_1``, if it returns ``FALSE``, the codes will go to ``statement_2``. You could also omit the ``else`` part.
+
 ```{r, eval=FALSE}
 if (test_expression){
   statement_1
 }
 ```
+
 If the ``test_expression`` returns ``FALSE``, the codes will continue to next line.
+
 ```{r}
 x <- 5
 if (x > 3){
@@ -238,6 +320,7 @@ if (x > 3){
   print('x is not larger than 3')
 }
 ```
+
 ```{r}
 x <- 1
 if (x > 3){
@@ -245,14 +328,20 @@ if (x > 3){
 } 
 ```
 
+Some other conditional statements include ``switch``, ``which``, *etc*.
+
 ## Loops
-Loops help us repeat the codes we want.
+
+Loops help us repeat the codes we want to run in more than one times. ``for`` loop is the intuitive and commonly-used one.
+
 ```{r, eval=FALSE}
 for (range){
   statement
 }
 ```
+
 ``range`` will provide the range for a variable.
+
 ```{r}
 for (i in 1:3){
   print(i)
@@ -260,12 +349,17 @@ for (i in 1:3){
 ```
 
 ## Functions
+
 Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, ``sum()`` function could help you add the all the numbers in a list or dataframe and return the sum.
+
 ```{r}
 sum(c(1, 4, 10, 5))
 ```
+
 Another example is ``mean()`` function could help you average the numbers in a list or data frame and reture the mean value.
+
 ```{r}
 mean(c(1, 4, 10, 5))
 ```
+
 It is important to use the right function to do the right task. To do this, you have to be familiar with the functions you are using. It needs more practice.

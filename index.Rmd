@@ -1,6 +1,6 @@
 --- 
 title: "PA 5928 Data Management & Visualization with R (Updating)"
-author: "Tao Tao"
+author: "Tao Tao (University of Minnesota)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -51,8 +51,8 @@ At the end of this course, students will be able to:
 
 | #  | Date  | Topic                               | Notes |
 |----|-------|-------------------------------------|-------|
-| 1  | 10/8  | Introduction to ``RStudio``            |Uploaded       |
-| 2  | 10/15 | Introduction to ``R``                   |       |
+| 1  | 10/8  | Introduction to ``RStudio``            |Uploaded |
+| 2  | 10/15 | Introduction to ``R``                   |Uploaded |
 | 3  | 10/22 | Data manipulation with ``dplyr`` (I)    |       |
 | 4  | 10/29 | Data manipulation with ``dplyr`` (II)   |       |
 | 5  | 11/5  | Data visualization with ``ggplot2`` (I)  |       |
