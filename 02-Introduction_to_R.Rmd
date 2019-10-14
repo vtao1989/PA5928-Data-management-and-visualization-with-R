@@ -2,7 +2,7 @@
 
 A variable is used to store data including value, vector, data frame, *etc*, which ``R`` could use to manipulate [@tutorialspoint2]. This chapter introduces variable types, operations between variables, data structures, conditional statements, loops, and functions.
 
-Before we start, let's first see how to name a variable. The valid variable name could be constructed with letters, numbers, the dot character (``.``), and underline character (``_``). Besides that, a valid variable name should start with a letter or the dot charater not followed with a number.
+Before we start, let's first see how to name a variable. The valid variable name could be constructed with letters, numbers, the dot character (``.``), and underline character (``_``). Besides that, a valid variable name should start with a letter or the dot charater not followed by a number.
 
 | Examples   | Validity | Discussion                                                                |
 |------------|----------|---------------------------------------------------------------------------|
@@ -11,7 +11,7 @@ Before we start, let's first see how to name a variable. The valid variable name
 | _var_name  | ☓        | Cannot start with the underline                                           |
 | .var_name  | ✓        |                                                                           |
 | var%name   | ☓        | Cannot contain %                                                          |
-| .2var_name | ☓        | Cannot use the dot following with a number to start with a variable name  |
+| .2var_name | ☓        | Cannot use the dot followed by a number to start with a variable name  |
 | 2var_name  | ☓        | Cannot start with a number                                                |
 
 ## Variable types 
@@ -24,7 +24,7 @@ v <- "Hello, world!"
 class(v)
 ```
 
-**Numeric** (real or decimal number)
+**Numeric** (real or decimal number/integer)
 ```{r}
 v <- 59.28
 class(v)
@@ -33,6 +33,8 @@ class(v)
 **Integer** (``L`` tells R that this number is an integer)
 ```{r}
 v <- 2L
+class(v)
+v <-2
 class(v)
 ```
 
@@ -105,7 +107,9 @@ c = c(1, 3, 4)
 **Power**
 ```{r}
 5 ^ 2
+5 ** 2 # you can also do like this
 ```
+
 **Mode** (find the remainder)
 ```{r}
 5 %% 2
@@ -153,7 +157,7 @@ The relational operators compare the two elements and return a logical value (``
 
 ### Logical operations
 
-Logical operators are only for operations are possible only for logical, numeric, or complex types. Most of the time, we apply them on logical values or variables. For numeric variables, 0 is considered ``FALSE`` and non-zero numbers are taken as ``TRUE`` [@DM2019].
+Logical operators are operations only for logical, numeric, or complex types. Most of the time, we apply them on logical values or variables. For numeric variables, 0 is considered ``FALSE`` and non-zero numbers are taken as ``TRUE`` [@DM2019]. You could use ``T`` for ``TRUE`` or ``F`` for ``FALSE`` as abbreviation.
 
 **Logical And**
 ```{r}
@@ -198,7 +202,7 @@ c <- c(5, 'good') # if you create a vector containing mixed variable types, such
 c
 ```
 
-You could select elements in the vetor by using ``varaible[#]``. Please pay attention how ``R`` indexes its elements in the data structure.
+You could select elements in the vetor by using ``var_name[#]``. Please pay attention on how ``R`` indexes its elements in the data structure.
 
 ```{r}
 a[3] # select the 3rd element
@@ -206,7 +210,7 @@ b[1:3] # select from the 1st to the 3rd element
 c[1] # select the 2nd element
 ```
 
-``1:3`` means from 1 to 3, so it is actually three numbers here, which are 1, 2, 3.
+``1:3`` means from 1 to 3, so it actually stands for three numbers here, which are 1, 2, 3.
 
 **Matrix**
 
@@ -274,7 +278,7 @@ a[1]
 a[2:3]
 ```
 
-Someone might be confusing since list looks silimar to data frame. [Here](https://stackoverflow.com/questions/15901224/what-is-difference-between-dataframe-and-list-in-r) is a good discussion about it. Due to the time limitation, we will not cover this discussion in class.
+Someone might be confusing since list looks silimar to data frame. [Here](https://stackoverflow.com/questions/15901224/what-is-difference-between-dataframe-and-list-in-r) is a good discussion about it. Due to the time limitation, we will not cover this discussion in class. The main idea is that list is more flexible than data frame, while data frame has more restrictions. However, since data frame is more similar to 2-D table structure which is more frequently used in our daily work. We apply data frame more than list.
 
 **Factor**
 
@@ -350,13 +354,13 @@ for (i in 1:3){
 
 ## Functions
 
-Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, ``sum()`` function could help you add the all the numbers in a list or dataframe and return the sum.
+Functions are codes have been defined with specific usage. You only need to input some necessary variables and functions will do the tasks and return the result. For example, ``sum()`` function could help you add the all the numbers in a vector or dataframe and return the sum.
 
 ```{r}
 sum(c(1, 4, 10, 5))
 ```
 
-Another example is ``mean()`` function could help you average the numbers in a list or data frame and reture the mean value.
+Another example is ``mean()`` function could help you average the numbers in a vector or data frame and return the mean value.
 
 ```{r}
 mean(c(1, 4, 10, 5))

@@ -1,5 +1,21 @@
 # Miscellaneous
 
+## Something related to in-class exercises and grading rubic
+
+* Please do remember to submit your codes!
+* Downlowd the codes from ``Canvas`` and then start to do the exercises following the introduction in the codes.
+* You do not need to write too-detailed notes, the focus is still coding.
+* Do not write the codes related to the lecture in the exercise, which could help my grading easier.
+* Make sure your codes satisfying the requirements of the exercise. 
+
+In-class exercise grading rubic (Tentative)
+
+| Item                                                                                     | Grades |
+|------------------------------------------------------------------------------------------|:------:|
+| Codes could generate the results required by the problems |    6   |
+| Necessary notes to indicate the general idea (usage, function, purpose, or machanism)    | 3      |
+| Codes and notes are neat and well-organized                                              | 1      |
+
 ## Comparison between R and Stata
 
 As some students asked in class, 
