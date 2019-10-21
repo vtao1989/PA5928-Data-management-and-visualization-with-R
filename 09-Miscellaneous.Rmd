@@ -3,7 +3,7 @@
 ## Something related to in-class exercises and grading rubic
 
 * Please do remember to submit your codes!
-* Downlowd the codes from ``Canvas`` and then start to do the exercises following the introduction in the codes.
+* Download the codes from ``Canvas`` and then start to do the exercises following the instruction in the codes.
 * You do not need to write too-detailed notes, the focus is still coding.
 * Do not write the codes related to the lecture in the exercise, which could help my grading easier.
 * Make sure your codes satisfying the requirements of the exercise. 
@@ -12,7 +12,7 @@ In-class exercise grading rubic (Tentative)
 
 | Item                                                                                     | Grades |
 |------------------------------------------------------------------------------------------|:------:|
-| Codes could generate the results required by the problems |    6   |
+| Codes could generate the results required by the problems                                | 6      |
 | Necessary notes to indicate the general idea (usage, function, purpose, or machanism)    | 3      |
 | Codes and notes are neat and well-organized                                              | 1      |
 
@@ -31,11 +31,11 @@ I covered several points in class simply which I think is not enough. I think th
 * Deal with more than one datasets (big data) at the same time
 * Deal with not only data analysis tasks
 
-**Advantages of Stata** (More Formal but less flexible)
+**Advantages of Stata** (More Formal but less Flexible)
 
-* Has many more algorithms, packages, and implementations of econometircs
+* More algorithms, packages, and implementations of econometircs
 * Faster
-* It is supported by Statacorp so the the result is reliable
+* It is supported by Statacorp so the result is reliable
 * It presents results in a clear format
 * Syntax is simple and standard for most data analysis
 * Help document is formal

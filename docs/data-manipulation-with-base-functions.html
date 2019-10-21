@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Data Manipulation with Base Functions | PA 5928 Data Management &amp; Visualization with R (Updating)</title>
+  <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Data Manipulation with Base Functions | PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Data Manipulation with Base Functions | PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  
+  <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+<meta name="author" content="Tao Tao (University of Minnesota)" />
+
+
+<meta name="date" content="2019-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-r.html"/>
+<link rel="next" href="miscellaneous.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PA 5928 Data Management & Visualization with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-learning-outcomes"><i class="fa fa-check"></i><b>1.4</b> Course Learning Outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#in-class-exercise-and-final-project"><i class="fa fa-check"></i><b>1.5</b> In-class exercise and final project</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.6</b> Course Schedule (Tentative)</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.7</b> Homework and projects collaboration and submission policy</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#question-1"><i class="fa fa-check"></i><b>1.8.1</b> Question 1</a></li>
+<li class="chapter" data-level="1.8.2" data-path="index.html"><a href="index.html#question-2"><i class="fa fa-check"></i><b>1.8.2</b> Question 2</a></li>
+<li class="chapter" data-level="1.8.3" data-path="index.html"><a href="index.html#question-3"><i class="fa fa-check"></i><b>1.8.3</b> Question 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#familiar-with-the-user-interface-of-rstudio"><i class="fa fa-check"></i><b>2.4</b> Familiar with the user interface of RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#create-and-save-r-file"><i class="fa fa-check"></i><b>2.5</b> Create and save R file</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#print-hello-world"><i class="fa fa-check"></i><b>2.6</b> Print Hello, world</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-and-use-r-packages"><i class="fa fa-check"></i><b>2.7</b> Install and use R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.1</b> Variable types</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.2.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.2.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.2.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.2.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i><b>3.3</b> Data structures</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statements"><i class="fa fa-check"></i><b>3.4</b> Conditional statements</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.6</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data"><i class="fa fa-check"></i><b>4.1.1</b> Import data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#view-data"><i class="fa fa-check"></i><b>4.2</b> View data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#data-selection"><i class="fa fa-check"></i><b>4.3</b> Data selection</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#conditional-selection"><i class="fa fa-check"></i><b>4.4</b> Conditional selection</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#deal-with-missing-values"><i class="fa fa-check"></i><b>4.5</b> Deal with missing values</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#subset"><i class="fa fa-check"></i><b>4.6</b> Subset</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>5</b> Miscellaneous</a><ul>
+<li class="chapter" data-level="5.1" data-path="miscellaneous.html"><a href="miscellaneous.html#something-related-to-in-class-exercises-and-grading-rubic"><i class="fa fa-check"></i><b>5.1</b> Something related to in-class exercises and grading rubic</a></li>
+<li class="chapter" data-level="5.2" data-path="miscellaneous.html"><a href="miscellaneous.html#comparison-between-r-and-stata"><i class="fa fa-check"></i><b>5.2</b> Comparison between R and Stata</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>6</b> Final Project</a><ul>
+<li class="chapter" data-level="6.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>6.1</b> Description</a></li>
+<li class="chapter" data-level="6.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>6.2</b> Timeline</a></li>
+<li class="chapter" data-level="6.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>6.3</b> Proposal</a></li>
+<li class="chapter" data-level="6.4" data-path="final-project.html"><a href="final-project.html#data-analysis"><i class="fa fa-check"></i><b>6.4</b> Data analysis</a></li>
+<li class="chapter" data-level="6.5" data-path="final-project.html"><a href="final-project.html#final-report"><i class="fa fa-check"></i><b>6.5</b> Final report</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PA 5928 Data Management &amp; Visualization with R (Updating)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-with-base-functions" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data Manipulation with Base Functions</h1>
+<p>We will introduce how to manipulate with different datasets using base functions in R.</p>
+<div id="import-and-save-datasets" class="section level2">
+<h2><span class="header-section-number">4.1</span> Import and save datasets</h2>
+<div id="import-data" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Import data</h3>
+<p><strong>CSV file</strong></p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;c:/mydata.csv&#39;</span>, <span class="co"># file location and name</span></a>
+<a class="sourceLine" id="cb137-2" title="2">                   <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="co"># read the first </span></a>
+<a class="sourceLine" id="cb137-3" title="3">                   <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>) <span class="co"># which type of separation</span></a></code></pre></div>
+<p><strong>EXCEL file</strong></p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb138-2" title="2">dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&#39;c:/mydata.xlsx&#39;</span>, <span class="co"># file location and name</span></a>
+<a class="sourceLine" id="cb138-3" title="3">                      <span class="dt">sheet =</span> <span class="st">&#39;data&#39;</span>) <span class="co"># name or index of the sheet</span></a></code></pre></div>
+<p><strong>dta STATA file</strong></p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">library</span>(foreign)</a>
+<a class="sourceLine" id="cb139-2" title="2">mydata &lt;-<span class="st"> </span><span class="kw">read.dta</span>(<span class="st">&#39;c:/mydata.dta&#39;</span>) <span class="co"># file location and name</span></a></code></pre></div>
+<p>Here is an easy way to load dataset in RStudio.</p>
+<p><strong>System tool</strong>
+Besides importing data by codes, you could also import data with the system tool. If this is your first time to use this tool, there may be a process to install the packages depending your options. But don’t worry, RStudio can do it by itself. You just need to click the button to approve the installation.</p>
+<pre><code>File -&gt; Import dataset -&gt; choose the type of dataset you want to import</code></pre>
+<p>There are some other options or parameters you could set in the import functions listed above (e.g., specify a variable type or try to skip some of the rows). Sometimes it is sort of complex to do it. So for me, I just do those things after I import the dataset.</p>
+</div>
+<div id="save-file" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Save file</h3>
+<p><strong>CSV file</strong></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">write.csv</span>(df, <span class="co"># data</span></a>
+<a class="sourceLine" id="cb141-2" title="2">          <span class="st">&#39;c:/filename.csv&#39;</span>) <span class="co"># file location and name</span></a></code></pre></div>
+<p><strong>EXCEL file</strong></p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">library</span>(xlsx)</a>
+<a class="sourceLine" id="cb142-2" title="2"><span class="kw">write.xlsx</span>(mydata, <span class="co"># data</span></a>
+<a class="sourceLine" id="cb142-3" title="3">           <span class="st">&quot;c:/mydata.xlsx&quot;</span>) <span class="co"># file location and name</span></a></code></pre></div>
+<p><strong>dta STATA file</strong></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">library</span>(foreign)</a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="kw">write.dta</span>(mydata, <span class="st">&quot;c:/mydata.dta&quot;</span>)</a></code></pre></div>
+<p>Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.</p>
+</div>
+</div>
+<div id="view-data" class="section level2">
+<h2><span class="header-section-number">4.2</span> View data</h2>
+<p>You could view the variable names and simple discription in the <code>Environment</code> pane on the right-top position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset <code>mtcars</code> as a example. By importing this dataset, use <code>data()</code> function.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">data</span>(mtcars)</a></code></pre></div>
+<p>You could also view the data in the new window by <code>View()</code> function. Please pay attention that it is initial-capitalized.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">View</span>(mtcars)</a></code></pre></div>
+<p>View the first ten observations (rows) in the dataset. <dbl> stands for double class, which is a subtype of numerical variable type.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="kw">head</span>(mtcars, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</code></pre>
+<p>view the last five observations in the dataset.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="kw">tail</span>(mtcars, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
+<p>List the variables in the dataset.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">names</span>(mtcars)</a></code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">colnames</span>(mtcars)</a></code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<p>List the structure of the dataset.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">str</span>(mtcars)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+<p>List the dimentions of the dataset</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">dim</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] 32 11</code></pre>
+<p>List the number of rows in the dataset</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">nrow</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] 32</code></pre>
+<p>List the number of columns in the dataset.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">ncol</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>Class of an variable (numeric, matrix, data frame, etc.)</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">class</span>(mtcars)</a></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+</div>
+<div id="data-selection" class="section level2">
+<h2><span class="header-section-number">4.3</span> Data selection</h2>
+<p>Select one column with 5 rows of observations.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">head</span>(mtcars<span class="op">$</span>mpg, <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></a></code></pre></div>
+<pre><code>## [1] 21.0 21.0 22.8 21.4 18.7</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">head</span>(mtcars[<span class="dv">1</span>], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></a></code></pre></div>
+<pre><code>##                    mpg
+## Mazda RX4         21.0
+## Mazda RX4 Wag     21.0
+## Datsun 710        22.8
+## Hornet 4 Drive    21.4
+## Hornet Sportabout 18.7</code></pre>
+<p>Select several columns with 5 rows of observations.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">head</span>(mtcars[<span class="kw">c</span>(<span class="st">&#39;mpg&#39;</span>, <span class="st">&#39;disp&#39;</span>)], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></a></code></pre></div>
+<pre><code>##                    mpg disp
+## Mazda RX4         21.0  160
+## Mazda RX4 Wag     21.0  160
+## Datsun 710        22.8  108
+## Hornet 4 Drive    21.4  258
+## Hornet Sportabout 18.7  360</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">head</span>(mtcars[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></a></code></pre></div>
+<pre><code>##                    mpg disp drat
+## Mazda RX4         21.0  160 3.90
+## Mazda RX4 Wag     21.0  160 3.90
+## Datsun 710        22.8  108 3.85
+## Hornet 4 Drive    21.4  258 3.08
+## Hornet Sportabout 18.7  360 3.15</code></pre>
+<p>Select one row by index</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">mtcars[<span class="dv">1</span>,] <span class="co"># by index number</span></a></code></pre></div>
+<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">mtcars[<span class="st">&#39;Valiant&#39;</span>,] <span class="co"># by name of the index</span></a></code></pre></div>
+<pre><code>##          mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Valiant 18.1   6  225 105 2.76 3.46 20.22  1  0    3    1</code></pre>
+<p>Select several rows</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">mtcars[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>,] <span class="co"># by index</span></a></code></pre></div>
+<pre><code>##                mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1">mtcars[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>),] <span class="co"># by index</span></a></code></pre></div>
+<pre><code>##                    mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 160.0 110 3.90 2.62 16.46  0  1    4    4
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.44 17.02  0  0    3    2
+## Merc 230          22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">mtcars[<span class="kw">c</span>(<span class="st">&#39;Valiant&#39;</span>, <span class="st">&#39;Hornet Sportabout&#39;</span>),] <span class="co"># by name</span></a></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Valiant           18.1   6  225 105 2.76 3.46 20.22  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.02  0  0    3    2</code></pre>
+</div>
+<div id="conditional-selection" class="section level2">
+<h2><span class="header-section-number">4.4</span> Conditional selection</h2>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">mtcars[mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>,]</a></code></pre></div>
+<pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">mtcars[(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>) <span class="op">&amp;</span><span class="st"> </span>(mtcars<span class="op">$</span>qsec <span class="op">&lt;</span><span class="st"> </span><span class="dv">19</span>), ]</a></code></pre></div>
+<pre><code>##                mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Honda Civic   30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Fiat X1-9     27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa  30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>gear <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]</a></code></pre></div>
+<pre><code>##  [1] 21.0 21.0 22.8 24.4 22.8 19.2 17.8 32.4 30.4 33.9 27.3 21.4</code></pre>
+<p>When you do it like this, you select elements from a vector, you do not need to use comma here.</p>
+</div>
+<div id="deal-with-missing-values" class="section level2">
+<h2><span class="header-section-number">4.5</span> Deal with missing values</h2>
+<p>In R, the missing values is presented as <code>NA</code>.</p>
+<p>Test the existence of missing values with <code>is.na()</code> function. We use an revised old example here.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
+<a class="sourceLine" id="cb188-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb188-3" title="3">Score &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="ot">NA</span>, <span class="dv">90</span>) <span class="co"># create variable Score</span></a>
+<a class="sourceLine" id="cb188-4" title="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score) <span class="co"># combine the varibles into one data frame called df</span></a>
+<a class="sourceLine" id="cb188-5" title="5"><span class="kw">is.na</span>(df)</a></code></pre></div>
+<pre><code>##         ID  Name Score
+## [1,] FALSE FALSE FALSE
+## [2,] FALSE  TRUE FALSE
+## [3,] FALSE FALSE  TRUE
+## [4,] FALSE FALSE FALSE</code></pre>
+<p>Assign missing values</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">df<span class="op">$</span>Score[df<span class="op">$</span>Score <span class="op">==</span><span class="st"> </span><span class="dv">90</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb190-2" title="2">df</a></code></pre></div>
+<pre><code>##   ID Name Score
+## 1  1    A  69.5
+## 2  2 &lt;NA&gt;  77.5
+## 3  3    C    NA
+## 4  4    D    NA</code></pre>
+<p>NAs will influence some functions.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">mean</span>(df<span class="op">$</span>Score) <span class="co"># get the mean value (does not ignore NA)</span></a></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">mean</span>(df<span class="op">$</span>Score, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># (ignore NA)</span></a></code></pre></div>
+<pre><code>## [1] 73.5</code></pre>
+<p>Test if the observations in the dataset has NAs.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">complete.cases</span>(df)</a></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
+<p>Find the observations with no NAs.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">na.omit</span>(df)</a></code></pre></div>
+<pre><code>##   ID Name Score
+## 1  1    A  69.5</code></pre>
+</div>
+<div id="subset" class="section level2">
+<h2><span class="header-section-number">4.6</span> Subset</h2>
+<p><code>subset()</code> is another way to select the data you want.</p>
+<p>Select observations with <code>mpg</code> larger than 30.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb200-2" title="2">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(mtcars, mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb200-3" title="3">newdata</a></code></pre></div>
+<pre><code>##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
+## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
+<p>Select two columns from the dataset.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(mtcars, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&#39;mpg&#39;</span>, <span class="st">&#39;cyl&#39;</span>))</a>
+<a class="sourceLine" id="cb202-2" title="2"><span class="kw">head</span>(newdata, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>##                    mpg cyl
+## Mazda RX4         21.0   6
+## Mazda RX4 Wag     21.0   6
+## Datsun 710        22.8   4
+## Hornet 4 Drive    21.4   6
+## Hornet Sportabout 18.7   8</code></pre>
+</div>
+<div id="merge-two-datasets" class="section level2">
+<h2><span class="header-section-number">4.7</span> Merge two datasets</h2>
+<p><code>merge()</code> function does the same work as <code>vlookup()</code> in excel and ‘Join’ function in ArcGIS. It links two datasets based on their common variable (the variable they both have).</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
+<a class="sourceLine" id="cb204-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb204-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
+<a class="sourceLine" id="cb204-4" title="4">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></a>
+<a class="sourceLine" id="cb204-5" title="5">df1</a></code></pre></div>
+<pre><code>##   ID Name Score1
+## 1  1    A   69.5
+## 2  2    B   77.5
+## 3  3    C   99.0
+## 4  4    D   90.0</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb206-2" title="2">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></a>
+<a class="sourceLine" id="cb206-3" title="3">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></a>
+<a class="sourceLine" id="cb206-4" title="4">df2</a></code></pre></div>
+<pre><code>##   Name Score2
+## 1    A     98
+## 2    D     46
+## 3    C     55</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">merge</span>(df1, df2,       <span class="co"># dataframes needs to be merged</span></a>
+<a class="sourceLine" id="cb208-2" title="2">      <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>,    <span class="co"># name of the column/variable used for merging</span></a>
+<a class="sourceLine" id="cb208-3" title="3">      <span class="dt">all.x =</span> <span class="ot">TRUE</span>)   <span class="co"># keep all observations in the first dataframe after merging</span></a></code></pre></div>
+<pre><code>##   Name ID Score1 Score2
+## 1    A  1   69.5     98
+## 2    B  2   77.5     NA
+## 3    C  3   99.0     55
+## 4    D  4   90.0     46</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">merge</span>(df1, df2, </a>
+<a class="sourceLine" id="cb210-2" title="2">      <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>,</a>
+<a class="sourceLine" id="cb210-3" title="3">      <span class="dt">all.y =</span> <span class="ot">TRUE</span>) <span class="co"># keep all observations in the first dataframe after merging</span></a></code></pre></div>
+<pre><code>##   Name ID Score1 Score2
+## 1    A  1   69.5     98
+## 2    C  3   99.0     55
+## 3    D  4   90.0     46</code></pre>
+<p>You could keep all the observations in both two data frames by set <code>all = TRUE</code> in the function.</p>
+</div>
+<div id="column-operation" class="section level2">
+<h2><span class="header-section-number">4.8</span> Column operation</h2>
+<p>Column operation or vector operation is a very important idea in R. It applies the operations in two columns or the function in one column directly rather than applies them on each element one by one.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
+<a class="sourceLine" id="cb212-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb212-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
+<a class="sourceLine" id="cb212-4" title="4">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>, <span class="dv">70</span>) <span class="co"># create variable Score2</span></a>
+<a class="sourceLine" id="cb212-5" title="5">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1, Score2) <span class="co"># combine the varibles into one data frame called df</span></a>
+<a class="sourceLine" id="cb212-6" title="6">df</a></code></pre></div>
+<pre><code>##   ID Name Score1 Score2
+## 1  1    A   69.5     98
+## 2  2    B   77.5     46
+## 3  3    C   99.0     55
+## 4  4    D   90.0     70</code></pre>
+<p>Create a new column in the dataframe to calculate the sum of score 1 and score 2</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">df<span class="op">$</span>totalsocre &lt;-<span class="st"> </span>df<span class="op">$</span>Score1 <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>Score2</a>
+<a class="sourceLine" id="cb214-2" title="2">df</a></code></pre></div>
+<pre><code>##   ID Name Score1 Score2 totalsocre
+## 1  1    A   69.5     98      167.5
+## 2  2    B   77.5     46      123.5
+## 3  3    C   99.0     55      154.0
+## 4  4    D   90.0     70      160.0</code></pre>
+<p>Create a new column in the dataframe to calculate the mean of score 1 and score 2</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">df<span class="op">$</span>meansocre &lt;-<span class="st"> </span>(df<span class="op">$</span>Score1 <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>Score2)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb216-2" title="2">df</a></code></pre></div>
+<pre><code>##   ID Name Score1 Score2 totalsocre meansocre
+## 1  1    A   69.5     98      167.5     83.75
+## 2  2    B   77.5     46      123.5     61.75
+## 3  3    C   99.0     55      154.0     77.00
+## 4  4    D   90.0     70      160.0     80.00</code></pre>
+<p><strong>Reference</strong></p>
+<p>1.<a href="https://www.statmethods.net/input/importingdata.html">Importing Data</a><br />
+2.<a href="https://www.statmethods.net/input/exportingdata.html">Exporting Data</a><br />
+3.<a href="https://www.statmethods.net/input/contents.html">Getting Information on a Dataset</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="miscellaneous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

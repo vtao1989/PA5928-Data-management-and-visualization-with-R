@@ -1,13 +1,16 @@
-# Data Manipulation
+# Data Manipulation with Base Functions
 
-## import and save data
+We will introduce how to manipulate with different datasets using base functions in R.
 
-### import data
+## Import and save datasets
+
+### Import data
+
 **CSV file**
 ```{r, eval=FALSE}
 mydata <- read.csv('c:/mydata.csv', # file location and name
-                   header=TRUE, # read the first 
-                   sep=",") # which type of separation
+                   header = TRUE, # read the first 
+                   sep = ",") # which type of separation
 ```
 
 **EXCEL file**
@@ -20,16 +23,20 @@ dataset <- read_excel('c:/mydata.xlsx', # file location and name
 **dta STATA file**
 ```{r, eval=FALSE}
 library(foreign)
-mydata <- read.dta('c:/mydata.csv') # file location and name
+mydata <- read.dta('c:/mydata.dta') # file location and name
 ```
 
+Here is an easy way to load dataset in RStudio.
+
 **System tool**
-Besides importing data by codes, you could also import data with the system tool.
+Besides importing data by codes, you could also import data with the system tool. If this is your first time to use this tool, there may be a process to install the packages depending your options. But don't worry, RStudio can do it by itself. You just need to click the button to approve the installation.
+
 ```
 File -> Import dataset -> choose the type of dataset you want to import
 ```
+There are some other options or parameters you could set in the import functions listed above (e.g., specify a variable type or try to skip some of the rows). Sometimes it is sort of complex to do it. So for me, I just do those things after I import the dataset.
 
-### save file
+### Save file
 **CSV file**
 ```{r, eval=FALSE}
 write.csv(df, # data
@@ -49,23 +56,29 @@ library(foreign)
 write.dta(mydata, "c:/mydata.dta")
 ```
 
+Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.
+
 ## View data
-You could view the variable names and simple discription in the Environment pane in the righttop position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset ``mtcars`` as a example. By importing this dataset, use ``data()`` function.
+
+You could view the variable names and simple discription in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset ``mtcars`` as a example. By importing this dataset, use ``data()`` function.
+
 ```{r}
 data(mtcars)
 ```
 
+You could also view the data in the new window by ``View()`` function. Please pay attention that it is initial-capitalized.
 
-You could also view the data in the new window by ``View()`` function.
 ```{r, eval=FALSE}
 View(mtcars)
 ```
 
-View the first ten observations in the dataset.
+View the first ten observations (rows) in the dataset. <dbl> stands for double class, which is a subtype of numerical variable type.
 ```{r}
 head(mtcars, n = 10)
 ```
+
 view the last five observations in the dataset.
+
 ```{r}
 tail(mtcars, n = 5)
 ```
@@ -76,6 +89,7 @@ List the variables in the dataset.
 names(mtcars)
 colnames(mtcars)
 ```
+
 List the structure of the dataset.
 ```{r}
 str(mtcars)
@@ -95,27 +109,31 @@ List the number of columns in the dataset.
 ```{r}
 ncol(mtcars)
 ```
-Class of an object (numeric, matrix, data frame, etc)
+
+Class of an variable (numeric, matrix, data frame, etc.)
 ```{r}
 class(mtcars)
 ```
 
 ## Data selection
-Select one column
+Select one column with 5 rows of observations.
 ```{r}
 head(mtcars$mpg, n = 5) # by name
 head(mtcars[1], n = 5) # by index
 ```
-Select several column
+
+Select several columns with 5 rows of observations.
 ```{r}
 head(mtcars[c('mpg', 'disp')], n = 5) # by name
 head(mtcars[c(1, 3, 5)], n = 5) # by index
 ```
-Select one row
+
+Select one row by index
 ```{r}
-mtcars[1,] # by index
-mtcars['Valiant',] # by name
+mtcars[1,] # by index number
+mtcars['Valiant',] # by name of the index
 ```
+
 Select several rows
 ```{r}
 mtcars[2:3,] # by index
@@ -135,10 +153,13 @@ mtcars[(mtcars$mpg > 25) & (mtcars$qsec < 19), ]
 mtcars$mpg[mtcars$gear == 4]
 ```
 
+When you do it like this, you select elements from a vector, you do not need to use comma here.
+
 ## Deal with missing values
 In R, the missing values is presented as ``NA``.
 
-Test the existence of missing values with ``is.na()`` function. We used an old example here.
+Test the existence of missing values with ``is.na()`` function. We use an revised old example here.
+
 ```{r}
 ID <- c(1:4) # create variable ID
 Name <- c('A', NA, 'C', 'D') # create variable Name
@@ -146,37 +167,50 @@ Score <- c(69.5, 77.5, NA, 90) # create variable Score
 df <- data.frame(ID, Name, Score) # combine the varibles into one data frame called df
 is.na(df)
 ```
+
 Assign missing values
 ```{r}
 df$Score[df$Score == 90] <- NA
 df
 ```
+
 NAs will influence some functions.
 ```{r}
 mean(df$Score) # get the mean value (does not ignore NA)
 mean(df$Score, na.rm=TRUE) # (ignore NA)
 ```
-Test if the observationsin the dataset has NAs.
+
+Test if the observations in the dataset has NAs.
 ```{r}
 complete.cases(df)
 ```
+
 Find the observations with no NAs.
 ```{r}
 na.omit(df)
 ```
 
 ## Subset
+
+``subset()`` is another way to select the data you want.
+
+Select observations with ``mpg`` larger than 30.
 ```{r}
 data(mtcars)
 newdata <- subset(mtcars, mpg > 30)
 newdata
 ```
+
+Select two columns from the dataset.
 ```{r}
 newdata <- subset(mtcars, select = c('mpg', 'cyl'))
 head(newdata, n = 5)
 ```
 
 ## Merge two datasets
+
+``merge()`` function does the same work as ``vlookup()`` in excel and 'Join' function in ArcGIS. It links two datasets based on their common variable (the variable they both have).
+
 ```{r}
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
@@ -189,18 +223,24 @@ Score2 <- c(98, 46, 55) # create variable Score2
 df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
 df2
 ```
+
 ```{r}
 merge(df1, df2,       # dataframes needs to be merged
-      by = 'Name',    # name of the columns used for merging
+      by = 'Name',    # name of the column/variable used for merging
       all.x = TRUE)   # keep all observations in the first dataframe after merging
 ```
+
 ```{r}
 merge(df1, df2, 
       by = 'Name',
       all.y = TRUE) # keep all observations in the first dataframe after merging
 ```
 
-## column operations
+You could keep all the observations in both two data frames by set ``all = TRUE`` in the function.
+
+## Column operation
+
+Column operation or vector operation is a very important idea in R. It applies the operations in two columns or the function in one column directly rather than applies them on each element one by one. 
 ```{r}
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
@@ -209,22 +249,23 @@ Score2 <- c(98, 46, 55, 70) # create variable Score2
 df <- data.frame(ID, Name, Score1, Score2) # combine the varibles into one data frame called df
 df
 ```
+
 Create a new column in the dataframe to calculate the sum of score 1 and score 2
 ```{r}
 df$totalsocre <- df$Score1 + df$Score2
 df
 ```
+
 Create a new column in the dataframe to calculate the mean of score 1 and score 2
 ```{r}
 df$meansocre <- (df$Score1 + df$Score2)/2
 df
 ```
 
-
 **Reference**
 
-1.[Importing Data](https://www.statmethods.net/input/importingdata.html)
-2.[Exporting Data](https://www.statmethods.net/input/exportingdata.html)
-3.[Getting Information on a Dataset](https://www.statmethods.net/input/contents.html)
+1.[Importing Data](https://www.statmethods.net/input/importingdata.html)  
+2.[Exporting Data](https://www.statmethods.net/input/exportingdata.html)  
+3.[Getting Information on a Dataset](https://www.statmethods.net/input/contents.html)  
 
 
