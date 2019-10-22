@@ -53,8 +53,8 @@ At the end of this course, students will be able to:
 |----|-------|-------------------------------------|-------|
 | 1  | 10/8  | Introduction to ``RStudio``            |Uploaded |
 | 2  | 10/15 | Introduction to ``R``                   |Uploaded |
-| 3  | 10/22 | Data manipulation with ``dplyr`` (I)    |       |
-| 4  | 10/29 | Data manipulation with ``dplyr`` (II)   |       |
+| 3  | 10/22 | Data manipulation with base functions    |Uploaded |
+| 4  | 10/29 | Data manipulation with ``dplyr``   |       |
 | 5  | 11/5  | Data visualization with ``ggplot2`` (I)  |       |
 | 6  | 11/12 | Data visualization with ``ggplot2`` (II) |       |
 | 7  | 11/19 | R Statistics (I)                    |       |
