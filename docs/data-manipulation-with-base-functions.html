@@ -170,6 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data"><i class="fa fa-check"></i><b>4.1.1</b> Import data</a></li>
 <li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#view-data"><i class="fa fa-check"></i><b>4.2</b> View data</a></li>
 <li class="chapter" data-level="4.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#data-selection"><i class="fa fa-check"></i><b>4.3</b> Data selection</a></li>
@@ -216,6 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will introduce how to manipulate with different datasets using base functions in R.</p>
 <div id="import-and-save-datasets" class="section level2">
 <h2><span class="header-section-number">4.1</span> Import and save datasets</h2>
+<p>There couple of ways to importing and saving different types of datasets <span class="citation">(Quick-R <a href="#ref-quickr1">2019</a><a href="#ref-quickr1">c</a>, <a href="#ref-quickr2">2019</a><a href="#ref-quickr2">a</a>)</span>.</p>
 <div id="import-data" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Import data</h3>
 <p><strong>CSV file</strong></p>
@@ -249,6 +251,12 @@ Besides importing data by codes, you could also import data with the system tool
 <a class="sourceLine" id="cb143-2" title="2"><span class="kw">write.dta</span>(mydata, <span class="st">&quot;c:/mydata.dta&quot;</span>)</a></code></pre></div>
 <p>Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.</p>
 </div>
+<div id="file-location" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> File location</h3>
+<p>As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.</p>
+<p>You could aovid this. First put your R file and dataset in the same folder. Then start the R file by double clicking. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.</p>
+<p>This is recommended. Since it will easier for others to check your codes since they do not need to change the path of the file.</p>
+</div>
 </div>
 <div id="view-data" class="section level2">
 <h2><span class="header-section-number">4.2</span> View data</h2>
@@ -277,7 +285,7 @@ Besides importing data by codes, you could also import data with the system tool
 ## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
 ## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
 ## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
-<p>List the variables in the dataset.</p>
+<p>List the variables in the dataset <span class="citation">(Quick-R <a href="#ref-quickr3">2019</a><a href="#ref-quickr3">b</a>)</span>.</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">names</span>(mtcars)</a></code></pre></div>
 <pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
 ## [11] &quot;carb&quot;</code></pre>
@@ -307,16 +315,13 @@ Besides importing data by codes, you could also import data with the system tool
 <p>List the number of columns in the dataset.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">ncol</span>(mtcars)</a></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<p>Class of an variable (numeric, matrix, data frame, etc.)</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">class</span>(mtcars)</a></code></pre></div>
-<pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
 <div id="data-selection" class="section level2">
 <h2><span class="header-section-number">4.3</span> Data selection</h2>
 <p>Select one column with 5 rows of observations.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">head</span>(mtcars<span class="op">$</span>mpg, <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">head</span>(mtcars<span class="op">$</span>mpg, <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></a></code></pre></div>
 <pre><code>## [1] 21.0 21.0 22.8 21.4 18.7</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">head</span>(mtcars[<span class="dv">1</span>], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">head</span>(mtcars[<span class="dv">1</span>], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></a></code></pre></div>
 <pre><code>##                    mpg
 ## Mazda RX4         21.0
 ## Mazda RX4 Wag     21.0
@@ -324,14 +329,14 @@ Besides importing data by codes, you could also import data with the system tool
 ## Hornet 4 Drive    21.4
 ## Hornet Sportabout 18.7</code></pre>
 <p>Select several columns with 5 rows of observations.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">head</span>(mtcars[<span class="kw">c</span>(<span class="st">&#39;mpg&#39;</span>, <span class="st">&#39;disp&#39;</span>)], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">head</span>(mtcars[<span class="kw">c</span>(<span class="st">&#39;mpg&#39;</span>, <span class="st">&#39;disp&#39;</span>)], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by name</span></a></code></pre></div>
 <pre><code>##                    mpg disp
 ## Mazda RX4         21.0  160
 ## Mazda RX4 Wag     21.0  160
 ## Datsun 710        22.8  108
 ## Hornet 4 Drive    21.4  258
 ## Hornet Sportabout 18.7  360</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">head</span>(mtcars[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">head</span>(mtcars[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)], <span class="dt">n =</span> <span class="dv">5</span>) <span class="co"># by index</span></a></code></pre></div>
 <pre><code>##                    mpg disp drat
 ## Mazda RX4         21.0  160 3.90
 ## Mazda RX4 Wag     21.0  160 3.90
@@ -339,30 +344,30 @@ Besides importing data by codes, you could also import data with the system tool
 ## Hornet 4 Drive    21.4  258 3.08
 ## Hornet Sportabout 18.7  360 3.15</code></pre>
 <p>Select one row by index</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">mtcars[<span class="dv">1</span>,] <span class="co"># by index number</span></a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">mtcars[<span class="dv">1</span>,] <span class="co"># by index number</span></a></code></pre></div>
 <pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
 ## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">mtcars[<span class="st">&#39;Valiant&#39;</span>,] <span class="co"># by name of the index</span></a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">mtcars[<span class="st">&#39;Valiant&#39;</span>,] <span class="co"># by name of the index</span></a></code></pre></div>
 <pre><code>##          mpg cyl disp  hp drat   wt  qsec vs am gear carb
 ## Valiant 18.1   6  225 105 2.76 3.46 20.22  1  0    3    1</code></pre>
 <p>Select several rows</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">mtcars[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>,] <span class="co"># by index</span></a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">mtcars[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, ] <span class="co"># by index</span></a></code></pre></div>
 <pre><code>##                mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
 ## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1">mtcars[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>),] <span class="co"># by index</span></a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">mtcars[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>), ] <span class="co"># by index</span></a></code></pre></div>
 <pre><code>##                    mpg cyl  disp  hp drat   wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6 160.0 110 3.90 2.62 16.46  0  1    4    4
 ## Hornet Sportabout 18.7   8 360.0 175 3.15 3.44 17.02  0  0    3    2
 ## Merc 230          22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">mtcars[<span class="kw">c</span>(<span class="st">&#39;Valiant&#39;</span>, <span class="st">&#39;Hornet Sportabout&#39;</span>),] <span class="co"># by name</span></a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1">mtcars[<span class="kw">c</span>(<span class="st">&#39;Valiant&#39;</span>, <span class="st">&#39;Hornet Sportabout&#39;</span>), ] <span class="co"># by name</span></a></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat   wt  qsec vs am gear carb
 ## Valiant           18.1   6  225 105 2.76 3.46 20.22  1  0    3    1
 ## Hornet Sportabout 18.7   8  360 175 3.15 3.44 17.02  0  0    3    2</code></pre>
 </div>
 <div id="conditional-selection" class="section level2">
 <h2><span class="header-section-number">4.4</span> Conditional selection</h2>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">mtcars[mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">mtcars[mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>, ]</a></code></pre></div>
 <pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
 ## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
@@ -370,13 +375,13 @@ Besides importing data by codes, you could also import data with the system tool
 ## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
 ## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
 ## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">mtcars[(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>) <span class="op">&amp;</span><span class="st"> </span>(mtcars<span class="op">$</span>qsec <span class="op">&lt;</span><span class="st"> </span><span class="dv">19</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">mtcars[(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>) <span class="op">&amp;</span><span class="st"> </span>(mtcars<span class="op">$</span>qsec <span class="op">&lt;</span><span class="st"> </span><span class="dv">19</span>), ]</a></code></pre></div>
 <pre><code>##                mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Honda Civic   30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
 ## Fiat X1-9     27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
 ## Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
 ## Lotus Europa  30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>gear <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>gear <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]</a></code></pre></div>
 <pre><code>##  [1] 21.0 21.0 22.8 24.4 22.8 19.2 17.8 32.4 30.4 33.9 27.3 21.4</code></pre>
 <p>When you do it like this, you select elements from a vector, you do not need to use comma here.</p>
 </div>
@@ -384,34 +389,34 @@ Besides importing data by codes, you could also import data with the system tool
 <h2><span class="header-section-number">4.5</span> Deal with missing values</h2>
 <p>In R, the missing values is presented as <code>NA</code>.</p>
 <p>Test the existence of missing values with <code>is.na()</code> function. We use an revised old example here.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
-<a class="sourceLine" id="cb188-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
-<a class="sourceLine" id="cb188-3" title="3">Score &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="ot">NA</span>, <span class="dv">90</span>) <span class="co"># create variable Score</span></a>
-<a class="sourceLine" id="cb188-4" title="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score) <span class="co"># combine the varibles into one data frame called df</span></a>
-<a class="sourceLine" id="cb188-5" title="5"><span class="kw">is.na</span>(df)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
+<a class="sourceLine" id="cb186-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb186-3" title="3">Score &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="ot">NA</span>, <span class="dv">90</span>) <span class="co"># create variable Score</span></a>
+<a class="sourceLine" id="cb186-4" title="4">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score) <span class="co"># combine the varibles into one data frame called df</span></a>
+<a class="sourceLine" id="cb186-5" title="5"><span class="kw">is.na</span>(df)</a></code></pre></div>
 <pre><code>##         ID  Name Score
 ## [1,] FALSE FALSE FALSE
 ## [2,] FALSE  TRUE FALSE
 ## [3,] FALSE FALSE  TRUE
 ## [4,] FALSE FALSE FALSE</code></pre>
 <p>Assign missing values</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">df<span class="op">$</span>Score[df<span class="op">$</span>Score <span class="op">==</span><span class="st"> </span><span class="dv">90</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb190-2" title="2">df</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">df<span class="op">$</span>Score[df<span class="op">$</span>Score <span class="op">==</span><span class="st"> </span><span class="dv">90</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb188-2" title="2">df</a></code></pre></div>
 <pre><code>##   ID Name Score
 ## 1  1    A  69.5
 ## 2  2 &lt;NA&gt;  77.5
 ## 3  3    C    NA
 ## 4  4    D    NA</code></pre>
 <p>NAs will influence some functions.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">mean</span>(df<span class="op">$</span>Score) <span class="co"># get the mean value (does not ignore NA)</span></a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="kw">mean</span>(df<span class="op">$</span>Score) <span class="co"># get the mean value (does not ignore NA)</span></a></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">mean</span>(df<span class="op">$</span>Score, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># (ignore NA)</span></a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">mean</span>(df<span class="op">$</span>Score, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># (ignore NA)</span></a></code></pre></div>
 <pre><code>## [1] 73.5</code></pre>
 <p>Test if the observations in the dataset has NAs.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">complete.cases</span>(df)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">complete.cases</span>(df)</a></code></pre></div>
 <pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
 <p>Find the observations with no NAs.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">na.omit</span>(df)</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">na.omit</span>(df)</a></code></pre></div>
 <pre><code>##   ID Name Score
 ## 1  1    A  69.5</code></pre>
 </div>
@@ -419,17 +424,17 @@ Besides importing data by codes, you could also import data with the system tool
 <h2><span class="header-section-number">4.6</span> Subset</h2>
 <p><code>subset()</code> is another way to select the data you want.</p>
 <p>Select observations with <code>mpg</code> larger than 30.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb200-2" title="2">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(mtcars, mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb200-3" title="3">newdata</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb198-2" title="2">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(mtcars, mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb198-3" title="3">newdata</a></code></pre></div>
 <pre><code>##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
 ## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
 ## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
 ## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
 <p>Select two columns from the dataset.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(mtcars, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&#39;mpg&#39;</span>, <span class="st">&#39;cyl&#39;</span>))</a>
-<a class="sourceLine" id="cb202-2" title="2"><span class="kw">head</span>(newdata, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1">newdata &lt;-<span class="st"> </span><span class="kw">subset</span>(mtcars, <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&#39;mpg&#39;</span>, <span class="st">&#39;cyl&#39;</span>))</a>
+<a class="sourceLine" id="cb200-2" title="2"><span class="kw">head</span>(newdata, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>##                    mpg cyl
 ## Mazda RX4         21.0   6
 ## Mazda RX4 Wag     21.0   6
@@ -440,35 +445,35 @@ Besides importing data by codes, you could also import data with the system tool
 <div id="merge-two-datasets" class="section level2">
 <h2><span class="header-section-number">4.7</span> Merge two datasets</h2>
 <p><code>merge()</code> function does the same work as <code>vlookup()</code> in excel and ‘Join’ function in ArcGIS. It links two datasets based on their common variable (the variable they both have).</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
-<a class="sourceLine" id="cb204-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
-<a class="sourceLine" id="cb204-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
-<a class="sourceLine" id="cb204-4" title="4">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></a>
-<a class="sourceLine" id="cb204-5" title="5">df1</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
+<a class="sourceLine" id="cb202-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb202-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
+<a class="sourceLine" id="cb202-4" title="4">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></a>
+<a class="sourceLine" id="cb202-5" title="5">df1</a></code></pre></div>
 <pre><code>##   ID Name Score1
 ## 1  1    A   69.5
 ## 2  2    B   77.5
 ## 3  3    C   99.0
 ## 4  4    D   90.0</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></a>
-<a class="sourceLine" id="cb206-2" title="2">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></a>
-<a class="sourceLine" id="cb206-3" title="3">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></a>
-<a class="sourceLine" id="cb206-4" title="4">df2</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb204-2" title="2">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></a>
+<a class="sourceLine" id="cb204-3" title="3">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></a>
+<a class="sourceLine" id="cb204-4" title="4">df2</a></code></pre></div>
 <pre><code>##   Name Score2
 ## 1    A     98
 ## 2    D     46
 ## 3    C     55</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">merge</span>(df1, df2,       <span class="co"># dataframes needs to be merged</span></a>
-<a class="sourceLine" id="cb208-2" title="2">      <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>,    <span class="co"># name of the column/variable used for merging</span></a>
-<a class="sourceLine" id="cb208-3" title="3">      <span class="dt">all.x =</span> <span class="ot">TRUE</span>)   <span class="co"># keep all observations in the first dataframe after merging</span></a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">merge</span>(df1, df2,       <span class="co"># dataframes needs to be merged</span></a>
+<a class="sourceLine" id="cb206-2" title="2">      <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>,    <span class="co"># name of the column/variable used for merging</span></a>
+<a class="sourceLine" id="cb206-3" title="3">      <span class="dt">all.x =</span> <span class="ot">TRUE</span>)   <span class="co"># keep all observations in the first dataframe after merging</span></a></code></pre></div>
 <pre><code>##   Name ID Score1 Score2
 ## 1    A  1   69.5     98
 ## 2    B  2   77.5     NA
 ## 3    C  3   99.0     55
 ## 4    D  4   90.0     46</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">merge</span>(df1, df2, </a>
-<a class="sourceLine" id="cb210-2" title="2">      <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>,</a>
-<a class="sourceLine" id="cb210-3" title="3">      <span class="dt">all.y =</span> <span class="ot">TRUE</span>) <span class="co"># keep all observations in the first dataframe after merging</span></a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">merge</span>(df1, df2, </a>
+<a class="sourceLine" id="cb208-2" title="2">      <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>,</a>
+<a class="sourceLine" id="cb208-3" title="3">      <span class="dt">all.y =</span> <span class="ot">TRUE</span>) <span class="co"># keep all observations in the first dataframe after merging</span></a></code></pre></div>
 <pre><code>##   Name ID Score1 Score2
 ## 1    A  1   69.5     98
 ## 2    C  3   99.0     55
@@ -478,38 +483,46 @@ Besides importing data by codes, you could also import data with the system tool
 <div id="column-operation" class="section level2">
 <h2><span class="header-section-number">4.8</span> Column operation</h2>
 <p>Column operation or vector operation is a very important idea in R. It applies the operations in two columns or the function in one column directly rather than applies them on each element one by one.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
-<a class="sourceLine" id="cb212-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
-<a class="sourceLine" id="cb212-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
-<a class="sourceLine" id="cb212-4" title="4">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>, <span class="dv">70</span>) <span class="co"># create variable Score2</span></a>
-<a class="sourceLine" id="cb212-5" title="5">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1, Score2) <span class="co"># combine the varibles into one data frame called df</span></a>
-<a class="sourceLine" id="cb212-6" title="6">df</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
+<a class="sourceLine" id="cb210-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
+<a class="sourceLine" id="cb210-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
+<a class="sourceLine" id="cb210-4" title="4">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>, <span class="dv">70</span>) <span class="co"># create variable Score2</span></a>
+<a class="sourceLine" id="cb210-5" title="5">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1, Score2) <span class="co"># combine the varibles into one data frame called df</span></a>
+<a class="sourceLine" id="cb210-6" title="6">df</a></code></pre></div>
 <pre><code>##   ID Name Score1 Score2
 ## 1  1    A   69.5     98
 ## 2  2    B   77.5     46
 ## 3  3    C   99.0     55
 ## 4  4    D   90.0     70</code></pre>
 <p>Create a new column in the dataframe to calculate the sum of score 1 and score 2</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">df<span class="op">$</span>totalsocre &lt;-<span class="st"> </span>df<span class="op">$</span>Score1 <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>Score2</a>
-<a class="sourceLine" id="cb214-2" title="2">df</a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">df<span class="op">$</span>totalsocre &lt;-<span class="st"> </span>df<span class="op">$</span>Score1 <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>Score2</a>
+<a class="sourceLine" id="cb212-2" title="2">df</a></code></pre></div>
 <pre><code>##   ID Name Score1 Score2 totalsocre
 ## 1  1    A   69.5     98      167.5
 ## 2  2    B   77.5     46      123.5
 ## 3  3    C   99.0     55      154.0
 ## 4  4    D   90.0     70      160.0</code></pre>
 <p>Create a new column in the dataframe to calculate the mean of score 1 and score 2</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">df<span class="op">$</span>meansocre &lt;-<span class="st"> </span>(df<span class="op">$</span>Score1 <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>Score2)<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb216-2" title="2">df</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">df<span class="op">$</span>meansocre &lt;-<span class="st"> </span>(df<span class="op">$</span>Score1 <span class="op">+</span><span class="st"> </span>df<span class="op">$</span>Score2)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb214-2" title="2">df</a></code></pre></div>
 <pre><code>##   ID Name Score1 Score2 totalsocre meansocre
 ## 1  1    A   69.5     98      167.5     83.75
 ## 2  2    B   77.5     46      123.5     61.75
 ## 3  3    C   99.0     55      154.0     77.00
 ## 4  4    D   90.0     70      160.0     80.00</code></pre>
-<p><strong>Reference</strong></p>
-<p>1.<a href="https://www.statmethods.net/input/importingdata.html">Importing Data</a><br />
-2.<a href="https://www.statmethods.net/input/exportingdata.html">Exporting Data</a><br />
-3.<a href="https://www.statmethods.net/input/contents.html">Getting Information on a Dataset</a></p>
 
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references">
+<div id="ref-quickr2">
+<p>Quick-R. 2019a. “Exporting Data.” October 21, 2019. <a href="https://www.statmethods.net/input/exportingdata.html">https://www.statmethods.net/input/exportingdata.html</a>.</p>
+</div>
+<div id="ref-quickr3">
+<p>Quick-R. 2019b. “Getting Information on a Dataset.” October 21, 2019. <a href="https://www.statmethods.net/input/contents.html">https://www.statmethods.net/input/contents.html</a>.</p>
+</div>
+<div id="ref-quickr1">
+<p>Quick-R. 2019c. “Importing Data.” October 21, 2019. <a href="https://www.statmethods.net/input/importingdata.html">https://www.statmethods.net/input/importingdata.html</a>.</p>
 </div>
 </div>
             </section>

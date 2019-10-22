@@ -4,6 +4,8 @@ We will introduce how to manipulate with different datasets using base functions
 
 ## Import and save datasets
 
+There couple of ways to importing and saving different types of datasets [@quickr1;@quickr2].
+
 ### Import data
 
 **CSV file**
@@ -58,6 +60,14 @@ write.dta(mydata, "c:/mydata.dta")
 
 Usually, it takes less time to save file in CSV and CSV file has a smaller size in storage.
 
+### File location
+
+As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.
+
+You could aovid this. First put your R file and dataset in the same folder. Then start the R file by double clicking. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.
+
+This is recommended. Since it will easier for others to check your codes since they do not need to change the path of the file.
+
 ## View data
 
 You could view the variable names and simple discription in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset ``mtcars`` as a example. By importing this dataset, use ``data()`` function.
@@ -84,7 +94,7 @@ tail(mtcars, n = 5)
 ```
 
 
-List the variables in the dataset.
+List the variables in the dataset [@quickr3].
 ```{r}
 names(mtcars)
 colnames(mtcars)
@@ -110,11 +120,6 @@ List the number of columns in the dataset.
 ncol(mtcars)
 ```
 
-Class of an variable (numeric, matrix, data frame, etc.)
-```{r}
-class(mtcars)
-```
-
 ## Data selection
 Select one column with 5 rows of observations.
 ```{r}
@@ -136,15 +141,15 @@ mtcars['Valiant',] # by name of the index
 
 Select several rows
 ```{r}
-mtcars[2:3,] # by index
-mtcars[c(1,5,9),] # by index
-mtcars[c('Valiant', 'Hornet Sportabout'),] # by name
+mtcars[2:3, ] # by index
+mtcars[c(1,5,9), ] # by index
+mtcars[c('Valiant', 'Hornet Sportabout'), ] # by name
 ```
 
 ## Conditional selection
 
 ```{r}
-mtcars[mtcars$mpg > 25,]
+mtcars[mtcars$mpg > 25, ]
 ```
 ```{r}
 mtcars[(mtcars$mpg > 25) & (mtcars$qsec < 19), ]
@@ -262,10 +267,5 @@ df$meansocre <- (df$Score1 + df$Score2)/2
 df
 ```
 
-**Reference**
-
-1.[Importing Data](https://www.statmethods.net/input/importingdata.html)  
-2.[Exporting Data](https://www.statmethods.net/input/exportingdata.html)  
-3.[Getting Information on a Dataset](https://www.statmethods.net/input/contents.html)  
 
 

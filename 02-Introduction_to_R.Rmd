@@ -296,8 +296,6 @@ class(afactor)
 
 ## Conditional statements
 
-
-
 ```{r, eval=FALSE}
 if (test_expression){
   statement_1
