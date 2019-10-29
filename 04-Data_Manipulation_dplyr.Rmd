@@ -4,10 +4,16 @@ In this chapter, we will learn a very popular package ``dplyr`` to deal with dat
 
 ## select()
 
+Before the lecture, install the package in your machine.
+
+```{r eval=FALSE}
+install.packages(dplyr)
+```
+
+
 Let's first import the package and the ``mtcars`` dataset.
 
 ```{r message = FALSE}
-install.packages(dplyr)
 library(dplyr)
 data(mtcars)
 ```
