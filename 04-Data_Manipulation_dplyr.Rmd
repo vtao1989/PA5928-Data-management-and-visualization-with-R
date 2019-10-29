@@ -7,7 +7,7 @@ In this chapter, we will learn a very popular package ``dplyr`` to deal with dat
 Before the lecture, install the package in your machine.
 
 ```{r eval=FALSE}
-install.packages(dplyr)
+install.packages('dplyr')
 ```
 
 
@@ -18,7 +18,7 @@ library(dplyr)
 data(mtcars)
 ```
 
-If we want to select some columns from the dataset. We could use the ``select()`` function in ``dplyr``. It is similar with the ``subset()`` function, but here, you do not need to use ``select = c('mpg', 'disp')``. You use the names of the columns directly in the function.
+If we want to select some columns from the dataset. We could use the ``select()`` function in ``dplyr``. It is similar to the ``subset()`` function, but here, you do not need to use ``select = c('mpg', 'disp')``. You use the names of the columns directly in the function.
 
 ```{r}
 df <- select(mtcars, # name of the data frame
@@ -84,7 +84,7 @@ We could arrange the order of some columns by ``arrange()`` functions.
 
 ```{r}
 mtcars %>%
-  arrange(mpg) %>% # arrange mpg in increasing order
+  arrange(mpg) %>% # arrange mpg in asceding order
   head(10)
 ```
 
@@ -112,9 +112,10 @@ We use ``mutate()`` to do some calculations within the variables and create a ne
 ```{r}
 mtcars %>%
   select(mpg) %>%
-  mutate(kmpg = mpg * 1.609) %>%
+  mutate(kmpg <- mpg * 1.609) %>%
   head(10)
 ```
+
 
 ```{r}
 mtcars %>%
