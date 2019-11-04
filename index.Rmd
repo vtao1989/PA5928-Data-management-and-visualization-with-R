@@ -55,7 +55,7 @@ At the end of this course, students will be able to:
 | 2  | 10/15 | Introduction to ``R``                   |Uploaded |
 | 3  | 10/22 | Data manipulation with base functions    |Uploaded |
 | 4  | 10/29 | Data manipulation with ``dplyr``   |Uploaded |
-| 5  | 11/5  | Data visualization with base functions  |       |
+| 5  | 11/5  | Data visualization with base functions  |Uploaded |
 | 6  | 11/12 | Data visualization with ``ggplot2`` |       |
 | 7  | 11/19 | R Statistics (I)                    |       |
 | 8  | 11/26 | R Statistics (II)                   |       |
