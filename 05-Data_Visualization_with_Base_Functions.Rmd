@@ -7,16 +7,14 @@ We go through the base plotting functions in R in this chapter.
 Scatter plot is a good way to show the distribution of data points.
 
 ```{r}
-year <- c(1998:2003) # create variable year
-sales <- c(500, 600, 650, 700, 400, 550) # create variable sales
-df <- data.frame(year, sales) # combine the variables into one data frame called df
-plot(df$year, df$sales) # with first as x, and second as y
+data(mtcars)
+plot(mtcars$mpg, mtcars$wt) # with first as x, and second as y
 ```
 
 Or, you could use the variable names directly and indicate the dataset as the codes below. You will get the same result.
 
 ```{r}
-plot(sales ~ year, data = df) # you have to specify the name of the data frame here
+plot(wt ~ mpg, data = mtcars) # you have to specify the name of the data frame here
 ```
 
 
@@ -25,6 +23,10 @@ plot(sales ~ year, data = df) # you have to specify the name of the data frame h
 You could transfer the scatter plot above to a line plot by just adding a ``type`` variable to indicate that you are plotting a line. Line plot is good for presenting the trend of a variable changing by time.
 
 ```{r}
+year <- c(1998:2003) # create variable year
+sales <- c(500, 600, 650, 700, 400, 550) # create variable sales
+df <- data.frame(year, sales) # combine the variables into one data frame called df
+
 plot(sales ~ year, data = df,
      type = 'l') # type indicates the line type with l
 ```
