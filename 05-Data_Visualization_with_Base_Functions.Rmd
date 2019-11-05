@@ -1,6 +1,6 @@
 # Data Visualization with Base Functions
 
-We would go through the base plotting functions in R first in this chapter.
+We go through the base plotting functions in R in this chapter.
 
 ## Scatter plot
 
@@ -16,7 +16,7 @@ plot(df$year, df$sales) # with first as x, and second as y
 Or, you could use the variable names directly and indicate the dataset as the codes below. You will get the same result.
 
 ```{r}
-plot(sales ~ year, data = df) # you have to specify the data frame here
+plot(sales ~ year, data = df) # you have to specify the name of the data frame here
 ```
 
 
@@ -67,8 +67,8 @@ barplot(df$sales,
 Pie chart is a good way to show the share of each part. You could use ``pie()`` function to draw a pie chart in R.
 
 ```{r}
-pie(df$sales,
-    labels = df$year,
+pie(df$sales, # value for each piece
+    labels = df$year, # label for each piece
     main="Pie Chart of the Sales in ecah Year")
 ```
 
@@ -83,9 +83,7 @@ boxplot(t, range = 0) # set range = 0 makes the whiskers reach the samllest and 
 
 ```{r}
 t <- c(1, 5, 10, 7, 8, 10, 11, 19)
-boxplot(t, range = 1) # set range = 1 makes the the whiskers extend to
-                      # the most extreme data point which is no more than range times
-                      # the interquartile range from the box
+boxplot(t, range = 1) # set range = 1 makes the the whiskers extend to the most extreme data point which is no more than range times the interquartile range from the box
 ```
 
 ## Color in R

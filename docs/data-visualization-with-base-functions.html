@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-visualization-with-base-functions" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Data Visualization with Base Functions</h1>
-<p>We would go through the base plotting functions in R first in this chapter.</p>
+<p>We go through the base plotting functions in R in this chapter.</p>
 <div id="scatter-plot" class="section level2">
 <h2><span class="header-section-number">6.1</span> Scatter plot</h2>
 <p>Scatter plot is a good way to show the distribution of data points.</p>
@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb254-4" title="4"><span class="kw">plot</span>(df<span class="op">$</span>year, df<span class="op">$</span>sales) <span class="co"># with first as x, and second as y</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <p>Or, you could use the variable names directly and indicate the dataset as the codes below. You will get the same result.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">plot</span>(sales <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df) <span class="co"># you have to specify the data frame here</span></a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">plot</span>(sales <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df) <span class="co"># you have to specify the name of the data frame here</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 </div>
 <div id="line-plot" class="section level2">
@@ -300,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pie-chart" class="section level2">
 <h2><span class="header-section-number">6.5</span> Pie chart</h2>
 <p>Pie chart is a good way to show the share of each part. You could use <code>pie()</code> function to draw a pie chart in R.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="kw">pie</span>(df<span class="op">$</span>sales,</a>
-<a class="sourceLine" id="cb260-2" title="2">    <span class="dt">labels =</span> df<span class="op">$</span>year,</a>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="kw">pie</span>(df<span class="op">$</span>sales, <span class="co"># value for each piece</span></a>
+<a class="sourceLine" id="cb260-2" title="2">    <span class="dt">labels =</span> df<span class="op">$</span>year, <span class="co"># label for each piece</span></a>
 <a class="sourceLine" id="cb260-3" title="3">    <span class="dt">main=</span><span class="st">&quot;Pie Chart of the Sales in ecah Year&quot;</span>)</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 </div>
@@ -312,27 +312,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb261-2" title="2"><span class="kw">boxplot</span>(t, <span class="dt">range =</span> <span class="dv">0</span>) <span class="co"># set range = 0 makes the whiskers reach the samllest and largest values in the dataset</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1">t &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">19</span>)</a>
-<a class="sourceLine" id="cb262-2" title="2"><span class="kw">boxplot</span>(t, <span class="dt">range =</span> <span class="dv">1</span>) <span class="co"># set range = 1 makes the the whiskers extend to</span></a></code></pre></div>
+<a class="sourceLine" id="cb262-2" title="2"><span class="kw">boxplot</span>(t, <span class="dt">range =</span> <span class="dv">1</span>) <span class="co"># set range = 1 makes the the whiskers extend to the most extreme data point which is no more than range times the interquartile range from the box</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1">                      <span class="co"># the most extreme data point which is no more than range times</span></a>
-<a class="sourceLine" id="cb263-2" title="2">                      <span class="co"># the interquartile range from the box</span></a></code></pre></div>
 </div>
 <div id="color-in-r" class="section level2">
 <h2><span class="header-section-number">6.7</span> Color in R</h2>
 <p>You could change the color of the plots by adding <code>col =</code> in the functions. For example.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="kw">plot</span>(sales <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df,</a>
-<a class="sourceLine" id="cb264-2" title="2">     <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>,</a>
-<a class="sourceLine" id="cb264-3" title="3">     <span class="dt">col =</span> <span class="st">&#39;YellowGreen&#39;</span>) <span class="co"># specify the name of the color</span></a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1"><span class="kw">plot</span>(sales <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> df,</a>
+<a class="sourceLine" id="cb263-2" title="2">     <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>,</a>
+<a class="sourceLine" id="cb263-3" title="3">     <span class="dt">col =</span> <span class="st">&#39;YellowGreen&#39;</span>) <span class="co"># specify the name of the color</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p>Here is a <a href="https://html-color-codes.info/color-names/">link</a> where you could find the name of the color.</p>
 <p>You could also use the hexadecimal color code to indicate the color. For example.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="kw">barplot</span>(df<span class="op">$</span>sales,</a>
-<a class="sourceLine" id="cb265-2" title="2">        <span class="dt">names.arg =</span> df<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb265-3" title="3">        <span class="dt">main =</span> <span class="st">&#39;Bar plot of the sales for each year from 1998 to 2003&#39;</span>, </a>
-<a class="sourceLine" id="cb265-4" title="4">        <span class="dt">xlab =</span> <span class="st">&#39;Year&#39;</span>, </a>
-<a class="sourceLine" id="cb265-5" title="5">        <span class="dt">ylab =</span> <span class="st">&#39;Sales (million dollors)&#39;</span>,  </a>
-<a class="sourceLine" id="cb265-6" title="6">        <span class="dt">legend =</span> <span class="st">&#39;Sales&#39;</span>,</a>
-<a class="sourceLine" id="cb265-7" title="7">        <span class="dt">col =</span> <span class="st">&#39;#009999&#39;</span>) <span class="co"># use the hexadecimal color code, you need to start it with the hash tag</span></a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="kw">barplot</span>(df<span class="op">$</span>sales,</a>
+<a class="sourceLine" id="cb264-2" title="2">        <span class="dt">names.arg =</span> df<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb264-3" title="3">        <span class="dt">main =</span> <span class="st">&#39;Bar plot of the sales for each year from 1998 to 2003&#39;</span>, </a>
+<a class="sourceLine" id="cb264-4" title="4">        <span class="dt">xlab =</span> <span class="st">&#39;Year&#39;</span>, </a>
+<a class="sourceLine" id="cb264-5" title="5">        <span class="dt">ylab =</span> <span class="st">&#39;Sales (million dollors)&#39;</span>,  </a>
+<a class="sourceLine" id="cb264-6" title="6">        <span class="dt">legend =</span> <span class="st">&#39;Sales&#39;</span>,</a>
+<a class="sourceLine" id="cb264-7" title="7">        <span class="dt">col =</span> <span class="st">&#39;#009999&#39;</span>) <span class="co"># use the hexadecimal color code, you need to start it with the hash tag</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>By the same <a href="https://html-color-codes.info/color-names/">link</a>, you could also find the hexadcimal code for each color.</p>
 
