@@ -369,10 +369,44 @@ p + geom_boxplot() +
                     labels = c('Automatic', 'Manual'))
 ```
 
+### theme() function
 
+``theme()`` function could help to change the styles of every components of the plots. Here are a few examples about it [@ggplot1].
 
+```{r}
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = 'Fuel economy declines as weight increases')
+p
+```
 
+We could use ``plot.title`` to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting ``element_text()`` and making ``size`` to be larger as the defual one.
 
+```{r}
+p + theme(plot.title = element_text(size = rel(2)))
+```
 
+We could also use absolute value to indicate the size directly.
 
+```{r}
+p + theme(plot.title = element_text(size = 15))
+```
+
+We could change the background of the plot by setting the value of ``plot.background`` in the ``theme()`` function. For example, if we want to change the color, we could set ``element_rect()`` and ``fill = 'red'``.
+
+```{r}
+p + theme(plot.background = element_rect(fill = 'red'))
+```
+
+More specifically, if we want to change the style of the panel, which is the inner part restricted by x and y axes, we could set the value of ``panel.background``.
+
+```{r}
+p + theme(panel.background = element_rect(fill = 'green', colour = 'red'))
+```
+
+We could set the line type of the panel's border.
+
+```{r}
+p + theme(panel.border = element_rect(linetype = 'dashed', fill = NA))
+```
 
