@@ -1,5 +1,12 @@
 # Data Visualization with ggplot2
 
+In this chapter, we will learn to use ``ggplot2`` to do data visualization tasks. Before the lecture, please install the package first.
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+
 ## Grammer of Graphics (gg)
 We have grammar for languages. We also have grammars for graphcis. That's where ``gg`` of ``ggplot2`` comes from. For ``ggplot2``, it has seven grammatical elements listed in the table below [@datacamp1].
 
@@ -11,9 +18,9 @@ We have grammar for languages. We also have grammars for graphcis. That's where 
 | Facets      | Plotting small multiples.                         |
 | Statistics  | Representations of our data to aid understanding. |
 | Coordinates | The space on which the data will be plotted.      |
-| Themes      | All non-dataink.                                  |
+| Themes      | All non-data ink.                                  |
 
-Let's take the codes below as a simple example to show how those different elements work in ggplots. From this example, we might have a general idea what is each element and how does it work. If you are still confused, don't worry about it. We will talk about each element in details later.
+Let's take the codes below as a simple example to show how those different elements work in ggplots. From this example, we might have a general idea what is each element and how does it work. We will talk about each element in details later.
 
 ```{r warning = F, message = FALSE}
 library(ggplot2)
@@ -33,9 +40,9 @@ ggplot(mtcars, # Data
 
 ## Data, Aesthetics, and Geometries
 
-Generally, if you want to draw figures with ``ggplot2``, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. GEometry indicates the plot type and related attributes. Take the example above again. We want to visualize the varialbes of ``mpg`` and ``wp`` (aesthetic) of the dataset ``mtcars`` (data) with a scatter plot (geometry).
+Generally, if you want to draw figures with ``ggplot2``, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the varialbes of ``mpg`` and ``wp`` (aesthetic) of the dataset ``mtcars`` (data) with a scatter plot (geometry).
 
-Similar to ``dplyr``, ``ggplot2`` also has its own fashion of coding. We start with the ``ggplot()`` function. Please pay attention that there is no ``2`` in the name of the function. In the function, we first indicate the name of the dataset or data frame. Then we use ``aes()`` to indicate the scales we want to map our data. Here, we map ``mpg`` to x axis, and ``wt`` to y axis. Then we use a plus sign ``+`` to connect it to other functions. We are going to draw a scatter plot, we use ``geom_point()``.
+Similar to ``dplyr``, ``ggplot2`` also has its own fashion of coding. We start with the ``ggplot()`` function. **Please pay attention that there is no ``2`` in the name of the function**. In the function, we first indicate the name of the dataset or data frame. Then we use ``aes()`` to indicate the scales we want to map our data. Here, we map ``mpg`` to x axis, and ``wt`` to y axis. Then we use a plus sign ``+`` to connect it to other functions. We are going to draw a scatter plot, so we use ``geom_point()``.
 
 ```{r}
 ggplot(mtcars, # Data
@@ -43,14 +50,14 @@ ggplot(mtcars, # Data
   geom_point() # Geometries
 ```
 
-Well, we could see the result and it is following our codes. Based on this plot, we have a overall idea of the relationship between ``wt`` and ``mpg``, which is ``wt`` has a negative relationship with ``mpg``. This result makes sense to us. If a car is lighter and it could drive farther with the same amount of gasoline. (Please remember that this relationship is just correlation, not causality.)
+We could see the result and it is following our codes. Based on this plot, we have a overall idea of the relationship between ``wt`` and ``mpg``, which is ``wt`` has a negative relationship with ``mpg``. This result makes sense to us. If a car is lighter and it could drive farther with the same amount of gasoline. (Please remember that this relationship is just a type of correlation, not causality.)
 
 We could add attributes in the aesthetic element. For example, we could use color to indicate the value of ``hp`` by adding ``col = hp``.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt, col = hp)) + # Aesthetics
-  geom_point() # Geometries
+ggplot(mtcars,
+       aes(x = mpg, y = wt, col = hp)) +
+  geom_point()
 ```
 
 Now we have more information in the result. While the weight is heavier, the hourse power is stronger.
@@ -58,9 +65,9 @@ Now we have more information in the result. While the weight is heavier, the hou
 Here, ``hp`` is a continous variable, so ``ggplot2`` uses the darkness of the color to indicate the value. However, if we use a categorical varibable (e.g. binomial variable), ``ggplot2`` will use different colors to show different types.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt, col = factor(am))) + # Aesthetics
-  geom_point() # Geometries
+ggplot(mtcars,
+       aes(x = mpg, y = wt, col = factor(am))) +
+  geom_point()
 ```
 
 Here, ``am`` stands for the types of transmission system (0 = automatic, 1 = manual). We use ``factor()`` to transfer this variable to a categorical one. Then, the ``ggplot2`` uses one color for automatic transmission and another color for mannual transmission.
@@ -77,7 +84,7 @@ Besides ``color``, there are several other parameters to show different aspects 
 | fill      | Fill colour                             | ✓                   | ✓                    |
 | labels    | Text on a plot or axes                  |                     | ✓                    |
 | shape     | Shape of point                          |                     | ✓                    |
-| linetype  | Line dash pa!ern                        |                     | ✓                    |
+| linetype  | Line dash pattern                        |                     | ✓                    |
 
 As for geometries, there are many different types ot them you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar`` for bar plot, ``geom_boxplot`` for boxplot, etc. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, etc. in the following parts.
 
@@ -86,9 +93,9 @@ As for geometries, there are many different types ot them you can use for differ
 We use ``geom_point()`` to plot scatter plot in R with ``ggplot2``. In the example below, we map ``mpg`` to x axis, and ``wt`` to y axis. We indicate the transparency by set ``alpha = hp``. The transparency of each point is decided by its value of ``hp``.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt, alpha = hp)) + # Aesthetics
-  geom_point() # Geometries
+ggplot(mtcars,
+       aes(x = mpg, y = wt, alpha = hp)) +
+  geom_point()
 ```
 
 ### Bar plot
@@ -96,9 +103,9 @@ ggplot(mtcars, # Data
 In the example below, we draw a bar plot to show the number of cars with different tansmission systems. In ``aes()``, we only indicate the variable ``am``. R then will count the number for each transimission type. We use ``geom_bar()`` to plot it.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(am)) + # Aesthetics
-  geom_bar() # Geometries
+ggplot(mtcars,
+       aes(am)) +
+  geom_bar()
 ```
 
 Go back to our previous example, which is different from the example above.
@@ -109,8 +116,7 @@ sales <- c(500, 600, 650, 700, 400, 550) # create variable sales
 df <- data.frame(year, sales) # combine the variables into one data frame called df
 
 ggplot(df, aes(x = year, y = sales)) +
-  geom_bar(stat = 'identity') # you need to specify stat = 'identity' to plot the actual value
-                              # for each year, not count
+  geom_bar(stat = 'identity') # you need to specify stat = 'identity' to plot the actual value for each year, not count
 ```
 
 
