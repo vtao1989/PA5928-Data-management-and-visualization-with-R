@@ -340,7 +340,7 @@ ggplot(mtcars, aes(factor(gear))) +
   coord_polar()
 ```
 
-## Themes (Updating)
+## Themes
 
 ``ggplot2`` is powerful in its flexibility of themes.
 
@@ -409,4 +409,25 @@ We could set the line type of the panel's border.
 ```{r}
 p + theme(panel.border = element_rect(linetype = 'dashed', fill = NA))
 ```
+
+```{r}
+p + theme(panel.grid.major = element_line(colour = "black"),
+          panel.grid.minor = element_line(colour = 'blue'))
+```
+
+```{r}
+p + theme(panel.grid.major.y = element_blank(),
+          panel.grid.minor.y = element_blank())
+```
+
+We could put the gridline on the top of our data.
+
+```{r}
+p + theme(
+  panel.background = element_rect(fill = NA),
+  panel.grid.major = element_line(colour = 'Blue'),
+  panel.ontop = TRUE
+)
+```
+
 
