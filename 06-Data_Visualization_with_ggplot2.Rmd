@@ -8,7 +8,7 @@ install.packages("ggplot2")
 
 
 ## Grammer of Graphics (gg)
-We have grammar for languages. We also have grammars for graphcis. That's where ``gg`` of ``ggplot2`` comes from. For ``ggplot2``, it has seven grammatical elements listed in the table below [@datacamp1].
+We have grammar for languages. We also have grammar for graphcis. That's where ``gg`` of ``ggplot2`` comes from. For ``ggplot2``, it has seven grammatical elements listed in the table below [@datacamp1].
 
 | Element     | Description                                       |
 |-------------|---------------------------------------------------|
@@ -52,7 +52,7 @@ ggplot(mtcars, # Data
 
 We could see the result and it is following our codes. Based on this plot, we have a overall idea of the relationship between ``wt`` and ``mpg``, which is ``wt`` has a negative relationship with ``mpg``. This result makes sense to us. If a car is lighter and it could drive farther with the same amount of gasoline. (Please remember that this relationship is just a type of correlation, not causality.)
 
-We could add attributes in the aesthetic element. For example, we could use color to indicate the value of ``hp`` by adding ``col = hp``.
+We could add more attributes in the aesthetic element. For example, we could use color to indicate the value of ``hp`` by adding ``col = hp``.
 
 ```{r}
 ggplot(mtcars,
@@ -62,7 +62,7 @@ ggplot(mtcars,
 
 Now we have more information in the result. While the weight is heavier, the hourse power is stronger.
 
-Here, ``hp`` is a continous variable, so ``ggplot2`` uses the darkness of the color to indicate the value. However, if we use a categorical varibable (e.g. binomial variable), ``ggplot2`` will use different colors to show different types.
+Here, ``hp`` is a continous variable, so ``ggplot2`` uses the darkness of the color to indicate the value. However, if we use a categorical varibable or a factor (e.g. binomial variable), ``ggplot2`` will use different colors to show different types.
 
 ```{r}
 ggplot(mtcars,
@@ -70,9 +70,9 @@ ggplot(mtcars,
   geom_point()
 ```
 
-Here, ``am`` stands for the types of transmission system (0 = automatic, 1 = manual). We use ``factor()`` to transfer this variable to a categorical one. Then, the ``ggplot2`` uses one color for automatic transmission and another color for mannual transmission.
+Here, ``am`` stands for the types of transmission system (0 = automatic, 1 = manual). We use ``factor()`` to transfer this variable to a categorical one. ``ggplot2`` uses one color for automatic transmission and another color for mannual transmission.
 
-Besides ``color``, there are several other parameters to show different aspects of the plots.
+Besides ``color``, there are several other parameters to show different aesthetics of the plots. There are differences between the usages of continuous variable and categorical variable. If you want to map variables in those aesthetics, you have to do it in the ``aes()`` function.
 
 | Parameter | Description                             | Continuous variable | Categorical variable |
 |-----------|-----------------------------------------|---------------------|----------------------|
@@ -84,9 +84,9 @@ Besides ``color``, there are several other parameters to show different aspects 
 | fill      | Fill colour                             | ✓                   | ✓                    |
 | labels    | Text on a plot or axes                  |                     | ✓                    |
 | shape     | Shape of point                          |                     | ✓                    |
-| linetype  | Line dash pattern                        |                     | ✓                    |
+| linetype  | Line dash pattern                       |                     | ✓                    |
 
-As for geometries, there are many different types ot them you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar`` for bar plot, ``geom_boxplot`` for boxplot, etc. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, etc. in the following parts.
+As for geometries, there are many different types you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar`` for bar plot, ``geom_boxplot`` for boxplot, etc. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, etc. in the following parts.
 
 ### Scatter plot
 
@@ -104,7 +104,7 @@ In the example below, we draw a bar plot to show the number of cars with differe
 
 ```{r}
 ggplot(mtcars,
-       aes(am)) +
+       aes(x = am)) +
   geom_bar()
 ```
 
@@ -119,12 +119,19 @@ ggplot(df, aes(x = year, y = sales)) +
   geom_bar(stat = 'identity') # you need to specify stat = 'identity' to plot the actual value for each year, not count
 ```
 
+Or you could use another geometry called ``geom_col()`` to do it easily.
+
+```{r}
+ggplot(df, aes(x = year, y = sales)) +
+  geom_col()
+```
+
 
 ### Line plot
 
-To show the usage of line plot in ``ggplot2``, we use a new dataset ``economics`` coming from the ``ggplot2`` package. This dataset was produced from US economic time series data. Use ``help()`` to check more information of this dataset.
+To show the usage of line plot in ``ggplot2``, we use a new dataset ``economics`` from the ``ggplot2`` package. This dataset is produced from US economic time series data. Use ``help()`` to check more information of this dataset.
 
-In this example, we use ``geom_line()``.
+In this example, we use ``geom_line()`` to draw a line plot.
 
 ```{r}
 data(economics)
@@ -133,14 +140,13 @@ ggplot(economics,
   geom_line(col = 'Blue') # indicate the color of the line by setting col = 'Blue'
 ```
 
-In this plot, it shows clearly the temperol trend of the number of unemployed in the US. There two increase recently starting from 2001 and 2008.
+In this plot, it shows clearly the temporal trend of the number of unemployed population in the US. There two increase recently starting from 2001 and 2008, which match two economic risks in around 2001 and 2008.
 
 ### Boxplot
 
-In the example below, we draw a boxplot for each transmission type. To do this, we map ``am`` to the x axis, and ``mpg`` to the y axis. We use ``factor()`` or ``as.factor()`` to transfer ``am`` to a factor (or categorical variable). 
+In the example below, we draw a boxplot for each transmission type. To do this, we map ``am`` to the x axis, and ``mpg`` to the y axis. We use ``as.factor()`` to transfer ``am`` to a factor (categorical variable). 
 
 ```{r}
-data(mtcars)
 ggplot(mtcars, aes(x = as.factor(am), y = mpg)) + 
   geom_boxplot()
 ```
@@ -159,7 +165,7 @@ ggplot(df, aes(x = '', y = sales, fill = factor(year))) +
   coord_polar('y')
 ```
 
-What does ``ggplot2`` do here to draw a bar plot is to create a bar plot first.
+What``ggplot2`` does here to draw a bar plot is to create a bar plot first.
 
 ```{r}
 ggplot(df, aes(x = '', y = sales, fill = factor(year))) +
@@ -178,51 +184,37 @@ ggplot(df, aes(x = '', y = sales, fill = factor(year))) +
 
 If you want to split up your data by one or more variables and plot each subset in one figure, ``facet`` is the element you want to use.
 
-In the following example, we draw a scatter plot for each number of forward gears. In each plot, we map ``mpg`` to the x axis and ``wt`` to y axis. The three plots are alligned in a row.
+In the following example, we draw a scatter plot for each number of forward gears. In each plot, we map ``mpg`` to the x axis and ``wt`` to y axis. The three plots are aligned in a row.
 
 ```{r message=FALSE}
-data(mtcars)
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() + # Geometries
-  facet_grid(. ~ gear) # Facets, for each number of foward gears
+p <- ggplot(mtcars, # store the plot result in variable p
+       aes(x = mpg, y = wt))
+  geom_point()
+p + facet_grid(. ~ gear) # Facets, for each number of foward gears
 ```
 
-If we want to allign the plots in a column.
+If we want to align the plots in a column, exchange the position of the varialbe in the function.
 
 ```{r}
-data(mtcars)
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() + # Geometries
-  facet_grid(gear ~ .) # Facets, pay attention to the position of gear and the dot sign
+ p + facet_grid(gear ~ .) # Facets, pay attention to the position of gear and the dot sign
 ```
 
 We could put more variables to split the plots. In the following example, we put one more variable ``vs`` in the ``facet_grid()``.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() + # Geometries
-  facet_grid(vs ~ gear) # Facets
+p + facet_grid(vs ~ gear) # add vs
 ```
 
 We could use the ``margins = T`` to add more plots showing the aggregation of the plots in each column or row.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() + # Geometries
-  facet_grid(vs ~ gear, margins = T) # Facets
+p + facet_grid(vs ~ gear, margins = T) # add aggregation plots for each row and column
 ```
 
-We could use ``labeller=label_both`` to add more information in the label.
+We could use ``labeller = label_both`` to add more information in the label.
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() + # Geometries
-  facet_grid(vs ~ gear, labeller=label_both) # Facets
+p + facet_grid(vs ~ gear, labeller = label_both) # add more info in the label
 ```
 
 
@@ -233,8 +225,8 @@ You could fit a line to see the general trend of the scatter plot by adding ``st
 ```{r}
 p <- ggplot(mtcars,
        aes(x = mpg, y = wt)) +
-  geom_point()
-p +  stat_smooth(method = "lm") # linear line
+  geom_point() 
+p + stat_smooth(method = "lm") # linear line
 ```
 
 ```{r}
@@ -255,7 +247,7 @@ p +  geom_histogram(bins = 3) # the number of bins is 3
 You could fit a denisty line for the histogram.
 
 ```{r}
-p + geom_histogram(aes( y = ..density..), binwidth = 3, col = 'Black', fill = 'White') +
+p + geom_histogram(aes( y = ..density..), binwidth = 3, col = 'Black', fill = 'White') + # use density instead of count
   geom_density(alpha=.2, fill="Gray") 
 ```
 
@@ -273,10 +265,9 @@ While there are many coordinate systems supported by ``ggplot2``, the most commo
 
 ### Zooming in and out
 
-In the following example, we zoom in our plot to a spcific area.
+In the following example, we zoom in our plot to a specific area.
 
 ```{r}
-data(mtcars)
 p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
       geom_point()
 p + coord_cartesian(xlim = c(10, 30), ylim = c(2,4))
@@ -287,26 +278,20 @@ p + coord_cartesian(xlim = c(10, 30), ylim = c(2,4))
 We could change the ratio of the length of a y unit relative to the length of a x unit ($\frac{\text{y unit}}{\text{x unit}}$).
 
 ```{r}
-ggplot(mtcars, # Data
+p <- ggplot(mtcars, # Data
        aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() +
-  coord_fixed(ratio = 1)
+  geom_point()
+p +  coord_fixed(ratio = 1) # 1 means x and y axes have the same unit
 ```
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() +
-  coord_fixed(ratio = 5)
+p + coord_fixed(ratio = 5)
 ```
 
 ### Swaping the axes
 
 ```{r}
-ggplot(mtcars, # Data
-       aes(x = mpg, y = wt)) + # Aesthetics
-  geom_point() +
-  coord_flip()
+p + coord_flip()
 ```
 
 ```{r}
@@ -333,6 +318,7 @@ ggplot(mtcars, aes(x = '', fill = factor(gear))) +
   coord_polar(theta = 'y')
 ```
 
+We could do this in a different way.
 
 ```{r}
 ggplot(mtcars, aes(factor(gear))) +
@@ -346,27 +332,34 @@ ggplot(mtcars, aes(factor(gear))) +
 
 ### Add labels
 
+Add labels with ``labs()`` function.
+
 ```{r}
 p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
   geom_point()
-p + labs(title = 'Plot 1',
-         x = 'Miles/(US) gallon',
-         y = 'Weight (1000 lbs)')
+p + labs(title = 'Plot 1', # title of the plot
+         subtitle = 'Subplot1', # sub title
+         x = 'Miles/(US) gallon', # x label
+         y = 'Weight (1000 lbs)') # y label
 ```
+
+Or use ``ggtitle()``, ``xlab()``, and ``ylab()`` instead.
 
 ```{r}
 p + ggtitle('Plot1') +
-  xlab('Miles/(US) gallon') +
-  ylab('Weight (1000 lbs)')
+  xlab('Miles/(US) gallon') + # x label
+  ylab('Weight (1000 lbs)') # y label
 ```
 
 ### Change ticks
 
+Here is an example of changing the ticks for a discrete variable.
+
 ```{r}
 p <- ggplot(mtcars, aes(x = factor(am), y = mpg))
 p + geom_boxplot() +
-    scale_x_discrete(name = "Transmission", 
-                    labels = c('Automatic', 'Manual'))
+    scale_x_discrete(name = "Transmission", # name of the x axis
+                    labels = c('Automatic', 'Manual')) # change 0 and 1 to automatic and manaual
 ```
 
 ### theme() function
@@ -377,7 +370,7 @@ p + geom_boxplot() +
 p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   labs(title = 'Fuel economy declines as weight increases')
-p
+p # original plot
 ```
 
 We could use ``plot.title`` to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting ``element_text()`` and making ``size`` to be larger as the defual one.
@@ -410,17 +403,21 @@ We could set the line type of the panel's border.
 p + theme(panel.border = element_rect(linetype = 'dashed', fill = NA))
 ```
 
+Change the attributes of the lines for the grid. ``element_line()`` stands for the attributes of the lines.
+
 ```{r}
 p + theme(panel.grid.major = element_line(colour = "black"),
           panel.grid.minor = element_line(colour = 'blue'))
 ```
+
+Use ``element_blank()`` to remove the themes of the target.
 
 ```{r}
 p + theme(panel.grid.major.y = element_blank(),
           panel.grid.minor.y = element_blank())
 ```
 
-We could put the gridline on the top of our data.
+We could put the gridline on the top of our data by setting ``panel.ontop = TRUE``.
 
 ```{r}
 p + theme(
@@ -430,11 +427,15 @@ p + theme(
 )
 ```
 
+Change the line style of the axis.
+
 ```{r}
 p + theme(
   axis.line = element_line(size = 3, colour = 'red')
 )
 ```
+
+Change the text style of the axis.
 
 ```{r}
 p + theme(
@@ -442,11 +443,15 @@ p + theme(
 )
 ```
 
+Change the attributes of the text for the axis ticks.
+
 ```{r}
 p + theme(
   axis.ticks = element_line(size = 1.5)
 )
 ```
+
+And y label.
 
 ```{r}
 p + theme(
@@ -468,6 +473,8 @@ p <- ggplot(mtcars, aes(wt, mpg)) +
 p
 ```
 
+Remove the legend by setting its postion as ``legend.position = 'none'``.
+
 ```{r}
 p + theme(
   legend.position = 'none'
@@ -479,6 +486,8 @@ p + theme(
   legend.position = 'top'
 )
 ```
+
+By setting ``legend.justification`` for the legend, we anchor point for positioning legend inside plot ("center" or two-element numeric vector) or the justification according to the plot area when positioned outside the plot
 
 ```{r}
 p + theme(
@@ -501,11 +510,15 @@ p + theme(
 )
 ```
 
+Set attributes for the key of the legend.
+
 ```{r}
 p + theme(
   legend.key = element_rect(fill = 'white', colour = 'black')
 )
 ```
+
+Set attributes for the text of the legend.
 
 ```{r}
 p + theme(

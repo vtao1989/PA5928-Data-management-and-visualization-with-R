@@ -1,0 +1,6 @@
+# Exploratory Data Analysis
+
+We are going to use what we have learnt so far to do some exploratory data analysis, which is also the practice for data manipulation and visualization.
+
+## 
+
