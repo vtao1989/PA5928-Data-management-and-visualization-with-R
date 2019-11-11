@@ -153,17 +153,24 @@ GSSvocab %>%
         axis.title = element_text(size = 12))
 ```
 
-Well, some plots even do not need you to manipulate the data. You could draw the plot directly.
-
 ```{r}
-ggplot(GSSvocab, aes(x = ageGroup, y = vocab)) +
-  geom_boxplot() +
-  facet_wrap(~year) +
-  theme(axis.text.x = element_text(angle = 90))
+GSSvocab %>%
+  filter(!is.na(ageGroup)) %>%
+  ggplot(aes(x = ageGroup, y = vocab)) +
+    geom_boxplot() +
+    facet_wrap(~year) +
+    theme(axis.text.x = element_text(angle = 90))
 ```
 
 ```{r}
-
+GSSvocab %>%
+  filter(!is.na(ageGroup)) %>%
+  group_by(ageGroup, year) %>%
+  summarize(avgVocab = mean(vocab, na.rm = T)) %>%
+  ggplot(aes(x = ageGroup, y = avgVocab)) +
+    geom_col() +
+    facet_wrap(~year) +
+  theme(axis.text.x = element_text(angle = 90))
 ```
 
 
