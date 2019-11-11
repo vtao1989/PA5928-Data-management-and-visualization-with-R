@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Exploratory Data Analysis | PA 5928 Data Management &amp; Visualization with R (Updating)</title>
+  <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Exploratory Data Analysis | PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Exploratory Data Analysis | PA 5928 Data Management &amp; Visualization with R (Updating)" />
+  
+  <meta name="twitter:description" content="This is the website for couse PA 5928 in the University of Minnesota" />
+  
+
+<meta name="author" content="Tao Tao (University of Minnesota)" />
+
+
+<meta name="date" content="2019-11-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-visualization-with-ggplot2.html"/>
+<link rel="next" href="miscellaneous.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PA 5928 Data Management & Visualization with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#course-learning-outcomes"><i class="fa fa-check"></i><b>1.4</b> Course Learning Outcomes</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#in-class-exercise-and-final-project"><i class="fa fa-check"></i><b>1.5</b> In-class exercise and final project</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.6</b> Course Schedule (Tentative)</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.7</b> Homework and projects collaboration and submission policy</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#question-1"><i class="fa fa-check"></i><b>1.8.1</b> Question 1</a></li>
+<li class="chapter" data-level="1.8.2" data-path="index.html"><a href="index.html#question-2"><i class="fa fa-check"></i><b>1.8.2</b> Question 2</a></li>
+<li class="chapter" data-level="1.8.3" data-path="index.html"><a href="index.html#question-3"><i class="fa fa-check"></i><b>1.8.3</b> Question 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#familiar-with-the-user-interface-of-rstudio"><i class="fa fa-check"></i><b>2.4</b> Familiar with the user interface of RStudio</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#create-and-save-r-file"><i class="fa fa-check"></i><b>2.5</b> Create and save R file</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#print-hello-world"><i class="fa fa-check"></i><b>2.6</b> Print Hello, world</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-and-use-r-packages"><i class="fa fa-check"></i><b>2.7</b> Install and use R Packages</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
+<li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.1</b> Variable types</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.2.1</b> Assignment operations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.2.2</b> Arithmetic operations</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.2.3</b> Relational operations</a></li>
+<li class="chapter" data-level="3.2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#logical-operations"><i class="fa fa-check"></i><b>3.2.4</b> Logical operations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#data-structures"><i class="fa fa-check"></i><b>3.3</b> Data structures</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#conditional-statements"><i class="fa fa-check"></i><b>3.4</b> Conditional statements</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.6</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data"><i class="fa fa-check"></i><b>4.1.1</b> Import data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#view-data"><i class="fa fa-check"></i><b>4.2</b> View data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#data-selection"><i class="fa fa-check"></i><b>4.3</b> Data selection</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#conditional-selection"><i class="fa fa-check"></i><b>4.4</b> Conditional selection</a></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#deal-with-missing-values"><i class="fa fa-check"></i><b>4.5</b> Deal with missing values</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#subset"><i class="fa fa-check"></i><b>4.6</b> Subset</a></li>
+<li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
+<li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutate"><i class="fa fa-check"></i><b>5.4</b> mutate()</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#scatter-plot"><i class="fa fa-check"></i><b>6.1</b> Scatter plot</a></li>
+<li class="chapter" data-level="6.2" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#line-plot"><i class="fa fa-check"></i><b>6.2</b> Line plot</a></li>
+<li class="chapter" data-level="6.3" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#bar-plot"><i class="fa fa-check"></i><b>6.3</b> Bar plot</a></li>
+<li class="chapter" data-level="6.4" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#add-more-elements-in-the-plots"><i class="fa fa-check"></i><b>6.4</b> Add more elements in the plots</a></li>
+<li class="chapter" data-level="6.5" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#pie-chart"><i class="fa fa-check"></i><b>6.5</b> Pie chart</a></li>
+<li class="chapter" data-level="6.6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#boxplot"><i class="fa fa-check"></i><b>6.6</b> Boxplot</a></li>
+<li class="chapter" data-level="6.7" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#color-in-r"><i class="fa fa-check"></i><b>6.7</b> Color in R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#grammer-of-graphics-gg"><i class="fa fa-check"></i><b>7.1</b> Grammer of Graphics (gg)</a></li>
+<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#scatter-plot-1"><i class="fa fa-check"></i><b>7.2.1</b> Scatter plot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#bar-plot-1"><i class="fa fa-check"></i><b>7.2.2</b> Bar plot</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#line-plot-1"><i class="fa fa-check"></i><b>7.2.3</b> Line plot</a></li>
+<li class="chapter" data-level="7.2.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#boxplot-1"><i class="fa fa-check"></i><b>7.2.4</b> Boxplot</a></li>
+<li class="chapter" data-level="7.2.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#pie-chart-1"><i class="fa fa-check"></i><b>7.2.5</b> Pie chart</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>7.3</b> Facets</a></li>
+<li class="chapter" data-level="7.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#statistics"><i class="fa fa-check"></i><b>7.4</b> Statistics</a></li>
+<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#zooming-in-and-out"><i class="fa fa-check"></i><b>7.5.1</b> Zooming in and out</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#ratio"><i class="fa fa-check"></i><b>7.5.2</b> Ratio</a></li>
+<li class="chapter" data-level="7.5.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#swaping-the-axes"><i class="fa fa-check"></i><b>7.5.3</b> Swaping the axes</a></li>
+<li class="chapter" data-level="7.5.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#polar-coordinate-system"><i class="fa fa-check"></i><b>7.5.4</b> Polar coordinate system</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#add-labels"><i class="fa fa-check"></i><b>7.6.1</b> Add labels</a></li>
+<li class="chapter" data-level="7.6.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#change-ticks"><i class="fa fa-check"></i><b>7.6.2</b> Change ticks</a></li>
+<li class="chapter" data-level="7.6.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#theme-function"><i class="fa fa-check"></i><b>7.6.3</b> theme() function</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#introduction-the-dataset-and-research-question"><i class="fa fa-check"></i><b>8.1</b> Introduction the dataset and research question</a></li>
+<li class="chapter" data-level="8.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-munipulation"><i class="fa fa-check"></i><b>8.2</b> Data munipulation</a></li>
+<li class="chapter" data-level="8.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-visualization"><i class="fa fa-check"></i><b>8.3</b> Data visualization</a></li>
+<li class="chapter" data-level="8.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#combine-them-togethor"><i class="fa fa-check"></i><b>8.4</b> Combine them togethor</a></li>
+<li class="chapter" data-level="8.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-examples"><i class="fa fa-check"></i><b>8.5</b> More examples</a></li>
+<li class="chapter" data-level="8.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-more-example"><i class="fa fa-check"></i><b>8.6</b> More more example</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>9</b> Miscellaneous</a><ul>
+<li class="chapter" data-level="9.1" data-path="miscellaneous.html"><a href="miscellaneous.html#something-related-to-in-class-exercises-and-grading-rubic"><i class="fa fa-check"></i><b>9.1</b> Something related to in-class exercises and grading rubic</a></li>
+<li class="chapter" data-level="9.2" data-path="miscellaneous.html"><a href="miscellaneous.html#comparison-between-r-and-stata"><i class="fa fa-check"></i><b>9.2</b> Comparison between R and Stata</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>10</b> Final Project</a><ul>
+<li class="chapter" data-level="10.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>10.1</b> Description</a></li>
+<li class="chapter" data-level="10.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>10.2</b> Timeline</a></li>
+<li class="chapter" data-level="10.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>10.3</b> Proposal</a></li>
+<li class="chapter" data-level="10.4" data-path="final-project.html"><a href="final-project.html#data-analysis"><i class="fa fa-check"></i><b>10.4</b> Data analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="final-project.html"><a href="final-project.html#final-report"><i class="fa fa-check"></i><b>10.5</b> Final report</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PA 5928 Data Management &amp; Visualization with R (Updating)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploratory-data-analysis" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Exploratory Data Analysis</h1>
+<p>We are going to use what we have learnt so far to do some exploratory data analysis, which is also the practice for data manipulation and visualization.</p>
+<div id="introduction-the-dataset-and-research-question" class="section level2">
+<h2><span class="header-section-number">8.1</span> Introduction the dataset and research question</h2>
+<p>The dataset we used here is from the General Social Survey (GSS) from the National Opinion Research Center of the University of Chicago. The dataset shows the results of the vocabulary tests for several years. It contains eight variables <span class="citation">(Arel-Bundock <a href="#ref-GSSvocab">2019</a>)</span>. The descriptions are listed below.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>year</td>
+<td>The test year</td>
+</tr>
+<tr class="even">
+<td>gender</td>
+<td>Gender</td>
+</tr>
+<tr class="odd">
+<td>nativeBorn</td>
+<td>Was the respondent born in the US?</td>
+</tr>
+<tr class="even">
+<td>ageGroup</td>
+<td>Grouped age of the respondent</td>
+</tr>
+<tr class="odd">
+<td>educGroup</td>
+<td>Grouped education level of the respondent</td>
+</tr>
+<tr class="even">
+<td>vocab</td>
+<td>Number of words out of 10 correct on a vocabulary test</td>
+</tr>
+<tr class="odd">
+<td>age</td>
+<td>Age of the respondent in years</td>
+</tr>
+<tr class="even">
+<td>educ</td>
+<td>Years of education of the respondent</td>
+</tr>
+</tbody>
+</table>
+<p>Our research question is <strong>how do the average vocabulary test results change over time?</strong></p>
+<p>Let’s get start. We first library the packages we need for this task.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" title="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb324-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb324-3" title="3"><span class="kw">library</span>(readr)</a></code></pre></div>
+</div>
+<div id="data-munipulation" class="section level2">
+<h2><span class="header-section-number">8.2</span> Data munipulation</h2>
+<p>We could the import tool to import our dataset and copy the code.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1">GSSvocab &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;GSSvocab.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   X1 = col_double(),
+##   year = col_double(),
+##   gender = col_character(),
+##   nativeBorn = col_character(),
+##   ageGroup = col_character(),
+##   educGroup = col_character(),
+##   vocab = col_double(),
+##   age = col_double(),
+##   educ = col_double()
+## )</code></pre>
+<p>There are some warning messages when we import the dataset. The reason for this warning message is that we did not specify the type of the variables. Therefore, R tries to give every variable a type based on its own understanding of the data.</p>
+<p>Let’s check the dataset to see what it looks like.</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" title="1"><span class="kw">head</span>(GSSvocab, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 9
+##      X1  year gender nativeBorn ageGroup educGroup vocab   age  educ
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 1978.  1978 female yes        50-59    12 yrs       10    52    12
+## 2 1978.  1978 female yes        60+      &lt;12 yrs       6    74     9
+## 3 1978.  1978 male   yes        30-39    &lt;12 yrs       4    35    10
+## 4 1978.  1978 female yes        50-59    12 yrs        9    50    12
+## 5 1978.  1978 female yes        40-49    12 yrs        6    41    12</code></pre>
+<p>Except the first variable, all other variables seem to be imported in the right type. Since the first variable is not useful for our data analysis, we do not need to care about it.</p>
+<p>Then, based on the initial research questions, we need to calculate the average vocabulary test results for each year. We apply the <code>group_by()</code> function here.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" title="1">year_vocab &lt;-<span class="st"> </span>GSSvocab <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb330-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb330-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avgVocab =</span> <span class="kw">mean</span>(vocab, <span class="dt">na.rm =</span> T)) <span class="co"># indicate na.rm = T to deal with missing value</span></a>
+<a class="sourceLine" id="cb330-4" title="4"><span class="kw">head</span>(year_vocab, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##    year avgVocab
+##   &lt;dbl&gt;    &lt;dbl&gt;
+## 1  1978     5.96
+## 2  1982     5.74
+## 3  1984     6.02
+## 4  1987     5.74
+## 5  1988     5.82</code></pre>
+</div>
+<div id="data-visualization" class="section level2">
+<h2><span class="header-section-number">8.3</span> Data visualization</h2>
+<p>Then, we apply <code>ggplot()</code> to visualize the dataset <code>year_vocab</code> we have just generated.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" title="1"><span class="kw">ggplot</span>(year_vocab, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb332-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p>For a complete plot, we have add more infomation such as title, x label, and y label, etc.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1"><span class="kw">ggplot</span>(year_vocab, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb333-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb333-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average vocabulary test result for each year&#39;</span>,</a>
+<a class="sourceLine" id="cb333-4" title="4">       <span class="dt">y =</span> <span class="st">&#39;Average vocabulary test score&#39;</span>,</a>
+<a class="sourceLine" id="cb333-5" title="5">       <span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb333-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb333-7" title="7">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
+<a class="sourceLine" id="cb333-8" title="8">        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+</div>
+<div id="combine-them-togethor" class="section level2">
+<h2><span class="header-section-number">8.4</span> Combine them togethor</h2>
+<p>We could put those codes together.</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" title="1">GSSvocab <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb334-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb334-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avgVocab =</span> <span class="kw">mean</span>(vocab, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb334-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab)) <span class="op">+</span><span class="st"> </span><span class="co"># we do not put name of the dataset here</span></a>
+<a class="sourceLine" id="cb334-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb334-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average vocabulary test result for each year&#39;</span>,</a>
+<a class="sourceLine" id="cb334-7" title="7">       <span class="dt">y =</span> <span class="st">&#39;Average vocabulary test score&#39;</span>,</a>
+<a class="sourceLine" id="cb334-8" title="8">       <span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb334-9" title="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb334-10" title="10">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
+<a class="sourceLine" id="cb334-11" title="11">        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+</div>
+<div id="more-examples" class="section level2">
+<h2><span class="header-section-number">8.5</span> More examples</h2>
+<p>Let’s make the research more challenging. Let’s study the topic that <strong>how do the average vocabulary test results for male and female change over time?</strong></p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1">year_gender_vocab &lt;-<span class="st"> </span>GSSvocab <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb335-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(year, gender) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb335-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avgVocab =</span> <span class="kw">mean</span>(vocab, <span class="dt">na.rm =</span> T))</a>
+<a class="sourceLine" id="cb335-4" title="4"><span class="kw">head</span>(year_gender_vocab, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+## # Groups:   year [3]
+##    year gender avgVocab
+##   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1  1978 female     6.02
+## 2  1978 male       5.89
+## 3  1982 female     5.76
+## 4  1982 male       5.71
+## 5  1984 female     6.07</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1"><span class="kw">ggplot</span>(year_gender_vocab, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab, <span class="dt">col =</span> gender)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average vocabulary test result for male and female in each year&#39;</span>,</a>
+<a class="sourceLine" id="cb337-4" title="4">       <span class="dt">y =</span> <span class="st">&#39;Average vocabulary test score&#39;</span>,</a>
+<a class="sourceLine" id="cb337-5" title="5">       <span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),</a>
+<a class="sourceLine" id="cb337-7" title="7">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
+<a class="sourceLine" id="cb337-8" title="8">        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>Again, we could put them together.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1">GSSvocab <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(year, gender) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avgVocab =</span> <span class="kw">mean</span>(vocab, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb338-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab, <span class="dt">col =</span> gender)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb338-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb338-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average vocabulary test result for male and female in each year&#39;</span>,</a>
+<a class="sourceLine" id="cb338-7" title="7">       <span class="dt">y =</span> <span class="st">&#39;Average vocabulary test score&#39;</span>,</a>
+<a class="sourceLine" id="cb338-8" title="8">       <span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb338-9" title="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),</a>
+<a class="sourceLine" id="cb338-10" title="10">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
+<a class="sourceLine" id="cb338-11" title="11">        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+</div>
+<div id="more-more-example" class="section level2">
+<h2><span class="header-section-number">8.6</span> More more example</h2>
+<p>We could also do the same thing to each age group and even plot them in different plots with <code>facet_wrap()</code> function.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1">GSSvocab <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb339-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(year, ageGroup) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb339-3" title="3"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(ageGroup)) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># delete the the obs with missing values in ageGroup</span></a>
+<a class="sourceLine" id="cb339-4" title="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">avgVocab =</span> <span class="kw">mean</span>(vocab, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb339-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb339-6" title="6"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb339-7" title="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>ageGroup, <span class="dt">labeller =</span> label_both) <span class="op">+</span></a>
+<a class="sourceLine" id="cb339-8" title="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average vocabulary test result for different age group in each year&#39;</span>,</a>
+<a class="sourceLine" id="cb339-9" title="9">       <span class="dt">y =</span> <span class="st">&#39;Average vocabulary test score&#39;</span>,</a>
+<a class="sourceLine" id="cb339-10" title="10">       <span class="dt">x =</span> <span class="st">&#39;Year&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb339-11" title="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),</a>
+<a class="sourceLine" id="cb339-12" title="12">        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
+<a class="sourceLine" id="cb339-13" title="13">        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p>Well, some plots even do not need you to manipulate the data. You could draw the plot directly.</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1"><span class="kw">ggplot</span>(GSSvocab, <span class="kw">aes</span>(<span class="dt">x =</span> ageGroup, <span class="dt">y =</span> vocab)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb340-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb340-3" title="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
+<a class="sourceLine" id="cb340-4" title="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>))</a></code></pre></div>
+<pre><code>## Warning: Removed 1348 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+
+</div>
+</div>
+<h3> References</h3>
+<div id="refs" class="references">
+<div id="ref-GSSvocab">
+<p>Arel-Bundock, Vincent. 2019. “Data from the General Social Survey (Gss) from the National Opinion Research Center of the University of Chicago.” November 11, 2019. <a href="https://vincentarelbundock.github.io/Rdatasets/doc/carData/GSSvocab.html">https://vincentarelbundock.github.io/Rdatasets/doc/carData/GSSvocab.html</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualization-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="miscellaneous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

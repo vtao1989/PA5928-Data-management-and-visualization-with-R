@@ -2,5 +2,173 @@
 
 We are going to use what we have learnt so far to do some exploratory data analysis, which is also the practice for data manipulation and visualization.
 
-## 
+## Introduction the dataset and research question
+
+The dataset we used here is from the General Social Survey (GSS) from the National Opinion Research Center of the University of Chicago. The dataset shows the results of the vocabulary tests for several years. It contains eight variables [@GSSvocab]. The descriptions are listed below.
+
+| Variable   | Descriptions                                           |
+|------------|--------------------------------------------------------|
+| year       | The test year                                          |
+| gender     | Gender                                                 |
+| nativeBorn | Was the respondent born in the US?                     |
+| ageGroup   | Grouped age of the respondent                          |
+| educGroup  | Grouped education level of the respondent              |
+| vocab      | Number of words out of 10 correct on a vocabulary test |
+| age        | Age of the respondent in years                         |
+| educ       | Years of education of the respondent                   |
+
+Our research question is **how do the average vocabulary test results change over time?**
+
+Let's get start. We first library the packages we need for this task.
+
+```{r message = F}
+library(dplyr)
+library(ggplot2)
+library(readr)
+```
+
+
+## Data munipulation
+
+We could the import tool to import our dataset and copy the code.
+
+```{r}
+GSSvocab <- read_csv("GSSvocab.csv")
+```
+
+There are some warning messages when we import the dataset. The reason for this warning message is that we did not specify the type of the variables. Therefore, R tries to give every variable a type based on its own understanding of the data.
+
+Let's check the dataset to see what it looks like.
+
+```{r}
+head(GSSvocab, 5)
+```
+
+Except the first variable, all other variables seem to be imported in the right type. Since the first variable is not useful for our data analysis, we do not need to care about it.
+
+Then, based on the initial research questions, we need to calculate the average vocabulary test results for each year. We apply the ``group_by()`` function here.
+
+```{r}
+year_vocab <- GSSvocab %>%
+  group_by(year) %>%
+  summarize(avgVocab = mean(vocab, na.rm = T)) # indicate na.rm = T to deal with missing value
+head(year_vocab, 5)
+```
+
+## Data visualization
+
+Then, we apply ``ggplot()`` to visualize the dataset ``year_vocab`` we have just generated.
+
+```{r}
+ggplot(year_vocab, aes(x = year, y = avgVocab)) +
+  geom_line()
+```
+
+For a complete plot, we have add more infomation such as title, x label, and y label, etc.
+
+```{r}
+ggplot(year_vocab, aes(x = year, y = avgVocab)) +
+  geom_line() +
+  labs(title = 'Average vocabulary test result for each year',
+       y = 'Average vocabulary test score',
+       x = 'Year') +
+  theme(plot.title = element_text(size = 20),
+        axis.text = element_text(size = 10, colour = 'black'),
+        axis.title = element_text(size = 12))
+```
+
+## Combine them togethor
+
+We could put those codes together.
+
+```{r}
+GSSvocab %>%
+  group_by(year) %>%
+  summarize(avgVocab = mean(vocab, na.rm = T)) %>%
+  ggplot(aes(x = year, y = avgVocab)) + # we do not put name of the dataset here
+  geom_line() +
+  labs(title = 'Average vocabulary test result for each year',
+       y = 'Average vocabulary test score',
+       x = 'Year') +
+  theme(plot.title = element_text(size = 20),
+        axis.text = element_text(size = 10, colour = 'black'),
+        axis.title = element_text(size = 12))
+```
+
+## More examples
+
+Let's make the research more challenging. Let's study the topic that **how do the average vocabulary test results for male and female change over time?**
+
+```{r}
+year_gender_vocab <- GSSvocab %>%
+  group_by(year, gender) %>%
+  summarize(avgVocab = mean(vocab, na.rm = T))
+head(year_gender_vocab, 5)
+```
+
+```{r}
+ggplot(year_gender_vocab, aes(x = year, y = avgVocab, col = gender)) +
+  geom_line() +
+  labs(title = 'Average vocabulary test result for male and female in each year',
+       y = 'Average vocabulary test score',
+       x = 'Year') +
+  theme(plot.title = element_text(size = 15),
+        axis.text = element_text(size = 10, colour = 'black'),
+        axis.title = element_text(size = 12))
+```
+
+Again, we could put them together.
+
+```{r}
+GSSvocab %>%
+  group_by(year, gender) %>%
+  summarize(avgVocab = mean(vocab, na.rm = T)) %>%
+  ggplot(aes(x = year, y = avgVocab, col = gender)) +
+  geom_line() +
+  labs(title = 'Average vocabulary test result for male and female in each year',
+       y = 'Average vocabulary test score',
+       x = 'Year') +
+  theme(plot.title = element_text(size = 15),
+        axis.text = element_text(size = 10, colour = 'black'),
+        axis.title = element_text(size = 12))
+```
+
+## More more example
+
+We could also do the same thing to each age group and even plot them in different plots with ``facet_wrap()`` function.
+
+```{r}
+GSSvocab %>%
+  group_by(year, ageGroup) %>%
+  filter(!is.na(ageGroup)) %>%    # delete the the obs with missing values in ageGroup
+  summarize(avgVocab = mean(vocab, na.rm = T)) %>%
+  ggplot(aes(x = year, y = avgVocab)) +
+  geom_line() +
+  facet_wrap(~ageGroup, labeller = label_both) +
+  labs(title = 'Average vocabulary test result for different age group in each year',
+       y = 'Average vocabulary test score',
+       x = 'Year') +
+  theme(plot.title = element_text(size = 15),
+        axis.text = element_text(size = 10, colour = 'black'),
+        axis.title = element_text(size = 12))
+```
+
+Well, some plots even do not need you to manipulate the data. You could draw the plot directly.
+
+```{r}
+ggplot(GSSvocab, aes(x = ageGroup, y = vocab)) +
+  geom_boxplot() +
+  facet_wrap(~year) +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+```{r}
+
+```
+
+
+
+
+
+
 
