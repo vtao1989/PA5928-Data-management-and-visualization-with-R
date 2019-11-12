@@ -20,7 +20,7 @@ We have grammar for languages. We also have grammar for graphcis. That's where `
 | Coordinates | The space on which the data will be plotted.      |
 | Themes      | All non-data ink.                                  |
 
-Let's take the codes below as a simple example to show how those different elements work in ggplots. From this example, we might have a general idea what is each element and how does it work. We will talk about each element in details later.
+Let's take the codes below as a simple example to show how those different elements work in ``ggplot2``. From this example, we might have a general idea what is each element and how does it work. We will talk about each element in details later.
 
 ```{r warning = F, message = FALSE}
 library(ggplot2)
@@ -76,7 +76,7 @@ Besides ``color``, there are several other parameters to show different aestheti
 
 | Parameter | Description                             | Continuous variable | Categorical variable |
 |-----------|-----------------------------------------|---------------------|----------------------|
-| x         | X axis position                         | ✓                   |                      |
+| x         | x axis position                         | ✓                   |                      |
 | y         | y axis position                         | ✓                   |                      |
 | size      | Diameter of points, thickness of lines  | ✓                   |                      |
 | alpha     | Transparency                            | ✓                   | ✓                    |
@@ -86,7 +86,7 @@ Besides ``color``, there are several other parameters to show different aestheti
 | shape     | Shape of point                          |                     | ✓                    |
 | linetype  | Line dash pattern                       |                     | ✓                    |
 
-As for geometries, there are many different types you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar`` for bar plot, ``geom_boxplot`` for boxplot, etc. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, etc. in the following parts.
+As for geometries, there are many different types you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar()`` for bar plot, ``geom_boxplot()`` for boxplot, *etc*. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, *etc* in the following parts.
 
 ### Scatter plot
 
@@ -140,7 +140,7 @@ ggplot(economics,
   geom_line(col = 'Blue') # indicate the color of the line by setting col = 'Blue'
 ```
 
-In this plot, it shows clearly the temporal trend of the number of unemployed population in the US. There two increase recently starting from 2001 and 2008, which match two economic risks in around 2001 and 2008.
+In this plot, it shows clearly the temporal trend of the number of unemployed population in the US. There two increase recently starting from 2001 and 2008, which match two economic risks around 2001 and 2008.
 
 ### Boxplot
 
@@ -153,7 +153,7 @@ ggplot(mtcars, aes(x = as.factor(am), y = mpg)) +
 
 ### Pie chart
 
-In ``ggplot2``, it is not as intuitive as the base function ``pie()`` to draw a pie chart. That's use the same example to see the difference.
+In ``ggplot2``, it is not as intuitive as the base function ``pie()`` to draw a pie chart. We use the same example to see the difference.
 
 ```{r}
 year <- c(1998:2003) # create variable year
@@ -162,10 +162,10 @@ df <- data.frame(year, sales) # combine the variables into one data frame called
 
 ggplot(df, aes(x = '', y = sales, fill = factor(year))) +
   geom_bar(width = 1, stat = 'identity') +
-  coord_polar('y')
+  coord_polar('y') # transfer the coordinate system to the polar one
 ```
 
-What``ggplot2`` does here to draw a bar plot is to create a bar plot first.
+What``ggplot2`` does here to draw a pie plot is to create a bar plot first.
 
 ```{r}
 ggplot(df, aes(x = '', y = sales, fill = factor(year))) +
@@ -233,7 +233,7 @@ p + stat_smooth(method = "lm") # linear line
 p + stat_smooth(method = 'loess') # non-linear line
 ```
 
-You could use also use draw a histogram for the dataset.
+You could draw a histogram for the dataset.
 
 ```{r}
 p <- ggplot(mtcars, aes(mpg))
@@ -373,7 +373,7 @@ p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
 p # original plot
 ```
 
-We could use ``plot.title`` to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting ``element_text()`` and making ``size`` to be larger as the defual one.
+We could use ``plot.title`` to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting ``element_text()`` and making ``size`` to be twice larger as the default one.
 
 ```{r}
 p + theme(plot.title = element_text(size = rel(2)))
@@ -406,7 +406,7 @@ p + theme(panel.border = element_rect(linetype = 'dashed', fill = NA))
 Change the attributes of the lines for the grid. ``element_line()`` stands for the attributes of the lines.
 
 ```{r}
-p + theme(panel.grid.major = element_line(colour = "black"),
+p + theme(panel.grid.major = element_line(colour = 'black'),
           panel.grid.minor = element_line(colour = 'blue'))
 ```
 
@@ -525,3 +525,19 @@ p + theme(
   legend.text = element_text(size = 8, colour = 'red', face = 'bold')
 )
 ```
+
+If you do not like to customize the theme one element by one element. ``ggplot2`` also provides some function which give you a complete theme. For example, the ``theme_bw()`` we used at the start of this lecture.
+
+```{r}
+p + theme_bw()
+```
+
+```{r}
+p + theme_minimal()
+```
+
+```{r}
+p + theme_dark()
+```
+
+Please check [here](https://ggplot2.tidyverse.org/reference/ggtheme.html) for more complete theme.

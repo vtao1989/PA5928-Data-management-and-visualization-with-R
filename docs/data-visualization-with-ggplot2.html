@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2019-11-11" />
+<meta name="date" content="2019-11-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Let’s take the codes below as a simple example to show how those different elements work in ggplots. From this example, we might have a general idea what is each element and how does it work. We will talk about each element in details later.</p>
+<p>Let’s take the codes below as a simple example to show how those different elements work in <code>ggplot2</code>. From this example, we might have a general idea what is each element and how does it work. We will talk about each element in details later.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb266-2" title="2"><span class="kw">data</span>(mtcars)</a>
 <a class="sourceLine" id="cb266-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
@@ -354,7 +354,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td>x</td>
-<td>X axis position</td>
+<td>x axis position</td>
 <td>✓</td>
 <td></td>
 </tr>
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>As for geometries, there are many different types you can use for different plots. For examples, <code>geom_point()</code> for scatter plot, <code>geom_bar</code> for bar plot, <code>geom_boxplot</code> for boxplot, etc. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, etc. in the following parts.</p>
+<p>As for geometries, there are many different types you can use for different plots. For examples, <code>geom_point()</code> for scatter plot, <code>geom_bar()</code> for bar plot, <code>geom_boxplot()</code> for boxplot, <em>etc</em>. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, <em>etc</em> in the following parts.</p>
 <div id="scatter-plot-1" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Scatter plot</h3>
 <p>We use <code>geom_point()</code> to plot scatter plot in R with <code>ggplot2</code>. In the example below, we map <code>mpg</code> to x axis, and <code>wt</code> to y axis. We indicate the transparency by set <code>alpha = hp</code>. The transparency of each point is decided by its value of <code>hp</code>.</p>
@@ -446,7 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb274-3" title="3">       <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb274-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">col =</span> <span class="st">&#39;Blue&#39;</span>) <span class="co"># indicate the color of the line by setting col = &#39;Blue&#39;</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
-<p>In this plot, it shows clearly the temporal trend of the number of unemployed population in the US. There two increase recently starting from 2001 and 2008, which match two economic risks in around 2001 and 2008.</p>
+<p>In this plot, it shows clearly the temporal trend of the number of unemployed population in the US. There two increase recently starting from 2001 and 2008, which match two economic risks around 2001 and 2008.</p>
 </div>
 <div id="boxplot-1" class="section level3">
 <h3><span class="header-section-number">7.2.4</span> Boxplot</h3>
@@ -457,16 +457,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="pie-chart-1" class="section level3">
 <h3><span class="header-section-number">7.2.5</span> Pie chart</h3>
-<p>In <code>ggplot2</code>, it is not as intuitive as the base function <code>pie()</code> to draw a pie chart. That’s use the same example to see the difference.</p>
+<p>In <code>ggplot2</code>, it is not as intuitive as the base function <code>pie()</code> to draw a pie chart. We use the same example to see the difference.</p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1">year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1998</span><span class="op">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></a>
 <a class="sourceLine" id="cb276-2" title="2">sales &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></a>
 <a class="sourceLine" id="cb276-3" title="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(year, sales) <span class="co"># combine the variables into one data frame called df</span></a>
 <a class="sourceLine" id="cb276-4" title="4"></a>
 <a class="sourceLine" id="cb276-5" title="5"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&#39;&#39;</span>, <span class="dt">y =</span> sales, <span class="dt">fill =</span> <span class="kw">factor</span>(year))) <span class="op">+</span></a>
 <a class="sourceLine" id="cb276-6" title="6"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb276-7" title="7"><span class="st">  </span><span class="kw">coord_polar</span>(<span class="st">&#39;y&#39;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb276-7" title="7"><span class="st">  </span><span class="kw">coord_polar</span>(<span class="st">&#39;y&#39;</span>) <span class="co"># transfer the coordinate system to the polar one</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
-<p>What<code>ggplot2</code> does here to draw a bar plot is to create a bar plot first.</p>
+<p>What<code>ggplot2</code> does here to draw a pie plot is to create a bar plot first.</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&#39;&#39;</span>, <span class="dt">y =</span> sales, <span class="dt">fill =</span> <span class="kw">factor</span>(year))) <span class="op">+</span></a>
 <a class="sourceLine" id="cb277-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
@@ -512,7 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="co"># non-linear line</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
-<p>You could use also use draw a histogram for the dataset.</p>
+<p>You could draw a histogram for the dataset.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg))</a>
 <a class="sourceLine" id="cb288-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>) <span class="co"># the width of each category is 5</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
@@ -613,7 +613,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb303-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Fuel economy declines as weight increases&#39;</span>)</a>
 <a class="sourceLine" id="cb303-4" title="4">p <span class="co"># original plot</span></a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
-<p>We could use <code>plot.title</code> to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting <code>element_text()</code> and making <code>size</code> to be larger as the defual one.</p>
+<p>We could use <code>plot.title</code> to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting <code>element_text()</code> and making <code>size</code> to be twice larger as the default one.</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">2</span>)))</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p>We could also use absolute value to indicate the size directly.</p>
@@ -629,7 +629,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>))</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 <p>Change the attributes of the lines for the grid. <code>element_line()</code> stands for the attributes of the lines.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</a>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
 <a class="sourceLine" id="cb309-2" title="2">          <span class="dt">panel.grid.minor =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;blue&#39;</span>))</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 <p>Use <code>element_blank()</code> to remove the themes of the target.</p>
@@ -709,6 +709,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb323-2" title="2">  <span class="dt">legend.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>, <span class="dt">colour =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">face =</span> <span class="st">&#39;bold&#39;</span>)</a>
 <a class="sourceLine" id="cb323-3" title="3">)</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<p>If you do not like to customize the theme one element by one element. <code>ggplot2</code> also provides some function which give you a complete theme. For example, the <code>theme_bw()</code> we used at the start of this lecture.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p>Please check <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here</a> for more complete theme.</p>
 
 </div>
 </div>
