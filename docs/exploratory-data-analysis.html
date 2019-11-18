@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2019-11-12" />
+<meta name="date" content="2019-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a><ul>
-<li class="chapter" data-level="8.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#introduction-the-dataset-and-research-question"><i class="fa fa-check"></i><b>8.1</b> Introduction the dataset and research question</a></li>
+<li class="chapter" data-level="8.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#introduction-of-the-dataset-and-research-question"><i class="fa fa-check"></i><b>8.1</b> Introduction of the dataset and research question</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-munipulation"><i class="fa fa-check"></i><b>8.2</b> Data munipulation</a></li>
 <li class="chapter" data-level="8.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-visualization"><i class="fa fa-check"></i><b>8.3</b> Data visualization</a></li>
 <li class="chapter" data-level="8.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#combine-them-togethor"><i class="fa fa-check"></i><b>8.4</b> Combine them togethor</a></li>
@@ -263,9 +263,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exploratory-data-analysis" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Exploratory Data Analysis</h1>
 <p>We are going to use what we have learnt so far to do some exploratory data analysis, which is also the practice for data manipulation and visualization.</p>
-<div id="introduction-the-dataset-and-research-question" class="section level2">
-<h2><span class="header-section-number">8.1</span> Introduction the dataset and research question</h2>
-<p>The dataset we used here is from the General Social Survey (GSS) from the National Opinion Research Center of the University of Chicago. The dataset shows the results of the vocabulary tests for several years. It contains eight variables <span class="citation">(Arel-Bundock <a href="#ref-GSSvocab">2019</a>)</span>. The descriptions are listed below.</p>
+<div id="introduction-of-the-dataset-and-research-question" class="section level2">
+<h2><span class="header-section-number">8.1</span> Introduction of the dataset and research question</h2>
+<p>The dataset we used here is from the General Social Survey (GSS) carried out by the National Opinion Research Center of the University of Chicago. The dataset shows the results of the vocabulary tests for several years. It contains eight variables <span class="citation">(Arel-Bundock <a href="#ref-GSSvocab">2019</a>)</span>. Their descriptions are listed below.</p>
 <table>
 <thead>
 <tr class="header">
@@ -363,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="kw">ggplot</span>(year_vocab, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb335-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
-<p>For a complete plot, we have add more infomation such as title, x label, and y label, etc.</p>
+<p>For a complete plot, we have to add more infomation such as title, x label, and y label, etc.</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1"><span class="kw">ggplot</span>(year_vocab, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> avgVocab)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb336-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb336-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Average vocabulary test result for each year&#39;</span>,</a>

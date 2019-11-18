@@ -2,9 +2,9 @@
 
 We are going to use what we have learnt so far to do some exploratory data analysis, which is also the practice for data manipulation and visualization.
 
-## Introduction the dataset and research question
+## Introduction of the dataset and research question
 
-The dataset we used here is from the General Social Survey (GSS) from the National Opinion Research Center of the University of Chicago. The dataset shows the results of the vocabulary tests for several years. It contains eight variables [@GSSvocab]. The descriptions are listed below.
+The dataset we used here is from the General Social Survey (GSS) carried out by the National Opinion Research Center of the University of Chicago. The dataset shows the results of the vocabulary tests for several years. It contains eight variables [@GSSvocab]. Their descriptions are listed below.
 
 | Variable   | Descriptions                                           |
 |------------|--------------------------------------------------------|
@@ -64,7 +64,7 @@ ggplot(year_vocab, aes(x = year, y = avgVocab)) +
   geom_line()
 ```
 
-For a complete plot, we have add more infomation such as title, x label, and y label, etc.
+For a complete plot, we have to add more infomation such as title, x label, and y label, etc.
 
 ```{r}
 ggplot(year_vocab, aes(x = year, y = avgVocab)) +

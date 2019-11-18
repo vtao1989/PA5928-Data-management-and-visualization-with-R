@@ -1,0 +1,13 @@
+# Spatial Data Visualization with ggmap
+
+In this chapter, we will learn to use ``ggmap`` to do spatial data visualization. There are so many spatial data visualization packages in r. We choose ``ggmap`` since it has simliar syntax with ``ggplot2`` and our learning cost will be smaller.
+
+First, let's install and import the ``ggplot2`` package first.
+
+
+
+
+
+
+
+
