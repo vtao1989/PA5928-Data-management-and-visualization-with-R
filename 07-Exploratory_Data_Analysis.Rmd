@@ -153,6 +153,8 @@ GSSvocab %>%
         axis.title = element_text(size = 12))
 ```
 
+Or boxplots.
+
 ```{r}
 GSSvocab %>%
   filter(!is.na(ageGroup)) %>%
@@ -161,6 +163,8 @@ GSSvocab %>%
     facet_wrap(~year) +
     theme(axis.text.x = element_text(angle = 90))
 ```
+
+Or bar plots.
 
 ```{r}
 GSSvocab %>%
