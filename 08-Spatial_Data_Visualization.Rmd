@@ -20,7 +20,7 @@ We also set a research question for this lecture, which is **what is the distrib
 
 To answer the question, we should firstly have the map of the Twin Cities metro area.
 
-Geospatial datasets have two main formats: one is vector, the other is raster. Here is the [link](https://umar-yusuf.blogspot.com/2016/05/working-with-vector-and-raster-data-in.html) to show their differences. Vetor data is a combination of points, lines, and polygons. Raster data is a combination of grids or cells with different values. In this chapter, we will focus on the vetor part. For example, the shapefile (.shp) format is a commonly used geospatial vetor format.
+Geospatial datasets have two main formats: one is vector, the other is raster. Here is the [link](https://umar-yusuf.blogspot.com/2016/05/working-with-vector-and-raster-data-in.html) to show their differences. Vector data is a combination of points, lines, and polygons. Raster data is a combination of grids or cells with different values. In this chapter, we will focus on the vector part. For example, the shapefile (.shp) format is a commonly used geospatial vector format.
 
 With ``sf``, we could read the shapefile by ``st_read()`` function. The dataset is from the [Minnesota Geospatial Commons](https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign). It contains the geospatial information of the census tracts of the Twin Cities metro area.
 
@@ -89,7 +89,7 @@ library(readr)
 data <- read_csv('data.csv')
 ```
 
-This dataset also has a variable called GEOID, which could be used to do the join operation. The list below presents the descriptions of other varialbe, which are all from 2012-2016 five-year ACS estimates.
+This dataset also has a variable called GEOID, which could be used to do the join operation. The list below presents the descriptions of other variables, which are all from 2012-2016 five-year ACS estimates.
 
 | Variable   | Descriptions                                        |
 |------------|-----------------------------------------------------|
@@ -139,7 +139,7 @@ Well, again we could use ``plot()`` function to do the visualization. We need to
 plot(new_map['old_percent'])
 ```
 
-``plot()`` is a quick way to check the result. If we want improve our current figure. We could use ``ggplot2`` by its ``geom_sf()`` function.
+``plot()`` is a quick way to check the result. If we want to improve our current figure. We could use ``ggplot2`` by its ``geom_sf()`` function.
 
 ```{r message=F}
 library(ggplot2)

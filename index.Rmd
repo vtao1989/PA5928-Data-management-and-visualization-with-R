@@ -58,8 +58,8 @@ At the end of this course, students will be able to:
 | 5  | 11/5  | Data visualization with base functions  |Uploaded |
 | 6  | 11/12 | Data visualization with ``ggplot2`` |Uploaded |
 | 7  | 11/19 | Data Exploratory Analysis          |Uploaded|
-| 8  | 11/26 | Spatial Visualization              |       |
-| 9  | 12/3  | Statistics                      |       |
+| 8  | 11/26 | Spatial Visualization              |Uploaded|
+| 9  | 12/3  | Statistics                      |Uploaded|
 | 10 | 12/10 | Text Analysis                         |       |
 
 ## Homework and projects collaboration and submission policy
