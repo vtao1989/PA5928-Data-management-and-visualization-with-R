@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2019-11-25" />
+<meta name="date" content="2019-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="statistics-in-r" class="section level1">
 <h1><span class="header-section-number">Chapter 10</span> Statistics in R</h1>
-<p>In this chapter, we are going to use R to do some math.</p>
+<p>In this chapter, we are going to use R to do some math work.</p>
 <div id="simple-statistics" class="section level2">
 <h2><span class="header-section-number">10.1</span> Simple statistics</h2>
 <p>We have touched some of the functions in this topic. For example, we could use <code>mean()</code> to compute the average value of a set of numbers.</p>
@@ -308,19 +308,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1">x[<span class="dv">2</span>] <span class="co"># select the value by its index</span></a></code></pre></div>
 <pre><code>## 25% 
 ##  10</code></pre>
+<p>You could add value from 0 to 1 in the <code>quantile()</code> to find a specific value, for example, 40%.</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1"><span class="kw">quantile</span>(a, <span class="fl">0.4</span>) <span class="co"># 40% of the dataset</span></a></code></pre></div>
+<pre><code>## 40% 
+##  20</code></pre>
 </div>
 </div>
 <div id="linear-regression" class="section level2">
 <h2><span class="header-section-number">10.2</span> Linear regression</h2>
 <p>Before we start, let’s review some related knowledge first.</p>
-<p>Regression is used to examine the linear relationships between the dependent variable and independent variables, where dependent variable is the one to be explained and independent variables (also called regressors, predictors, explanatory variables) are those may have influences on the dependent variable. For example, the dependent variable is personal income, and the independent variables are education, gender, age, <em>etc</em>. Among those independent variables, there are two types, one is continuous variable and the other is dummy variable. Continous variable is variable with continuous values, such income and age. Dummy variable is variable with values of 0 and 1. For example, gender and people could use 1 for male, and 0 for female.</p>
+<p>Regression is used to examine the linear relationships between the dependent variable and independent variables, where dependent variable is the one to be explained and independent variables (also called regressors, predictors, explanatory variables) are those may have influences on the dependent variable. For example, the dependent variable is personal income, and the independent variables are education, gender, age, <em>etc</em>. Among those independent variables, there are two types, one is continuous variable and the other is dummy variable. Continous variable is variable with continuous values, such as income and age. Dummy variable is variable with values of 0 and 1. For example, gender and people could use 1 for male, and 0 for female.</p>
 <p>Suppose we have a dependent variable <span class="math inline">\(Y\)</span>, and two independent variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, the regression model in assumption could be expressed as below,</p>
-<p><span class="math inline">\(Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon\)</span>.</p>
-<p>Where, <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are coefficients for <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, <span class="math inline">\(\epsilon\)</span> is the error term which is the part the can not be explained by the intercept and independent variables. The target of regression is to estimate the value of <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>, and test their significance.</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon\]</span>.</p>
+<p>Where, <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are coefficients for <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, <span class="math inline">\(\epsilon\)</span> is the error term which is the part which cannot be explained by the intercept and independent variables. The target of regression is to estimate the value of <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>, and test their significance. The coefficients for the independent variables stand for that if the independent variable change one unit, the dependent variable will change the amount of the coefficients.</p>
 <p>The estimated model could be expressed as,</p>
-<p><span class="math inline">\(\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X_1 + \hat{\beta_2}X_2\)</span></p>
+<p><span class="math display">\[\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X_1 + \hat{\beta_2}X_2\]</span></p>
 <p>Those variables with hat are estimated variables.</p>
-<p>While regression provides the estimated values of intercepts and coefficients, it also provides the significance of these estimates with p-values. When p-value is smaller, the estimates tend to be more significant. In R, the function will use some marks to indicate the sinificance levels. The significance level indicate the probability that the estimates are true.</p>
+<p>While regression provides the estimated values of intercepts and coefficients, it also provides the significance of these estimates with p-values. When p-value is smaller, the estimates tend to be more significant. In R, the function will use some marks to indicate the sinificance levels. The significance level indicate the probability that the estimates are ‘true’.</p>
 <table>
 <thead>
 <tr class="header">
@@ -347,22 +351,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>To quantify the fitness of the model, we use <span class="math inline">\(R^2\)</span> with value from 0 to 1. While <span class="math inline">\(R^2\)</span> is close to 1, the model is good and fits the data well. <span class="math inline">\(R^2\)</span> has a property that when adding more independent variables in the regression model, the <span class="math inline">\(R^2\)</span> will increase. There is another index called adjusted <span class="math inline">\(R^2\)</span>, which considers the number of varialbes in the models.</p>
+<p>To quantify the fitness of the model, we use <span class="math inline">\(R^2\)</span> with value from 0 to 1. While <span class="math inline">\(R^2\)</span> is close to 1, the model is good and fits the dataset well. <span class="math inline">\(R^2\)</span> has a property that when adding more independent variables in the regression model, the <span class="math inline">\(R^2\)</span> will increase. There is another index called adjusted <span class="math inline">\(R^2\)</span>, which considers the number of varialbes in the models.</p>
 <p>Our example is the dataset <code>mtcars</code>, and we want to explore the relationship between <code>mpg</code> (Miles/(US) gallon) and <code>wt</code> (Weight (1000 lbs)). Let’s draw a scatter plot to see their distribution.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb389-2" title="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb389-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg, wt)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb389-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
-<p>Based on the plot, it seems there is a linear relationship between these two variables. We then add a linear line to fit them.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg, wt)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb390-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb390-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb391-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb391-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg, wt)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb391-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
-<p>Most of the points are near the fitted linear line. We then use the <code>lm()</code> function to fit this linear relationship and use <code>summary()</code> function to see the result.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">lm_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt,      <span class="co"># formula</span></a>
-<a class="sourceLine" id="cb391-2" title="2">             <span class="dt">data =</span> mtcars) <span class="co"># dataset</span></a>
-<a class="sourceLine" id="cb391-3" title="3"><span class="kw">summary</span>(lm_fit)             <span class="co"># check result</span></a></code></pre></div>
+<p>Based on the plot, it seems there is a linear relatitonship between these two variables. We then add a linear line to fit them with <code>geom_smooth()</code> in <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg, wt)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb392-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb392-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F)</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+<p>Most of the points are near the fitted linear line. To quantify this linear relaitonship, We could use <code>lm()</code> function to fit this linear relationship and use <code>summary()</code> function to see the result. In the function, the formula indicates the model in assumpiton. Here, our model in assumpiton is,</p>
+<p><span class="math display">\[mpg = \beta_0 + \beta_1 \times wt + \epsilon\]</span></p>
+<p>When we code this model in R, we do</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">mpg <span class="op">~</span><span class="st"> </span>wt</a></code></pre></div>
+<pre><code>## mpg ~ wt</code></pre>
+<p>We only need to write down the variable names of the dependent variable and independent variables, and use <code>~</code> to connect them. No need to write the intercept and error term.</p>
+<p>We also need to indicate the name of the dataset in the function.</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">lm_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>wt,      <span class="co"># formula</span></a>
+<a class="sourceLine" id="cb395-2" title="2">             <span class="dt">data =</span> mtcars) <span class="co"># dataset</span></a>
+<a class="sourceLine" id="cb395-3" title="3"><span class="kw">summary</span>(lm_fit)             <span class="co"># check result</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ wt, data = mtcars)
@@ -381,20 +391,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 3.046 on 30 degrees of freedom
 ## Multiple R-squared:  0.7528, Adjusted R-squared:  0.7446 
 ## F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
-<p>The summarized result provides details about the models, such as the coefficients and p-values, the model’s <span class="math inline">\(R^2\)</span>, <em>etc.</em></p>
-<p>For the information, we could know that the estimated coefficient for the interscept is 37.29, its p-value is <span class="math inline">\(&lt; 2e-16\)</span> with a mark <span class="math inline">\(***\)</span>, showing it is significant at 99.9% level. The estimated coefficient for mpg is -5.34, its p-value is <span class="math inline">\(1.29e-10\)</span> with a mark <span class="math inline">\(***\)</span>, showing it is significant at 99.9% level.</p>
+<p>The summarized result provides details about the model results, such as the coefficients and p-values, the model’s <span class="math inline">\(R^2\)</span>, <em>etc.</em></p>
+<p>Based on the information, we could know that the estimated coefficient for the interscept is 37.29, its p-value is <span class="math inline">\(&lt; 2e-16\)</span> with a mark <span class="math inline">\(***\)</span>, showing it is significant at 99.9% level. The estimated coefficient for mpg is -5.34, its p-value is <span class="math inline">\(1.29e-10\)</span> with a mark <span class="math inline">\(***\)</span>, showing it is significant at 99.9% level.</p>
 <p>We could also know the <span class="math inline">\(R^2\)</span> is 0.75, and adjusted <span class="math inline">\(R^2\)</span> is 0.74.</p>
 <p>We could use the codes below to check the <span class="math inline">\(R^2\)</span> of the model directly.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1"><span class="kw">summary</span>(lm_fit)<span class="op">$</span>r.squared   <span class="co"># value of R2</span></a></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="kw">summary</span>(lm_fit)<span class="op">$</span>r.squared   <span class="co"># value of R2</span></a></code></pre></div>
 <pre><code>## [1] 0.7528328</code></pre>
 <p>And get the values of the coefficients directly.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">coefficients</span>(lm_fit)        <span class="co"># only check the coefficient</span></a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">coefficients</span>(lm_fit)        <span class="co"># only check the coefficient</span></a></code></pre></div>
 <pre><code>## (Intercept)          wt 
 ##   37.285126   -5.344472</code></pre>
-<p>Most of the time, we need to examine the relationship between one dependent variable with several independent variables. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression dicrectly.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1">mlm_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>disp <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>wt,</a>
-<a class="sourceLine" id="cb397-2" title="2">          mtcars)</a>
-<a class="sourceLine" id="cb397-3" title="3"><span class="kw">summary</span>(mlm_fit)</a></code></pre></div>
+<p>Most of the time, we need to examine the relationship between the dependent variable and more than one independent variables. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression dicrectly.</p>
+<p>The example below examines the relationship between mpg and disp, hp, and wt. when there is more than one independent variables, we use <code>+</code> to connect them in the formula.</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1">mlm_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>disp <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>wt,</a>
+<a class="sourceLine" id="cb401-2" title="2">          mtcars)</a>
+<a class="sourceLine" id="cb401-3" title="3"><span class="kw">summary</span>(mlm_fit)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ disp + hp + wt, data = mtcars)
@@ -415,17 +426,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 2.639 on 28 degrees of freedom
 ## Multiple R-squared:  0.8268, Adjusted R-squared:  0.8083 
 ## F-statistic: 44.57 on 3 and 28 DF,  p-value: 8.65e-11</code></pre>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">summary</span>(mlm_fit)<span class="op">$</span>r.squared</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="kw">summary</span>(mlm_fit)<span class="op">$</span>r.squared</a></code></pre></div>
 <pre><code>## [1] 0.8268361</code></pre>
 <p>Again, without careful research design, the relationships shown by the regression model are all correlations, not causalities.</p>
 </div>
 <div id="logistic-regression" class="section level2">
 <h2><span class="header-section-number">10.3</span> Logistic regression</h2>
-<p>The above two examples both use continuous variables as their dependent variables. How about using a binomial variable a dependent variable? Then we need to do logistic regression. There are many functions to do this. Here, we introduced the <code>glm()</code> function. We need to indicate <code>family = binomial</code> in the function.</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1">logit_reg &lt;-<span class="st"> </span><span class="kw">glm</span>(am <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>wt,</a>
-<a class="sourceLine" id="cb401-2" title="2">                 mtcars,</a>
-<a class="sourceLine" id="cb401-3" title="3">                 <span class="dt">family =</span> binomial)</a>
-<a class="sourceLine" id="cb401-4" title="4"><span class="kw">summary</span>(logit_reg)</a></code></pre></div>
+<p>The above two examples both use continuous variables as their dependent variables. How about using a binomial variable (0 or 1 as its value) a dependent variable? Then we need to do logistic regression. There are many functions to do this. When interpreting the coefficients of the logistic regression result, the coefficient stands for the change of the log odds of the dependent variable to 1.</p>
+<p>Here, we introduce the <code>glm()</code> function. We need to indicate <code>family = binomial</code> in the function.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1">logit_reg &lt;-<span class="st"> </span><span class="kw">glm</span>(am <span class="op">~</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>hp <span class="op">+</span><span class="st"> </span>wt,</a>
+<a class="sourceLine" id="cb405-2" title="2">                 mtcars,</a>
+<a class="sourceLine" id="cb405-3" title="3">                 <span class="dt">family =</span> binomial)</a>
+<a class="sourceLine" id="cb405-4" title="4"><span class="kw">summary</span>(logit_reg)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = am ~ cyl + hp + wt, family = binomial, data = mtcars)
@@ -450,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 17.841
 ## 
 ## Number of Fisher Scoring iterations: 8</code></pre>
-<p>Most of the information is similar with regression ones except that the logistic regression does not have <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>. It uses AIC (Akaike information criterion) in indicate the goodness of the model. If one model with smaller AIC, it is better.</p>
+<p>Most of the information is similar with regression ones except that the logistic regression does not have <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>. It uses AIC (Akaike information criterion) in indicate the goodness of the model. If one model has smaller AIC, it is better.</p>
 
 </div>
 </div>

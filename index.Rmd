@@ -53,14 +53,14 @@ At the end of this course, students will be able to:
 |----|-------|-------------------------------------|-------|
 | 1  | 10/8  | Introduction to ``RStudio``            |Uploaded |
 | 2  | 10/15 | Introduction to ``R``                   |Uploaded |
-| 3  | 10/22 | Data manipulation with base functions    |Uploaded |
+| 3  | 10/22 | Data manipulation with base functions  |Uploaded |
 | 4  | 10/29 | Data manipulation with ``dplyr``   |Uploaded |
 | 5  | 11/5  | Data visualization with base functions  |Uploaded |
 | 6  | 11/12 | Data visualization with ``ggplot2`` |Uploaded |
 | 7  | 11/19 | Data Exploratory Analysis          |Uploaded|
 | 8  | 11/26 | Spatial Visualization              |Uploaded|
 | 9  | 12/3  | Statistics                      |Uploaded|
-| 10 | 12/10 | Text Analysis                         |       |
+| 10 | 12/10 | Revisit Spatial Visualization   |       |
 
 ## Homework and projects collaboration and submission policy
 

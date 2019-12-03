@@ -39,6 +39,7 @@ In this part you will submit your dataset, codes, and the file (either word or p
 | Figures contain the necessary parts, well-organized, and visually good/ tables are well-organized |
 | Description of the result is clear                                                                |
 
+
 ## Final report
 
 In this part, you will submit your dataset, revised codes, and the final report. The instructor will grade them based on the rubic below. The report should include introduction, data descripition, method (if necessary), result, and conclusion.
