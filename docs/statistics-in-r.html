@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2019-12-02" />
+<meta name="date" content="2019-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -317,14 +317,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="linear-regression" class="section level2">
 <h2><span class="header-section-number">10.2</span> Linear regression</h2>
 <p>Before we start, let’s review some related knowledge first.</p>
-<p>Regression is used to examine the linear relationships between the dependent variable and independent variables, where dependent variable is the one to be explained and independent variables (also called regressors, predictors, explanatory variables) are those may have influences on the dependent variable. For example, the dependent variable is personal income, and the independent variables are education, gender, age, <em>etc</em>. Among those independent variables, there are two types, one is continuous variable and the other is dummy variable. Continous variable is variable with continuous values, such as income and age. Dummy variable is variable with values of 0 and 1. For example, gender and people could use 1 for male, and 0 for female.</p>
+<p>Regression is used to examine the linear relationships between the dependent variable and independent variables, where dependent variable is the one to be explained and independent variables (also called regressors, predictors, explanatory variables) are those may have influences on the dependent variable. For example, the dependent variable is personal income, and the independent variables are education, gender, age, <em>etc</em>. Among those independent variables, there are two types, one is continuous variable and the other is dummy variable. Continous variable is variable with continuous values, such as income and age. Dummy variable is variable with values of 0 and 1. For example, gender, and people could use 1 for male, and 0 for female.</p>
 <p>Suppose we have a dependent variable <span class="math inline">\(Y\)</span>, and two independent variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, the regression model in assumption could be expressed as below,</p>
 <p><span class="math display">\[Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon\]</span>.</p>
-<p>Where, <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are coefficients for <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, <span class="math inline">\(\epsilon\)</span> is the error term which is the part which cannot be explained by the intercept and independent variables. The target of regression is to estimate the value of <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>, and test their significance. The coefficients for the independent variables stand for that if the independent variable change one unit, the dependent variable will change the amount of the coefficients.</p>
+<p>Where, <span class="math inline">\(\beta_0\)</span> is the intercept, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are coefficients for <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, <span class="math inline">\(\epsilon\)</span> is the error term which is the part of the dependent variable which cannot be explained by the intercept and independent variables. The target of regression is to estimate the value of <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span>, and test their significance. The coefficients for the independent variables stand for that if the independent variable change one unit, the dependent variable will change the amount of the coefficients.</p>
 <p>The estimated model could be expressed as,</p>
 <p><span class="math display">\[\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X_1 + \hat{\beta_2}X_2\]</span></p>
 <p>Those variables with hat are estimated variables.</p>
-<p>While regression provides the estimated values of intercepts and coefficients, it also provides the significance of these estimates with p-values. When p-value is smaller, the estimates tend to be more significant. In R, the function will use some marks to indicate the sinificance levels. The significance level indicate the probability that the estimates are ‘true’.</p>
+<p>While regression provides the estimated values of intercepts and coefficients, it also provides the significance of these estimates with p-values. When p-value is smaller, the estimates tend to be more significant. In R, the function will use some marks to indicate the sinificance levels. The significance level is the probability that the estimates are ‘true’.</p>
 <table>
 <thead>
 <tr class="header">
@@ -351,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>To quantify the fitness of the model, we use <span class="math inline">\(R^2\)</span> with value from 0 to 1. While <span class="math inline">\(R^2\)</span> is close to 1, the model is good and fits the dataset well. <span class="math inline">\(R^2\)</span> has a property that when adding more independent variables in the regression model, the <span class="math inline">\(R^2\)</span> will increase. There is another index called adjusted <span class="math inline">\(R^2\)</span>, which considers the number of varialbes in the models.</p>
+<p>To quantify the fitness of the model, we use <span class="math inline">\(R^2\)</span> with value from 0 to 1. While <span class="math inline">\(R^2\)</span> is close to 1, the model is good and fits the dataset well. <span class="math inline">\(R^2\)</span> has a property that when adding more independent variables in the regression model, the <span class="math inline">\(R^2\)</span> will increase. There is another index called adjusted <span class="math inline">\(R^2\)</span>, which considers the number of variables in the models.</p>
 <p>Our example is the dataset <code>mtcars</code>, and we want to explore the relationship between <code>mpg</code> (Miles/(US) gallon) and <code>wt</code> (Weight (1000 lbs)). Let’s draw a scatter plot to see their distribution.</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="kw">data</span>(mtcars)</a>
 <a class="sourceLine" id="cb391-2" title="2"><span class="kw">library</span>(ggplot2)</a>

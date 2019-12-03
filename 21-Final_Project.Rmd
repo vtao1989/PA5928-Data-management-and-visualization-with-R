@@ -11,7 +11,7 @@ To accomplish the final project, you need to finish three tasks.
 |:-:|---------------|----------------------------------------------------------|----------|
 | 1 | Proposal      | Your research question and background introduction       | 5th Nov. |
 | 2 | Data analysis | The results for data manipulation and data visualization | 3th Dec. |
-| 3 | Final report  | A short report of your project                           | 19th Dec.|
+| 3 | Final report  | A short report of your project                           | 22nd Dec.|
 
 
 ## Proposal
