@@ -60,7 +60,7 @@ At the end of this course, students will be able to:
 | 7  | 11/19 | Data Exploratory Analysis          |Uploaded|
 | 8  | 11/26 | Spatial Visualization              |Uploaded|
 | 9  | 12/3  | Statistics                      |Uploaded|
-| 10 | 12/10 | Revisit Spatial Visualization   |       |
+| 10 | 12/10 | Revisit Spatial Visualization   |Updated|
 
 ## Homework and projects collaboration and submission policy
 

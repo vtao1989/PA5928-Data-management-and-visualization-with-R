@@ -1,6 +1,28 @@
 # Spatial Data Visualization
 
-In this chapter, we will learn how to deal with the geospatial dataset with packages ``sf``. We will also interact it with ``ggplot2``.
+In this chapter, we will learn how to deal with the geospatial dataset with packages ``sf``. We will also interact it with ``ggplot2``. [Link](Spatial_data_visualization_slides/spatial_data_visualization_R.html) for the slides of this lecutre.
+
+## Why spatial visualization with R?
+
+The common solutions for creating maps include several GIS (Geographic Information System) softwares: ArcGIS, QGIS, *etc*. They are powerful in spatial data visualization and analysis. However, they do have some disadvantages, such as the workflow is not easy to reproduce, not good at statistical computing, *etc*. As R has more and more powerful packages that could deal with geospatial data, many researchers and practitioners start to use R in their work. Comparing ArcGIS (or QGIS) with R, is similiar with comparing Stata with R. Both of them have pros and cons. Whether or not you use them depends on your personal perference and task requirements.
+
+Then when we should use R to do spatial data visualization, not ArcGIS? Well, one situation is that you do not have access to ArcGIS (ArcGIS is not free), then R is a good choice for you. Another situation could be that you have used R for your data analysis and then you could continue to use R to do spatial visualization. You do not need to change the working environment in this case. Or if you want to make your work more reproducible, R is a good choice since its codes can be recycled for other similar work and you could check your codes to track your data analysis history.
+
+## Some basics about spatial data
+
+Spatial data has some differences with our common data. The largest one is that it has spatial attributes for indicate locations. Those spatial attributes could be points, lines, or/and ploygon. It could also be the combination of these elements. Points could be the positions for a single-family house, an intersection, a bar, *etc*. Lines could be the segments streets, rivers, *etc*. Polygons could be the boundaries states, counties, cities, *etc*. As shown in the figure below [Source](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/). While they are different spatial attributes, they are all combined with points.
+
+![](Pics/spatial_data1.png)
+
+For a spatial data file in R, it is similar to the common dataset. It is a 2-D table with each column for a variable. The spatial data also has a column called ``geometry``. This is the variable indicating the spatial attributes. For example, for a spatial file including the points of several cities in Minnesota. Its geometry column will be the longitudes and latitudes of those points. If a spatial file contains the boundaries of the states in the U.S., then its geometry column will be the locations of the polygons. If a sptial data has the information of points, it is called point spatial data. If a spatial data has the information of lines, it is called line spatial data. If a spatial data has the information of polygons, it is called polygon data. A spatial data file can only include one type of spatial attribute.
+
+![](Pics/spatial_data.PNG)
+
+For all geospatial varialbes, they should have a very important information called coordinate reference system (CRS). We will not expand the concept in this lecture. The simple idea is that it is the system to locate geographical entities. For example, you could use longitude and latitude to locate the position of everything on earth, which is a 3D sphere. Or you could use another type of CRS to locate the position of something in a 2D flattened map, as shown in the figure below ([Source](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/)). For the a same position, its indices will be different in different CRSs. There are two formats of CRS. One is ``EPSG`` and the other is ``proj4string``. ``EPSG`` is a conbination of numbers. ``proj4string`` contains variables and values. You could find more information about them in this [link](https://spatialreference.org/).
+
+![](Pics/CRS.PNG)
+
+After reviewing some concepts for geospatial data. Let's write some codes in R.
 
 Before start, let's install the package first.
 
@@ -14,13 +36,9 @@ And import the package.
 library(sf)
 ```
 
-We also set a research question for this lecture, which is **what is the distribution the old population in the Twin Cities metro area?** More specifically, we want to visualize the percentage of the old population among the total population in the Twin Cities metro area.
-
 ## Read files
 
-To answer the question, we should firstly have the map of the Twin Cities metro area.
-
-Geospatial datasets have two main formats: one is vector, the other is raster. Here is the [link](https://umar-yusuf.blogspot.com/2016/05/working-with-vector-and-raster-data-in.html) to show their differences. Vector data is a combination of points, lines, and polygons. Raster data is a combination of grids or cells with different values. In this chapter, we will focus on the vector part. For example, the shapefile (.shp) format is a commonly used geospatial vector format.
+To answer the question, we should firstly import the map of the Twin Cities metro area.
 
 With ``sf``, we could read the shapefile by ``st_read()`` function. The dataset is from the [Minnesota Geospatial Commons](https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign). It contains the geospatial information of the census tracts of the Twin Cities metro area.
 
@@ -42,7 +60,7 @@ head(map)
 
 With ``head()``, we could see that there is a column called ``geometry``. Every ``sf`` file will have this column, where stores the geospatial information of the observations. Other columns are just normal columns containing information for the observations.
 
-For all geospatial varialbes, they should have a very important information called coordinate reference system (CRS). We will not expand the concept in this lecture. The simple idea is that it is the system to locate geographical entities. For example, you could use longitude and latitude to locate the position of everything on earth, which is a 3D sphere. Or you could use another type of CRS to locate the position of something in a 2D flattened map. For the a same position, its indices will be different in different CRSs. There are two formats of CRS. One is ``EPSG`` and the other is ``proj4string``. ``EPSG`` is a conbination of numbers. ``proj4string`` contains variables and values. We could use ``st_crs()`` to check the CRS of the variable. You could find more information about them in this [link](https://spatialreference.org/).
+We could use ``st_crs()`` to check the CRS of the variable.
 
 ```{r}
 st_crs(map)
@@ -58,27 +76,27 @@ st_crs(map) <- 26915
 
 By doing this, there is a message telling that this function will not do the transformation for us. Sometimes, even if the file contains the right CRS, its CRS might be different from other files. **If you want to map them in the same page or want to do geospatial data analysis among them, you have to transfer the CRSs of them to the same one. You could do this by using ``st_transform()``.**
 
-The current variable contains some variables we do not need, so we could select the useful ones by using ``select()`` function in ``dplyr``. Please pay attention that we do not need to select the geometry column. It will be selected automatically. In this lecture, we only select GEOID, which is the ID for each area/tract.
+We could use ``ggplot2`` to visualize the map. For simply mapping the polygons, we do not need to speficify ``aes()``. And we use ``geom_sf()`` to plot map.
+
+```{r}
+library(ggplot2)
+
+ggplot(map) +
+  geom_sf()
+```
+
+
+## Deal with spatial data like data frame
+
+As the spatial data is also a data frame in R. We could use ``dplyr`` to deal with it. For example, select the column we want.
+
+The current spatial data ``map`` contains some variables we do not need, so we could select the useful ones by using ``select()`` function in ``dplyr``. Please pay attention that we do not need to select the geometry column. It will be selected automatically. In this lecture, we only select GEOID, which is the ID for each area/tract.
 
 ```{r message = F}
 library(dplyr)
 new_map <- map %>%
   select(GEOID)
 ```
-
-We could do some simple visualization with ``plot()`` function in R.
-
-```{r}
-plot(new_map)
-```
-
-It looks good, but there is a problem. ``plot()`` function tries to visualize the varialbe ``GEOID`` in the map, which is not what we want it to do. We just want it to visualize the map, or the geometry part. To address this, **we need to extract the geometry of the variable and then plot it!**
-
-```{r}
-plot(st_geometry(new_map))
-```
-
-## Join other data
 
 To answer the question, we still need more information. We need the old population and total population for each census tract in the Twin Cities metro area to compute the percentage of old population.
 
@@ -133,16 +151,9 @@ new_map <- new_map %>%
 
 ## Spatial data visualization
 
-Well, again we could use ``plot()`` function to do the visualization. We need to indicate the column we want to use different colours to show.
-
-```{r}
-plot(new_map['old_percent'])
-```
-
-``plot()`` is a quick way to check the result. If we want to improve our current figure. We could use ``ggplot2`` by its ``geom_sf()`` function.
+We could use ``ggplot2`` by its ``geom_sf()`` function.
 
 ```{r message=F}
-library(ggplot2)
 p <- ggplot(new_map, aes(fill = old_percent)) + # use fill to indicate the variable you want to visualize
   geom_sf()
 p
@@ -170,7 +181,7 @@ ggsave('fig1.jpg', width = 10, height = 10)
 ```
 
 
-## More exaple
+## More example
 
 We could visualize the population directly in the map with ``ggplot2``.
 
