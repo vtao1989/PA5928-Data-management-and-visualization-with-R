@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Point, Line, and Polygon
 
-![](spatial_data1.png){width=90%}
+![](https://vtao1989.github.io/PA5928-Data-management-and-visualization-with-R/Spatial_data_visualization_slides/spatial_data1.png){width=90%}
 
 ## geometry column
 
