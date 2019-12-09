@@ -3,9 +3,7 @@ title: "Spatial Data Visualization"
 author: "Tao Tao"
 date: "12/9/2019"
 output:
-  ioslides_presentation:
-    widescreen: true
-    smaller: true
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -36,7 +34,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Point, Line, and Polygon
 
-![](https://vtao1989.github.io/PA5928-Data-management-and-visualization-with-R/Spatial_data_visualization_slides/spatial_data1.png){width=90%}
+![](spatial_data1.png){width=90%}
 
 ## geometry column
 
