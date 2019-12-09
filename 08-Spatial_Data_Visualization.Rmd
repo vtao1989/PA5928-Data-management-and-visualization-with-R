@@ -38,9 +38,9 @@ library(sf)
 
 ## Read files
 
-To answer the question, we should firstly import the map of the Twin Cities metro area.
+The file format to store the spatial data is **shapefile**. We could import the shapefile with ``st_read()`` function into R.
 
-With ``sf``, we could read the shapefile by ``st_read()`` function. The dataset is from the [Minnesota Geospatial Commons](https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign). It contains the geospatial information of the census tracts of the Twin Cities metro area.
+The dataset is from the [Minnesota Geospatial Commons](https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign). It contains the geospatial information of the census tracts of the Twin Cities metro area.
 
 ```{r}
 map <- st_read('Census2010RealignTract.shp')
@@ -97,8 +97,6 @@ library(dplyr)
 new_map <- map %>%
   select(GEOID)
 ```
-
-To answer the question, we still need more information. We need the old population and total population for each census tract in the Twin Cities metro area to compute the percentage of old population.
 
 We could join other data to the current geospatial variable by the join functions in ``dplyr``. Firstly, we import the data.
 
@@ -191,6 +189,32 @@ ggplot(new_map, aes(fill = POPTOTAL)) +
   scale_fill_gradient(low = 'white', high = 'Orange') +
   labs(title = 'Distribution of population in the Twin Cities area',
        fill = 'Population') +
+  theme_bw()
+```
+
+## Add other layers to the current plot
+
+We could add other layers to the current plot. We import the spatial data of the transit routes in the metro area.
+
+```{r echo=TRUE}
+transit_route <- st_read('TransitRoutes.shp')
+```
+
+We add the transit route layers to the current plot by adding one more ``geom_sf()``.
+
+```{r echo=TRUE}
+ggplot(new_map) +
+  geom_sf() +
+  geom_sf(data = transit_route)
+```
+
+Add titles and themes to it.
+
+```{r echo=TRUE}
+ggplot(new_map) +
+  geom_sf(fill = NA, colour = 'Grey') +
+  geom_sf(data = transit_route, colour = 'Blue') +
+  labs(title = 'Transit route in the Twin Cities Metro area') +
   theme_bw()
 ```
 

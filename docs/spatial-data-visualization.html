@@ -236,7 +236,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#data-management"><i class="fa fa-check"></i><b>9.5</b> Data management</a></li>
 <li class="chapter" data-level="9.6" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#spatial-data-visualization-1"><i class="fa fa-check"></i><b>9.6</b> Spatial data visualization</a></li>
 <li class="chapter" data-level="9.7" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#more-example"><i class="fa fa-check"></i><b>9.7</b> More example</a></li>
-<li class="chapter" data-level="9.8" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#geospatial-data-analysis"><i class="fa fa-check"></i><b>9.8</b> Geospatial data analysis</a></li>
+<li class="chapter" data-level="9.8" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#add-other-layers-to-the-current-plot"><i class="fa fa-check"></i><b>9.8</b> Add other layers to the current plot</a></li>
+<li class="chapter" data-level="9.9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#geospatial-data-analysis"><i class="fa fa-check"></i><b>9.9</b> Geospatial data analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a><ul>
 <li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a><ul>
@@ -297,16 +298,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Pics/CRS.PNG" /></p>
 <p>After reviewing some concepts for geospatial data. Let’s write some codes in R.</p>
 <p>Before start, let’s install the package first.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;sf&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;sf&#39;</span>)</a></code></pre></div>
 <p>And import the package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">library</span>(sf)</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="kw">library</span>(sf)</a></code></pre></div>
 <pre><code>## Linking to GEOS 3.6.1, GDAL 2.2.3, PROJ 4.9.3</code></pre>
 </div>
 <div id="read-files" class="section level2">
 <h2><span class="header-section-number">9.3</span> Read files</h2>
-<p>To answer the question, we should firstly import the map of the Twin Cities metro area.</p>
-<p>With <code>sf</code>, we could read the shapefile by <code>st_read()</code> function. The dataset is from the <a href="https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign">Minnesota Geospatial Commons</a>. It contains the geospatial information of the census tracts of the Twin Cities metro area.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">map &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;Census2010RealignTract.shp&#39;</span>)</a></code></pre></div>
+<p>The file format to store the spatial data is <strong>shapefile</strong>. We could import the shapefile with <code>st_read()</code> function into R.</p>
+<p>The dataset is from the <a href="https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign">Minnesota Geospatial Commons</a>. It contains the geospatial information of the census tracts of the Twin Cities metro area.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1">map &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;Census2010RealignTract.shp&#39;</span>)</a></code></pre></div>
 <pre><code>## Reading layer `Census2010RealignTract&#39; from data source `C:\UMN\Course\R_course\PA5928-Data-management-and-visualization-with-R\Census2010RealignTract.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 708 features and 10 fields
 ## geometry type:  POLYGON
@@ -315,10 +316,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## epsg (SRID):    26915
 ## proj4string:    +proj=utm +zone=15 +datum=NAD83 +units=m +no_defs</code></pre>
 <p>After running the codes, the console has shown some information about the shapefile we just read.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">class</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1"><span class="kw">class</span>(map)</a></code></pre></div>
 <pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
 <p>With <code>class()</code>, we could check the type of the variable. It is both <code>sf</code> and <code>data.frame</code>. <code>sf</code> means the dataset is a type of geospatial data and contains some related information. <code>data.frame</code> means that the dataset is also a data frame and could be managed by many functions working on data frames.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">head</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">head</span>(map)</a></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 10 fields
 ## geometry type:  POLYGON
 ## dimension:      XY
@@ -341,34 +342,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6   94116.03  223342132 POLYGON ((439064.1 4943284,...</code></pre>
 <p>With <code>head()</code>, we could see that there is a column called <code>geometry</code>. Every <code>sf</code> file will have this column, where stores the geospatial information of the observations. Other columns are just normal columns containing information for the observations.</p>
 <p>We could use <code>st_crs()</code> to check the CRS of the variable.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">st_crs</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" title="1"><span class="kw">st_crs</span>(map)</a></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   EPSG: 26915 
 ##   proj4string: &quot;+proj=utm +zone=15 +datum=NAD83 +units=m +no_defs&quot;</code></pre>
 <p>Luckily, this variable contains the right CRS. For the maps in the area of Minnesota, the CRS is the one showing above, 26915 for <code>EPSG</code>.</p>
 <p>However, sometimes, the file does not have CRS information. You have to check the original source of the file and assign the right CRS to it.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">st_crs</span>(map) &lt;-<span class="st"> </span><span class="dv">26915</span></a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1"><span class="kw">st_crs</span>(map) &lt;-<span class="st"> </span><span class="dv">26915</span></a></code></pre></div>
 <pre><code>## Warning: st_crs&lt;- : replacing crs does not reproject data; use st_transform
 ## for that</code></pre>
 <p>By doing this, there is a message telling that this function will not do the transformation for us. Sometimes, even if the file contains the right CRS, its CRS might be different from other files. <strong>If you want to map them in the same page or want to do geospatial data analysis among them, you have to transfer the CRSs of them to the same one. You could do this by using <code>st_transform()</code>.</strong></p>
 <p>We could use <code>ggplot2</code> to visualize the map. For simply mapping the polygons, we do not need to speficify <code>aes()</code>. And we use <code>geom_sf()</code> to plot map.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb14-2" title="2"></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="kw">ggplot</span>(map) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">geom_sf</span>()</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb359-2" title="2"></a>
+<a class="sourceLine" id="cb359-3" title="3"><span class="kw">ggplot</span>(map) <span class="op">+</span></a>
+<a class="sourceLine" id="cb359-4" title="4"><span class="st">  </span><span class="kw">geom_sf</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 </div>
 <div id="deal-with-spatial-data-like-data-frame" class="section level2">
 <h2><span class="header-section-number">9.4</span> Deal with spatial data like data frame</h2>
 <p>As the spatial data is also a data frame in R. We could use <code>dplyr</code> to deal with it. For example, select the column we want.</p>
 <p>The current spatial data <code>map</code> contains some variables we do not need, so we could select the useful ones by using <code>select()</code> function in <code>dplyr</code>. Please pay attention that we do not need to select the geometry column. It will be selected automatically. In this lecture, we only select GEOID, which is the ID for each area/tract.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb15-2" title="2">new_map &lt;-<span class="st"> </span>map <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="kw">select</span>(GEOID)</a></code></pre></div>
-<p>To answer the question, we still need more information. We need the old population and total population for each census tract in the Twin Cities metro area to compute the percentage of old population.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb360-2" title="2">new_map &lt;-<span class="st"> </span>map <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb360-3" title="3"><span class="st">  </span><span class="kw">select</span>(GEOID)</a></code></pre></div>
 <p>We could join other data to the current geospatial variable by the join functions in <code>dplyr</code>. Firstly, we import the data.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb16-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;data.csv&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb361-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;data.csv&#39;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   GEOID = col_double(),
@@ -418,16 +418,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">class</span>(new_map<span class="op">$</span>GEOID)</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">class</span>(new_map<span class="op">$</span>GEOID)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">class</span>(data<span class="op">$</span>GEOID)</a></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="kw">class</span>(data<span class="op">$</span>GEOID)</a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>We could join this data to the map by using the GEOID column. Before join operation, we have to transfer the GEOID to match the data type of GEOID in the map file. Currently, their types are different, one is factor and other is numeric. They have to be the same data type before joining.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">GEOID =</span> <span class="kw">factor</span>(GEOID))</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1">data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb367-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">GEOID =</span> <span class="kw">factor</span>(GEOID))</a></code></pre></div>
 <p>Then, we do the join operation.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">new_map &lt;-<span class="st"> </span>new_map <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(data, <span class="dt">by =</span> <span class="st">&#39;GEOID&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1">new_map &lt;-<span class="st"> </span>new_map <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb368-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(data, <span class="dt">by =</span> <span class="st">&#39;GEOID&#39;</span>)</a></code></pre></div>
 <pre><code>## Warning: Column `GEOID` joining factors with different levels, coercing to
 ## character vector</code></pre>
 <p>This message tells us that the levels of factors in the GEOIDs of the two files are different. This makes sense, since the data file has more observations, which also will have more levels.</p>
@@ -435,40 +435,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-management" class="section level2">
 <h2><span class="header-section-number">9.5</span> Data management</h2>
 <p>We calculate the percentage of old people in each census tract.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">new_map &lt;-<span class="st"> </span>new_map <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">old_percent =</span> AGE65UP<span class="op">/</span>POPTOTAL)</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1">new_map &lt;-<span class="st"> </span>new_map <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb370-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">old_percent =</span> AGE65UP<span class="op">/</span>POPTOTAL)</a></code></pre></div>
 </div>
 <div id="spatial-data-visualization-1" class="section level2">
 <h2><span class="header-section-number">9.6</span> Spatial data visualization</h2>
 <p>We could use <code>ggplot2</code> by its <code>geom_sf()</code> function.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(new_map, <span class="kw">aes</span>(<span class="dt">fill =</span> old_percent)) <span class="op">+</span><span class="st"> </span><span class="co"># use fill to indicate the variable you want to visualize</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>()</a>
-<a class="sourceLine" id="cb26-3" title="3">p</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(new_map, <span class="kw">aes</span>(<span class="dt">fill =</span> old_percent)) <span class="op">+</span><span class="st"> </span><span class="co"># use fill to indicate the variable you want to visualize</span></a>
+<a class="sourceLine" id="cb371-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>()</a>
+<a class="sourceLine" id="cb371-3" title="3">p</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 <p>The color is not good, we could add <code>scale_fill_gradient()</code> to specify the colours we want.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 <p>Again, we could add more information to make the figure better and more readable, and change the theme a little bit.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Distribution of old population in the Twin Cities area&#39;</span>,</a>
-<a class="sourceLine" id="cb28-3" title="3">       <span class="dt">fill =</span> <span class="st">&#39;Percentage&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb373-2" title="2"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Distribution of old population in the Twin Cities area&#39;</span>,</a>
+<a class="sourceLine" id="cb373-3" title="3">       <span class="dt">fill =</span> <span class="st">&#39;Percentage&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb373-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
 <p>Finally, we could use <code>ggsave()</code> to save the plot we want after we run the <code>ggplot()</code> function.</p>
 </div>
 <div id="more-example" class="section level2">
 <h2><span class="header-section-number">9.7</span> More example</h2>
 <p>We could visualize the population directly in the map with <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">ggplot</span>(new_map, <span class="kw">aes</span>(<span class="dt">fill =</span> POPTOTAL)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">colour =</span> <span class="st">&#39;White&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="st">  </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;Orange&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Distribution of population in the Twin Cities area&#39;</span>,</a>
-<a class="sourceLine" id="cb29-5" title="5">       <span class="dt">fill =</span> <span class="st">&#39;Population&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
-<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">ggplot</span>(new_map, <span class="kw">aes</span>(<span class="dt">fill =</span> POPTOTAL)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">colour =</span> <span class="st">&#39;White&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-3" title="3"><span class="st">  </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;Orange&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Distribution of population in the Twin Cities area&#39;</span>,</a>
+<a class="sourceLine" id="cb374-5" title="5">       <span class="dt">fill =</span> <span class="st">&#39;Population&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb374-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+</div>
+<div id="add-other-layers-to-the-current-plot" class="section level2">
+<h2><span class="header-section-number">9.8</span> Add other layers to the current plot</h2>
+<p>We could add other layers to the current plot. We import the spatial data of the transit routes in the metro area.</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1">transit_route &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;TransitRoutes.shp&#39;</span>)</a></code></pre></div>
+<pre><code>## Reading layer `TransitRoutes&#39; from data source `C:\UMN\Course\R_course\PA5928-Data-management-and-visualization-with-R\TransitRoutes.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 227 features and 32 fields
+## geometry type:  MULTILINESTRING
+## dimension:      XY
+## bbox:           xmin: 409591 ymin: 4947433 xmax: 515317.7 ymax: 5046090
+## epsg (SRID):    26915
+## proj4string:    +proj=utm +zone=15 +datum=NAD83 +units=m +no_defs</code></pre>
+<p>We add the transit route layers to the current plot by adding one more <code>geom_sf()</code>.</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1"><span class="kw">ggplot</span>(new_map) <span class="op">+</span></a>
+<a class="sourceLine" id="cb377-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb377-3" title="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> transit_route)</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<p>Add titles and themes to it.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1"><span class="kw">ggplot</span>(new_map) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">colour =</span> <span class="st">&#39;Grey&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-3" title="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> transit_route, <span class="dt">colour =</span> <span class="st">&#39;Blue&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Transit route in the Twin Cities Metro area&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb378-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 </div>
 <div id="geospatial-data-analysis" class="section level2">
-<h2><span class="header-section-number">9.8</span> Geospatial data analysis</h2>
+<h2><span class="header-section-number">9.9</span> Geospatial data analysis</h2>
 <p>For those who are familiar with geospatial operations in ArcGIS, <code>sf</code> also provides functions to do geospatial data analysis, such as spatial join, intersect, clip, <em>etc</em>. For example, you could use <code>st_join()</code> to carry out spatial join, use <code>st_intersects()</code> to do intersect, and <code>st_intersection()</code> to do clip. You could find more <a href="https://r-spatial.github.io/sf/index.html">here</a>.</p>
 
 </div>
@@ -524,6 +548,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
