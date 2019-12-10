@@ -57,7 +57,7 @@ In this part, you will submit your dataset, revised codes, and the final report.
 |          | Description of the result is clear                                                                                            | 5      |
 |          | Conclusion is clear, the results are summaried, and implication is meaningful                                                 | 5      |
 
-The proposal should be less than three pages (not including citation, tables, and figures), 12 font size, and single space.
+The final report should be less than three pages (not including citation, tables, and figures), 12 font size, and single space.
 
 
 
