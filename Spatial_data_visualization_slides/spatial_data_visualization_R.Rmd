@@ -10,6 +10,14 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Announcement
+
+* Template for final report on Canvas
+* Final report due on 22nd DEC
+* For data analysis, please let me know if you cannot make it by this Friday (13th DEC)
+* This is the last lecture
+* Course evaluation after today's lecture (15 min)
+
 ## Why spatial visualization with R?
 
 * **Common solutions: ArcGIS, QGIS**
@@ -28,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## When spatial visualization with R?
 
-* Not access to ArcGIS or QGIS
+* No access to ArcGIS or QGIS
 * Want to combine data analysis and spatial data visualization together in R
 * Want the work becomes more reproducible
 
@@ -174,7 +182,7 @@ data <- data %>%
 
 Then, we do the join operation.
 
-```{r echo=TRUE}
+```{r echo=TRUE, warning=FALSE}
 new_map <- new_map %>%
   left_join(data, by = 'GEOID')
 head(new_map, 2)
@@ -271,7 +279,7 @@ ggplot(new_map) +
 
 * Nine in-class exercises
 * Final project
-* Three large packages of mixed snacks
+
 
 ## Wrap-up for our course
 
@@ -279,7 +287,6 @@ ggplot(new_map) +
 * Any questions are welcomed even the course is over
 * Hope the knowledge you learned from this cource will be helpful during your daily tasks
 
-## All my best wishes to the rest of your semester!
 
 
 
