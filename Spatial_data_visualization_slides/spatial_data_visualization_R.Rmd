@@ -272,26 +272,6 @@ ggplot(new_map) +
   theme_bw()
 ```
 
-## Wrap-up for our course
-
-* RStudio and R
-* Data management with ``dplyr``
-* Data visualization with ``ggplot2``
-* Spatial data visualization
-* Statistics
-* Data exploratory analysis
-
-## Wrap-up for our course
-
-* Nine in-class exercises
-* Final project
-
-
-## Wrap-up for our course
-
-* The notes for this course will keep online
-* Any questions are welcomed even the course is over
-* Hope the knowledge you learned from this cource will be helpful during your daily tasks
 
 
 
