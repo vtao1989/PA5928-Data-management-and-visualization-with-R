@@ -1,5 +1,5 @@
 --- 
-title: "PA 5928 Data Management & Visualization with R (Updating)"
+title: "PA 5928 Data Management & Visualization with R"
 author: "Tao Tao (University of Minnesota)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
