@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Data Manipulation with dplyr | PA 5928 Data Management &amp; Visualization with R</title>
   <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Data Manipulation with dplyr | PA 5928 Data Management &amp; Visualization with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2020-05-30" />
+<meta name="date" content="2021-02-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="data-manipulation-with-base-functions.html"/>
 <link rel="next" href="data-visualization-with-base-functions.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +41,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -50,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -128,7 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">PA 5928 Data Management & Visualization with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
@@ -136,13 +142,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#in-class-exercise-and-final-project"><i class="fa fa-check"></i><b>1.5</b> In-class exercise and final project</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.6</b> Course Schedule (Tentative)</a></li>
 <li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.7</b> Homework and projects collaboration and submission policy</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a><ul>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a>
+<ul>
 <li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#question-1"><i class="fa fa-check"></i><b>1.8.1</b> Question 1</a></li>
 <li class="chapter" data-level="1.8.2" data-path="index.html"><a href="index.html#question-2"><i class="fa fa-check"></i><b>1.8.2</b> Question 2</a></li>
 <li class="chapter" data-level="1.8.3" data-path="index.html"><a href="index.html#question-3"><i class="fa fa-check"></i><b>1.8.3</b> Question 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a><ul>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
 <li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
@@ -153,9 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
 <li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.1</b> Variable types</a></li>
-<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a><ul>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.2.1</b> Assignment operations</a></li>
 <li class="chapter" data-level="3.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.2.2</b> Arithmetic operations</a></li>
 <li class="chapter" data-level="3.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.2.3</b> Relational operations</a></li>
@@ -166,8 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
 <li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.6</b> Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a><ul>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data"><i class="fa fa-check"></i><b>4.1.1</b> Import data</a></li>
 <li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
 <li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
@@ -180,7 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
 <li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
 <li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
@@ -188,7 +201,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
 <li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a><ul>
+<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#scatter-plot"><i class="fa fa-check"></i><b>6.1</b> Scatter plot</a></li>
 <li class="chapter" data-level="6.2" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#line-plot"><i class="fa fa-check"></i><b>6.2</b> Line plot</a></li>
 <li class="chapter" data-level="6.3" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#bar-plot"><i class="fa fa-check"></i><b>6.3</b> Bar plot</a></li>
@@ -197,9 +211,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#boxplot"><i class="fa fa-check"></i><b>6.6</b> Boxplot</a></li>
 <li class="chapter" data-level="6.7" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#color-in-r"><i class="fa fa-check"></i><b>6.7</b> Color in R</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#grammer-of-graphics-gg"><i class="fa fa-check"></i><b>7.1</b> Grammer of Graphics (gg)</a></li>
-<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a><ul>
+<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#scatter-plot-1"><i class="fa fa-check"></i><b>7.2.1</b> Scatter plot</a></li>
 <li class="chapter" data-level="7.2.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#bar-plot-1"><i class="fa fa-check"></i><b>7.2.2</b> Bar plot</a></li>
 <li class="chapter" data-level="7.2.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#line-plot-1"><i class="fa fa-check"></i><b>7.2.3</b> Line plot</a></li>
@@ -208,19 +224,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>7.3</b> Facets</a></li>
 <li class="chapter" data-level="7.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#statistics"><i class="fa fa-check"></i><b>7.4</b> Statistics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a><ul>
+<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#zooming-in-and-out"><i class="fa fa-check"></i><b>7.5.1</b> Zooming in and out</a></li>
 <li class="chapter" data-level="7.5.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#ratio"><i class="fa fa-check"></i><b>7.5.2</b> Ratio</a></li>
 <li class="chapter" data-level="7.5.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#swaping-the-axes"><i class="fa fa-check"></i><b>7.5.3</b> Swaping the axes</a></li>
 <li class="chapter" data-level="7.5.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#polar-coordinate-system"><i class="fa fa-check"></i><b>7.5.4</b> Polar coordinate system</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a><ul>
+<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#add-labels"><i class="fa fa-check"></i><b>7.6.1</b> Add labels</a></li>
 <li class="chapter" data-level="7.6.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#change-ticks"><i class="fa fa-check"></i><b>7.6.2</b> Change ticks</a></li>
 <li class="chapter" data-level="7.6.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#theme-function"><i class="fa fa-check"></i><b>7.6.3</b> theme() function</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#introduction-of-the-dataset-and-research-question"><i class="fa fa-check"></i><b>8.1</b> Introduction of the dataset and research question</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-munipulation"><i class="fa fa-check"></i><b>8.2</b> Data munipulation</a></li>
 <li class="chapter" data-level="8.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-visualization"><i class="fa fa-check"></i><b>8.3</b> Data visualization</a></li>
@@ -228,7 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-examples"><i class="fa fa-check"></i><b>8.5</b> More examples</a></li>
 <li class="chapter" data-level="8.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-more-example"><i class="fa fa-check"></i><b>8.6</b> More more example</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Visualization</a><ul>
+<li class="chapter" data-level="9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Visualization</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#why-spatial-visualization-with-r"><i class="fa fa-check"></i><b>9.1</b> Why spatial visualization with R?</a></li>
 <li class="chapter" data-level="9.2" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#some-basics-about-spatial-data"><i class="fa fa-check"></i><b>9.2</b> Some basics about spatial data</a></li>
 <li class="chapter" data-level="9.3" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#read-files"><i class="fa fa-check"></i><b>9.3</b> Read files</a></li>
@@ -239,8 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.8" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#add-other-layers-to-the-current-plot"><i class="fa fa-check"></i><b>9.8</b> Add other layers to the current plot</a></li>
 <li class="chapter" data-level="9.9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#geospatial-data-analysis"><i class="fa fa-check"></i><b>9.9</b> Geospatial data analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a><ul>
-<li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a><ul>
+<li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#mean-and-median"><i class="fa fa-check"></i><b>10.1.1</b> Mean and median</a></li>
 <li class="chapter" data-level="10.1.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#minimum-and-maximum-value"><i class="fa fa-check"></i><b>10.1.2</b> Minimum and maximum value</a></li>
 <li class="chapter" data-level="10.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#quantiles"><i class="fa fa-check"></i><b>10.1.3</b> Quantiles</a></li>
@@ -248,11 +270,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#linear-regression"><i class="fa fa-check"></i><b>10.2</b> Linear regression</a></li>
 <li class="chapter" data-level="10.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic regression</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous</a><ul>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="miscellaneous.html"><a href="miscellaneous.html#something-related-to-in-class-exercises-and-grading-rubic"><i class="fa fa-check"></i><b>11.1</b> Something related to in-class exercises and grading rubic</a></li>
 <li class="chapter" data-level="11.2" data-path="miscellaneous.html"><a href="miscellaneous.html#comparison-between-r-and-stata"><i class="fa fa-check"></i><b>11.2</b> Comparison between R and Stata</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>12</b> Final Project</a><ul>
+<li class="chapter" data-level="12" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>12</b> Final Project</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>12.1</b> Description</a></li>
 <li class="chapter" data-level="12.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>12.2</b> Timeline</a></li>
 <li class="chapter" data-level="12.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>12.3</b> Proposal</a></li>
@@ -280,178 +304,179 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-manipulation-with-dplyr" class="section level1">
+<div id="data-manipulation-with-dplyr" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Data Manipulation with dplyr</h1>
-<p>In this chapter, we will learn a very popular package <code>dplyr</code> to deal with data manipulation. We will mainly go through its main functions <span class="citation">(BiomedicalDataScience <a href="#ref-biomed1">2019</a>; r-project <a href="#ref-rpro1">2019</a>)</span>.</p>
-<div id="select" class="section level2">
+<p>In this chapter, we will learn a very popular package <code>dplyr</code> to deal with data manipulation. We will mainly go through its main functions <span class="citation">(<a href="references.html#ref-biomed1" role="doc-biblioref">BiomedicalDataScience 2019</a>; <a href="references.html#ref-rpro1" role="doc-biblioref">r-project 2019</a>)</span>.</p>
+<div id="select" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> select()</h2>
 <p>Before the lecture, install the package in your machine.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-manipulation-with-dplyr.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>)</span></code></pre></div>
 <p>Let’s first import the package and the <code>mtcars</code> dataset.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb217-2" title="2"><span class="kw">data</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="data-manipulation-with-dplyr.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb217-2"><a href="data-manipulation-with-dplyr.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code></pre></div>
 <p>If we want to select some columns from the dataset. We could use the <code>select()</code> function in <code>dplyr</code>. It is similar to the <code>subset()</code> function, but here, you do not need to use <code>select = c('mpg', 'disp')</code>. You use the names of the columns directly in the function.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1">df &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, <span class="co"># name of the data frame</span></a>
-<a class="sourceLine" id="cb218-2" title="2">       mpg, disp) <span class="co"># column names you want to select</span></a>
-<a class="sourceLine" id="cb218-3" title="3"><span class="kw">head</span>(df, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-manipulation-with-dplyr.html#cb218-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(mtcars, <span class="co"># name of the data frame</span></span>
+<span id="cb218-2"><a href="data-manipulation-with-dplyr.html#cb218-2" aria-hidden="true" tabindex="-1"></a>       mpg, disp) <span class="co"># column names you want to select</span></span>
+<span id="cb218-3"><a href="data-manipulation-with-dplyr.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                mpg disp
 ## Mazda RX4     21.0  160
 ## Mazda RX4 Wag 21.0  160
 ## Datsun 710    22.8  108</code></pre>
 <p>You could also use the index of the columns.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1">df &lt;-<span class="st"> </span><span class="kw">select</span>(mtcars, <span class="co"># name of the data frame</span></a>
-<a class="sourceLine" id="cb220-2" title="2">       <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="co"># index of the columns you want to select</span></a>
-<a class="sourceLine" id="cb220-3" title="3"><span class="kw">head</span>(df, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-manipulation-with-dplyr.html#cb220-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">select</span>(mtcars, <span class="co"># name of the data frame</span></span>
+<span id="cb220-2"><a href="data-manipulation-with-dplyr.html#cb220-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="co"># index of the columns you want to select</span></span>
+<span id="cb220-3"><a href="data-manipulation-with-dplyr.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                mpg disp
 ## Mazda RX4     21.0  160
 ## Mazda RX4 Wag 21.0  160
 ## Datsun 710    22.8  108</code></pre>
 <p>The codes above is kind of a <em>traditional</em> way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use <code>dplyr</code>.</p>
 <p>The codes below is a more <code>dplyr</code> way people use <code>dplyr</code>. We start with the name of the data frame. Then, we put a speical sign <code>%&gt;%</code> called <code>pipe</code> after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with <code>head()</code> functions.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># name of the data frame</span></a>
-<a class="sourceLine" id="cb222-2" title="2"><span class="st">  </span><span class="kw">select</span>(mpg, disp) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the columns by their names</span></a>
-<a class="sourceLine" id="cb222-3" title="3"><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-manipulation-with-dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="co"># name of the data frame</span></span>
+<span id="cb222-2"><a href="data-manipulation-with-dplyr.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, disp) <span class="sc">%&gt;%</span> <span class="co"># select the columns by their names</span></span>
+<span id="cb222-3"><a href="data-manipulation-with-dplyr.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                mpg disp
 ## Mazda RX4     21.0  160
 ## Mazda RX4 Wag 21.0  160
 ## Datsun 710    22.8  108</code></pre>
 <p>We will keep using this fasion in the following lecutre.</p>
 <p>Besides choosing some columns you want, you could also exclude the column you do not want by putting a negative sign <code>-</code> before the variable.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb224-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>mpg, <span class="op">-</span>disp) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb224-3" title="3"><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-manipulation-with-dplyr.html#cb224-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb224-2"><a href="data-manipulation-with-dplyr.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>mpg, <span class="sc">-</span>disp) <span class="sc">%&gt;%</span></span>
+<span id="cb224-3"><a href="data-manipulation-with-dplyr.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##               cyl  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4       6 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag   6 110 3.90 2.875 17.02  0  1    4    4
 ## Datsun 710      4  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <p>You could use <code>:</code> to select a range of variables.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb226-2" title="2"><span class="st">  </span><span class="kw">select</span>(mpg<span class="op">:</span>hp) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select from mpg to hp in the data frame</span></a>
-<a class="sourceLine" id="cb226-3" title="3"><span class="st">  </span><span class="kw">head</span>(<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-manipulation-with-dplyr.html#cb226-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb226-2"><a href="data-manipulation-with-dplyr.html#cb226-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg<span class="sc">:</span>hp) <span class="sc">%&gt;%</span> <span class="co"># select from mpg to hp in the data frame</span></span>
+<span id="cb226-3"><a href="data-manipulation-with-dplyr.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##                mpg cyl disp  hp
 ## Mazda RX4     21.0   6  160 110
 ## Mazda RX4 Wag 21.0   6  160 110
 ## Datsun 710    22.8   4  108  93</code></pre>
 </div>
-<div id="filter" class="section level2">
+<div id="filter" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> filter()</h2>
 <p>In <code>dplyr</code>, we could use <code>filter()</code> function to select the rows satisfying some conditions.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb228-2" title="2"><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>)</a></code></pre></div>
-<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## 1 32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
-## 2 30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
-## 3 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
-## 4 30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-manipulation-with-dplyr.html#cb228-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb228-2"><a href="data-manipulation-with-dplyr.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>##                 mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Fiat 128       32.4   4 78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla 33.9   4 71.1  65 4.22 1.835 19.90  1  1    4    1
+## Lotus Europa   30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
 <p>Add more conditions by using <code>,</code> to separate them.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb230-2" title="2"><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>, qsec <span class="op">&lt;</span><span class="st"> </span><span class="dv">19</span>)</a></code></pre></div>
-<pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-## 1 30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
-## 2 30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-manipulation-with-dplyr.html#cb230-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb230-2"><a href="data-manipulation-with-dplyr.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">30</span>, qsec <span class="sc">&lt;</span> <span class="dv">19</span>)</span></code></pre></div>
+<pre><code>##               mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Honda Civic  30.4   4 75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa 30.4   4 95.1 113 3.77 1.513 16.90  1  1    5    2</code></pre>
 </div>
-<div id="arrange" class="section level2">
+<div id="arrange" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> arrange()</h2>
 <p>We could arrange the order of some columns by <code>arrange()</code> functions.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb232-2" title="2"><span class="st">  </span><span class="kw">arrange</span>(mpg) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># arrange mpg in asceding order</span></a>
-<a class="sourceLine" id="cb232-3" title="3"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-## 1  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
-## 2  10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
-## 3  13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
-## 4  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
-## 5  14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
-## 6  15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
-## 7  15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
-## 8  15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
-## 9  15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
-## 10 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-manipulation-with-dplyr.html#cb232-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb232-2"><a href="data-manipulation-with-dplyr.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mpg) <span class="sc">%&gt;%</span> <span class="co"># arrange mpg in asceding order</span></span>
+<span id="cb232-3"><a href="data-manipulation-with-dplyr.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</code></pre>
 <p>Or maybe we want <code>mpg</code> to be in a descending order. Just put a <code>desc()</code> outside the variable.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-2" title="2"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mpg)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-3" title="3"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
-## 1  33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
-## 2  32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
-## 3  30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
-## 4  30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
-## 5  27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
-## 6  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
-## 7  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
-## 8  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
-## 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
-## 10 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-manipulation-with-dplyr.html#cb234-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb234-2"><a href="data-manipulation-with-dplyr.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mpg)) <span class="sc">%&gt;%</span></span>
+<span id="cb234-3"><a href="data-manipulation-with-dplyr.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Merc 240D      24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230       22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Toyota Corona  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</code></pre>
 <p>We could put them together by using pipe operators to connect them.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb236-2" title="2"><span class="st">  </span><span class="kw">select</span>(gear, mpg) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb236-3" title="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(gear), mpg) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb236-4" title="4"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##    gear  mpg
-## 1     5 15.0
-## 2     5 15.8
-## 3     5 19.7
-## 4     5 26.0
-## 5     5 30.4
-## 6     4 17.8
-## 7     4 19.2
-## 8     4 21.0
-## 9     4 21.0
-## 10    4 21.4</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-manipulation-with-dplyr.html#cb236-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb236-2"><a href="data-manipulation-with-dplyr.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear, mpg) <span class="sc">%&gt;%</span></span>
+<span id="cb236-3"><a href="data-manipulation-with-dplyr.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(gear), mpg) <span class="sc">%&gt;%</span></span>
+<span id="cb236-4"><a href="data-manipulation-with-dplyr.html#cb236-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##                gear  mpg
+## Maserati Bora     5 15.0
+## Ford Pantera L    5 15.8
+## Ferrari Dino      5 19.7
+## Porsche 914-2     5 26.0
+## Lotus Europa      5 30.4
+## Merc 280C         4 17.8
+## Merc 280          4 19.2
+## Mazda RX4         4 21.0
+## Mazda RX4 Wag     4 21.0
+## Volvo 142E        4 21.4</code></pre>
 </div>
-<div id="mutate" class="section level2">
+<div id="mutate" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> mutate()</h2>
 <p>We use <code>mutate()</code> to do some calculations within the variables and create a new column to store them.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb238-2" title="2"><span class="st">  </span><span class="kw">select</span>(mpg) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb238-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(kmpg &lt;-<span class="st"> </span>mpg <span class="op">*</span><span class="st"> </span><span class="fl">1.609</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb238-4" title="4"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##     mpg kmpg &lt;- mpg * 1.609
-## 1  21.0             33.7890
-## 2  21.0             33.7890
-## 3  22.8             36.6852
-## 4  21.4             34.4326
-## 5  18.7             30.0883
-## 6  18.1             29.1229
-## 7  14.3             23.0087
-## 8  24.4             39.2596
-## 9  22.8             36.6852
-## 10 19.2             30.8928</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-2" title="2"><span class="st">  </span><span class="kw">select</span>(mpg, wt) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">kmpg =</span> mpg <span class="op">*</span><span class="st"> </span><span class="fl">1.609</span>, <span class="dt">lbwt =</span> wt <span class="op">*</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-4" title="4"><span class="st">  </span><span class="kw">head</span>(<span class="dv">10</span>)</a></code></pre></div>
-<pre><code>##     mpg    wt    kmpg lbwt
-## 1  21.0 2.620 33.7890 2620
-## 2  21.0 2.875 33.7890 2875
-## 3  22.8 2.320 36.6852 2320
-## 4  21.4 3.215 34.4326 3215
-## 5  18.7 3.440 30.0883 3440
-## 6  18.1 3.460 29.1229 3460
-## 7  14.3 3.570 23.0087 3570
-## 8  24.4 3.190 39.2596 3190
-## 9  22.8 3.150 36.6852 3150
-## 10 19.2 3.440 30.8928 3440</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-manipulation-with-dplyr.html#cb238-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb238-2"><a href="data-manipulation-with-dplyr.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg) <span class="sc">%&gt;%</span></span>
+<span id="cb238-3"><a href="data-manipulation-with-dplyr.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(kmpg <span class="ot">&lt;-</span> mpg <span class="sc">*</span> <span class="fl">1.609</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb238-4"><a href="data-manipulation-with-dplyr.html#cb238-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##                    mpg kmpg &lt;- mpg * 1.609
+## Mazda RX4         21.0             33.7890
+## Mazda RX4 Wag     21.0             33.7890
+## Datsun 710        22.8             36.6852
+## Hornet 4 Drive    21.4             34.4326
+## Hornet Sportabout 18.7             30.0883
+## Valiant           18.1             29.1229
+## Duster 360        14.3             23.0087
+## Merc 240D         24.4             39.2596
+## Merc 230          22.8             36.6852
+## Merc 280          19.2             30.8928</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-manipulation-with-dplyr.html#cb240-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb240-2"><a href="data-manipulation-with-dplyr.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, wt) <span class="sc">%&gt;%</span></span>
+<span id="cb240-3"><a href="data-manipulation-with-dplyr.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kmpg =</span> mpg <span class="sc">*</span> <span class="fl">1.609</span>, <span class="at">lbwt =</span> wt <span class="sc">*</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb240-4"><a href="data-manipulation-with-dplyr.html#cb240-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##                    mpg    wt    kmpg lbwt
+## Mazda RX4         21.0 2.620 33.7890 2620
+## Mazda RX4 Wag     21.0 2.875 33.7890 2875
+## Datsun 710        22.8 2.320 36.6852 2320
+## Hornet 4 Drive    21.4 3.215 34.4326 3215
+## Hornet Sportabout 18.7 3.440 30.0883 3440
+## Valiant           18.1 3.460 29.1229 3460
+## Duster 360        14.3 3.570 23.0087 3570
+## Merc 240D         24.4 3.190 39.2596 3190
+## Merc 230          22.8 3.150 36.6852 3150
+## Merc 280          19.2 3.440 30.8928 3440</code></pre>
 </div>
-<div id="group_by-and-summarise" class="section level2">
+<div id="group_by-and-summarise" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> group_by() and summarise()</h2>
 <p>We use <code>group_by()</code> to do aggregation (group the observations based the values of one or one more columns) work and <code>summarise()</code> to calculate some statistics related to each group.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb242-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gear) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb242-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg),</a>
-<a class="sourceLine" id="cb242-4" title="4">            <span class="dt">max_mpg =</span> <span class="kw">max</span>(mpg),</a>
-<a class="sourceLine" id="cb242-5" title="5">            <span class="dt">total =</span> <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-manipulation-with-dplyr.html#cb242-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb242-2"><a href="data-manipulation-with-dplyr.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
+<span id="cb242-3"><a href="data-manipulation-with-dplyr.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_mpg =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb242-4"><a href="data-manipulation-with-dplyr.html#cb242-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_mpg =</span> <span class="fu">max</span>(mpg),</span>
+<span id="cb242-5"><a href="data-manipulation-with-dplyr.html#cb242-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">total =</span> <span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##    gear mean_mpg max_mpg total
-##   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+## * &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
 ## 1     3     16.1    21.5    15
 ## 2     4     24.5    33.9    12
 ## 3     5     21.4    30.4     5</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb244-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(gear, am) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb244-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_mpg =</span> <span class="kw">mean</span>(mpg),</a>
-<a class="sourceLine" id="cb244-4" title="4">            <span class="dt">max_mpg =</span> <span class="kw">max</span>(mpg),</a>
-<a class="sourceLine" id="cb244-5" title="5">            <span class="dt">total =</span> <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-manipulation-with-dplyr.html#cb244-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb244-2"><a href="data-manipulation-with-dplyr.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear, am) <span class="sc">%&gt;%</span></span>
+<span id="cb244-3"><a href="data-manipulation-with-dplyr.html#cb244-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_mpg =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb244-4"><a href="data-manipulation-with-dplyr.html#cb244-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_mpg =</span> <span class="fu">max</span>(mpg),</span>
+<span id="cb244-5"><a href="data-manipulation-with-dplyr.html#cb244-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">total =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;gear&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 4 x 5
 ## # Groups:   gear [3]
 ##    gear    am mean_mpg max_mpg total
@@ -461,52 +486,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3     4     1     26.3    33.9     8
 ## 4     5     1     21.4    30.4     5</code></pre>
 </div>
-<div id="join" class="section level2">
+<div id="join" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> join()</h2>
 <p>We could use <code>join()</code> to do the same work of <code>merge()</code>.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1">ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></a>
-<a class="sourceLine" id="cb246-2" title="2">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></a>
-<a class="sourceLine" id="cb246-3" title="3">Score1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></a>
-<a class="sourceLine" id="cb246-4" title="4">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></a>
-<a class="sourceLine" id="cb246-5" title="5">df1</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="data-manipulation-with-dplyr.html#cb247-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
+<span id="cb247-2"><a href="data-manipulation-with-dplyr.html#cb247-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb247-3"><a href="data-manipulation-with-dplyr.html#cb247-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
+<span id="cb247-4"><a href="data-manipulation-with-dplyr.html#cb247-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></span>
+<span id="cb247-5"><a href="data-manipulation-with-dplyr.html#cb247-5" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>##   ID Name Score1
 ## 1  1    A   69.5
 ## 2  2    B   77.5
 ## 3  3    C   99.0
 ## 4  4    D   90.0</code></pre>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1">Name &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></a>
-<a class="sourceLine" id="cb248-2" title="2">Score2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></a>
-<a class="sourceLine" id="cb248-3" title="3">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></a>
-<a class="sourceLine" id="cb248-4" title="4">df2</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="data-manipulation-with-dplyr.html#cb249-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
+<span id="cb249-2"><a href="data-manipulation-with-dplyr.html#cb249-2" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></span>
+<span id="cb249-3"><a href="data-manipulation-with-dplyr.html#cb249-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></span>
+<span id="cb249-4"><a href="data-manipulation-with-dplyr.html#cb249-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
 <pre><code>##   Name Score2
 ## 1    A     98
 ## 2    D     46
 ## 3    C     55</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1">df1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb250-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(df2, <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="data-manipulation-with-dplyr.html#cb251-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
+<span id="cb251-2"><a href="data-manipulation-with-dplyr.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
 <pre><code>##   ID Name Score1 Score2
 ## 1  1    A   69.5     98
 ## 2  2    B   77.5     NA
 ## 3  3    C   99.0     55
 ## 4  4    D   90.0     46</code></pre>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">df1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb252-2" title="2"><span class="st">  </span><span class="kw">right_join</span>(df2, <span class="dt">by =</span> <span class="st">&#39;Name&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="data-manipulation-with-dplyr.html#cb253-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="data-manipulation-with-dplyr.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(df2, <span class="at">by =</span> <span class="st">&#39;Name&#39;</span>)</span></code></pre></div>
 <pre><code>##   ID Name Score1 Score2
 ## 1  1    A   69.5     98
-## 2  4    D   90.0     46
-## 3  3    C   99.0     55</code></pre>
+## 2  3    C   99.0     55
+## 3  4    D   90.0     46</code></pre>
 <p>Could you tell the difference between <code>left_join()</code> and <code>right_join()</code>?</p>
 <p>Besides <code>left_join()</code> and <code>right_join()</code>, we have <code>inner_join()</code> (keep only matched observations of two data frames) and <code>full_join()</code> (keep all observations of two data frames).</p>
 
-</div>
-</div>
-<h3> References</h3>
-<div id="refs" class="references">
-<div id="ref-biomed1">
-<p>BiomedicalDataScience. 2019. “Dplyr Tutorial.” October 23, 2019. <a href="https://genomicsclass.github.io/book/pages/dplyr_tutorial.html">https://genomicsclass.github.io/book/pages/dplyr_tutorial.html</a>.</p>
-</div>
-<div id="ref-rpro1">
-<p>r-project. 2019. “Introduction to Dplyr.” October 23, 2019. <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a>.</p>
 </div>
 </div>
             </section>
@@ -520,11 +536,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -532,12 +550,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -549,6 +566,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

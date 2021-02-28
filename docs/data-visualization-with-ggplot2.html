@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Data Visualization with ggplot2 | PA 5928 Data Management &amp; Visualization with R</title>
   <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Data Visualization with ggplot2 | PA 5928 Data Management &amp; Visualization with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2020-05-30" />
+<meta name="date" content="2021-02-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="data-visualization-with-base-functions.html"/>
 <link rel="next" href="exploratory-data-analysis.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +41,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -50,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -128,7 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">PA 5928 Data Management & Visualization with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
@@ -136,13 +142,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#in-class-exercise-and-final-project"><i class="fa fa-check"></i><b>1.5</b> In-class exercise and final project</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.6</b> Course Schedule (Tentative)</a></li>
 <li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.7</b> Homework and projects collaboration and submission policy</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a><ul>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a>
+<ul>
 <li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#question-1"><i class="fa fa-check"></i><b>1.8.1</b> Question 1</a></li>
 <li class="chapter" data-level="1.8.2" data-path="index.html"><a href="index.html#question-2"><i class="fa fa-check"></i><b>1.8.2</b> Question 2</a></li>
 <li class="chapter" data-level="1.8.3" data-path="index.html"><a href="index.html#question-3"><i class="fa fa-check"></i><b>1.8.3</b> Question 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a><ul>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
 <li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
@@ -153,9 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
 <li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.1</b> Variable types</a></li>
-<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a><ul>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.2.1</b> Assignment operations</a></li>
 <li class="chapter" data-level="3.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.2.2</b> Arithmetic operations</a></li>
 <li class="chapter" data-level="3.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.2.3</b> Relational operations</a></li>
@@ -166,8 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
 <li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.6</b> Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a><ul>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data"><i class="fa fa-check"></i><b>4.1.1</b> Import data</a></li>
 <li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
 <li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
@@ -180,7 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
 <li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
 <li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
@@ -188,7 +201,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
 <li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a><ul>
+<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#scatter-plot"><i class="fa fa-check"></i><b>6.1</b> Scatter plot</a></li>
 <li class="chapter" data-level="6.2" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#line-plot"><i class="fa fa-check"></i><b>6.2</b> Line plot</a></li>
 <li class="chapter" data-level="6.3" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#bar-plot"><i class="fa fa-check"></i><b>6.3</b> Bar plot</a></li>
@@ -197,9 +211,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#boxplot"><i class="fa fa-check"></i><b>6.6</b> Boxplot</a></li>
 <li class="chapter" data-level="6.7" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#color-in-r"><i class="fa fa-check"></i><b>6.7</b> Color in R</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#grammer-of-graphics-gg"><i class="fa fa-check"></i><b>7.1</b> Grammer of Graphics (gg)</a></li>
-<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a><ul>
+<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#scatter-plot-1"><i class="fa fa-check"></i><b>7.2.1</b> Scatter plot</a></li>
 <li class="chapter" data-level="7.2.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#bar-plot-1"><i class="fa fa-check"></i><b>7.2.2</b> Bar plot</a></li>
 <li class="chapter" data-level="7.2.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#line-plot-1"><i class="fa fa-check"></i><b>7.2.3</b> Line plot</a></li>
@@ -208,19 +224,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>7.3</b> Facets</a></li>
 <li class="chapter" data-level="7.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#statistics"><i class="fa fa-check"></i><b>7.4</b> Statistics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a><ul>
+<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#zooming-in-and-out"><i class="fa fa-check"></i><b>7.5.1</b> Zooming in and out</a></li>
 <li class="chapter" data-level="7.5.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#ratio"><i class="fa fa-check"></i><b>7.5.2</b> Ratio</a></li>
 <li class="chapter" data-level="7.5.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#swaping-the-axes"><i class="fa fa-check"></i><b>7.5.3</b> Swaping the axes</a></li>
 <li class="chapter" data-level="7.5.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#polar-coordinate-system"><i class="fa fa-check"></i><b>7.5.4</b> Polar coordinate system</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a><ul>
+<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#add-labels"><i class="fa fa-check"></i><b>7.6.1</b> Add labels</a></li>
 <li class="chapter" data-level="7.6.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#change-ticks"><i class="fa fa-check"></i><b>7.6.2</b> Change ticks</a></li>
 <li class="chapter" data-level="7.6.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#theme-function"><i class="fa fa-check"></i><b>7.6.3</b> theme() function</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#introduction-of-the-dataset-and-research-question"><i class="fa fa-check"></i><b>8.1</b> Introduction of the dataset and research question</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-munipulation"><i class="fa fa-check"></i><b>8.2</b> Data munipulation</a></li>
 <li class="chapter" data-level="8.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-visualization"><i class="fa fa-check"></i><b>8.3</b> Data visualization</a></li>
@@ -228,7 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-examples"><i class="fa fa-check"></i><b>8.5</b> More examples</a></li>
 <li class="chapter" data-level="8.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-more-example"><i class="fa fa-check"></i><b>8.6</b> More more example</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Visualization</a><ul>
+<li class="chapter" data-level="9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Visualization</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#why-spatial-visualization-with-r"><i class="fa fa-check"></i><b>9.1</b> Why spatial visualization with R?</a></li>
 <li class="chapter" data-level="9.2" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#some-basics-about-spatial-data"><i class="fa fa-check"></i><b>9.2</b> Some basics about spatial data</a></li>
 <li class="chapter" data-level="9.3" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#read-files"><i class="fa fa-check"></i><b>9.3</b> Read files</a></li>
@@ -239,8 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.8" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#add-other-layers-to-the-current-plot"><i class="fa fa-check"></i><b>9.8</b> Add other layers to the current plot</a></li>
 <li class="chapter" data-level="9.9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#geospatial-data-analysis"><i class="fa fa-check"></i><b>9.9</b> Geospatial data analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a><ul>
-<li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a><ul>
+<li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#mean-and-median"><i class="fa fa-check"></i><b>10.1.1</b> Mean and median</a></li>
 <li class="chapter" data-level="10.1.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#minimum-and-maximum-value"><i class="fa fa-check"></i><b>10.1.2</b> Minimum and maximum value</a></li>
 <li class="chapter" data-level="10.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#quantiles"><i class="fa fa-check"></i><b>10.1.3</b> Quantiles</a></li>
@@ -248,11 +270,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#linear-regression"><i class="fa fa-check"></i><b>10.2</b> Linear regression</a></li>
 <li class="chapter" data-level="10.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic regression</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous</a><ul>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="miscellaneous.html"><a href="miscellaneous.html#something-related-to-in-class-exercises-and-grading-rubic"><i class="fa fa-check"></i><b>11.1</b> Something related to in-class exercises and grading rubic</a></li>
 <li class="chapter" data-level="11.2" data-path="miscellaneous.html"><a href="miscellaneous.html#comparison-between-r-and-stata"><i class="fa fa-check"></i><b>11.2</b> Comparison between R and Stata</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>12</b> Final Project</a><ul>
+<li class="chapter" data-level="12" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>12</b> Final Project</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>12.1</b> Description</a></li>
 <li class="chapter" data-level="12.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>12.2</b> Timeline</a></li>
 <li class="chapter" data-level="12.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>12.3</b> Proposal</a></li>
@@ -280,13 +304,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-visualization-with-ggplot2" class="section level1">
+<div id="data-visualization-with-ggplot2" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Data Visualization with ggplot2</h1>
 <p>In this chapter, we will learn to use <code>ggplot2</code> to do data visualization tasks. Before the lecture, please install the package first.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</a></code></pre></div>
-<div id="grammer-of-graphics-gg" class="section level2">
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-visualization-with-ggplot2.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div id="grammer-of-graphics-gg" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Grammer of Graphics (gg)</h2>
-<p>We have grammar for languages. We also have grammar for graphcis. That’s where <code>gg</code> of <code>ggplot2</code> comes from. For <code>ggplot2</code>, it has seven grammatical elements listed in the table below <span class="citation">(DataCamp <a href="#ref-datacamp1">2019</a>)</span>.</p>
+<p>We have grammar for languages. We also have grammar for graphcis. That’s where <code>gg</code> of <code>ggplot2</code> comes from. For <code>ggplot2</code>, it has seven grammatical elements listed in the table below <span class="citation">(<a href="references.html#ref-datacamp1" role="doc-biblioref">DataCamp 2019</a>)</span>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -326,39 +350,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Let’s take the codes below as a simple example to show how those different elements work in <code>ggplot2</code>. From this example, we might have a general idea what is each element and how does it work. We will talk about each element in details later.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb266-2" title="2"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb266-3" title="3"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb266-4" title="4">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb266-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># Geometries</span></a>
-<a class="sourceLine" id="cb266-6" title="6"><span class="st">  </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>gear) <span class="op">+</span><span class="st"> </span><span class="co"># Facets</span></a>
-<a class="sourceLine" id="cb266-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Statistics</span></a>
-<a class="sourceLine" id="cb266-8" title="8"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&#39;Miles/(US) gallon&#39;</span>,</a>
-<a class="sourceLine" id="cb266-9" title="9">                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb266-10" title="10"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&#39;Weight (1000 lbs)&#39;</span>,</a>
-<a class="sourceLine" id="cb266-11" title="11">                     <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">7</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Coordinates</span></a>
-<a class="sourceLine" id="cb266-12" title="12"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="co"># Themes</span></a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-visualization-with-ggplot2.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb267-2"><a href="data-visualization-with-ggplot2.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb267-3"><a href="data-visualization-with-ggplot2.html#cb267-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="co"># Data</span></span>
+<span id="cb267-4"><a href="data-visualization-with-ggplot2.html#cb267-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span> <span class="co"># Aesthetics</span></span>
+<span id="cb267-5"><a href="data-visualization-with-ggplot2.html#cb267-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># Geometries</span></span>
+<span id="cb267-6"><a href="data-visualization-with-ggplot2.html#cb267-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> gear) <span class="sc">+</span> <span class="co"># Facets</span></span>
+<span id="cb267-7"><a href="data-visualization-with-ggplot2.html#cb267-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> <span class="co"># Statistics</span></span>
+<span id="cb267-8"><a href="data-visualization-with-ggplot2.html#cb267-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&#39;Miles/(US) gallon&#39;</span>,</span>
+<span id="cb267-9"><a href="data-visualization-with-ggplot2.html#cb267-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)) <span class="sc">+</span> </span>
+<span id="cb267-10"><a href="data-visualization-with-ggplot2.html#cb267-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&#39;Weight (1000 lbs)&#39;</span>,</span>
+<span id="cb267-11"><a href="data-visualization-with-ggplot2.html#cb267-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7</span>)) <span class="sc">+</span> <span class="co"># Coordinates</span></span>
+<span id="cb267-12"><a href="data-visualization-with-ggplot2.html#cb267-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="co"># Themes</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 </div>
-<div id="data-aesthetics-and-geometries" class="section level2">
+<div id="data-aesthetics-and-geometries" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Data, Aesthetics, and Geometries</h2>
 <p>Generally, if you want to draw figures with <code>ggplot2</code>, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the varialbes of <code>mpg</code> and <code>wp</code> (aesthetic) of the dataset <code>mtcars</code> (data) with a scatter plot (geometry).</p>
 <p>Similar to <code>dplyr</code>, <code>ggplot2</code> also has its own fashion of coding. We start with the <code>ggplot()</code> function. <strong>Please pay attention that there is no <code>2</code> in the name of the function</strong>. In the function, we first indicate the name of the dataset or data frame. Then we use <code>aes()</code> to indicate the scales we want to map our data. Here, we map <code>mpg</code> to x axis, and <code>wt</code> to y axis. Then we use a plus sign <code>+</code> to connect it to other functions. We are going to draw a scatter plot, so we use <code>geom_point()</code>.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb267-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb267-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># Geometries</span></a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-visualization-with-ggplot2.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="co"># Data</span></span>
+<span id="cb268-2"><a href="data-visualization-with-ggplot2.html#cb268-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span> <span class="co"># Aesthetics</span></span>
+<span id="cb268-3"><a href="data-visualization-with-ggplot2.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="co"># Geometries</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 <p>We could see the result and it is following our codes. Based on this plot, we have a overall idea of the relationship between <code>wt</code> and <code>mpg</code>, which is <code>wt</code> has a negative relationship with <code>mpg</code>. This result makes sense to us. If a car is lighter and it could drive farther with the same amount of gasoline. (Please remember that this relationship is just a type of correlation, not causality.)</p>
 <p>We could add more attributes in the aesthetic element. For example, we could use color to indicate the value of <code>hp</code> by adding <code>col = hp</code>.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1"><span class="kw">ggplot</span>(mtcars,</a>
-<a class="sourceLine" id="cb268-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">col =</span> hp)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb268-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-visualization-with-ggplot2.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,</span>
+<span id="cb269-2"><a href="data-visualization-with-ggplot2.html#cb269-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt, <span class="at">col =</span> hp)) <span class="sc">+</span></span>
+<span id="cb269-3"><a href="data-visualization-with-ggplot2.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 <p>Now we have more information in the result. While the weight is heavier, the hourse power is stronger.</p>
 <p>Here, <code>hp</code> is a continous variable, so <code>ggplot2</code> uses the darkness of the color to indicate the value. However, if we use a categorical varibable or a factor (e.g. binomial variable), <code>ggplot2</code> will use different colors to show different types.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" title="1"><span class="kw">ggplot</span>(mtcars,</a>
-<a class="sourceLine" id="cb269-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">col =</span> <span class="kw">factor</span>(am))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb269-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-visualization-with-ggplot2.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,</span>
+<span id="cb270-2"><a href="data-visualization-with-ggplot2.html#cb270-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt, <span class="at">col =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb270-3"><a href="data-visualization-with-ggplot2.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p>Here, <code>am</code> stands for the types of transmission system (0 = automatic, 1 = manual). We use <code>factor()</code> to transfer this variable to a categorical one. <code>ggplot2</code> uses one color for automatic transmission and another color for mannual transmission.</p>
 <p>Besides <code>color</code>, there are several other parameters to show different aesthetics of the plots. There are differences between the usages of continuous variable and categorical variable. If you want to map variables in those aesthetics, you have to do it in the <code>aes()</code> function.</p>
@@ -429,325 +453,318 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>As for geometries, there are many different types you can use for different plots. For examples, <code>geom_point()</code> for scatter plot, <code>geom_bar()</code> for bar plot, <code>geom_boxplot()</code> for boxplot, <em>etc</em>. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, <em>etc</em> in the following parts.</p>
-<div id="scatter-plot-1" class="section level3">
+<div id="scatter-plot-1" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Scatter plot</h3>
 <p>We use <code>geom_point()</code> to plot scatter plot in R with <code>ggplot2</code>. In the example below, we map <code>mpg</code> to x axis, and <code>wt</code> to y axis. We indicate the transparency by set <code>alpha = hp</code>. The transparency of each point is decided by its value of <code>hp</code>.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1"><span class="kw">ggplot</span>(mtcars,</a>
-<a class="sourceLine" id="cb270-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt, <span class="dt">alpha =</span> hp)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb270-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-visualization-with-ggplot2.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,</span>
+<span id="cb271-2"><a href="data-visualization-with-ggplot2.html#cb271-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt, <span class="at">alpha =</span> hp)) <span class="sc">+</span></span>
+<span id="cb271-3"><a href="data-visualization-with-ggplot2.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 </div>
-<div id="bar-plot-1" class="section level3">
+<div id="bar-plot-1" class="section level3" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Bar plot</h3>
 <p>In the example below, we draw a bar plot to show the number of cars with different tansmission systems. In <code>aes()</code>, we only indicate the variable <code>am</code>. R then will count the number for each transimission type. We use <code>geom_bar()</code> to plot it.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1"><span class="kw">ggplot</span>(mtcars,</a>
-<a class="sourceLine" id="cb271-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> am)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb271-3" title="3"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-visualization-with-ggplot2.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,</span>
+<span id="cb272-2"><a href="data-visualization-with-ggplot2.html#cb272-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> am)) <span class="sc">+</span></span>
+<span id="cb272-3"><a href="data-visualization-with-ggplot2.html#cb272-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 <p>Go back to our previous example, which is different from the example above.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1">year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1998</span><span class="op">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></a>
-<a class="sourceLine" id="cb272-2" title="2">sales &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></a>
-<a class="sourceLine" id="cb272-3" title="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(year, sales) <span class="co"># combine the variables into one data frame called df</span></a>
-<a class="sourceLine" id="cb272-4" title="4"></a>
-<a class="sourceLine" id="cb272-5" title="5"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> sales)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb272-6" title="6"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="co"># you need to specify stat = &#39;identity&#39; to plot the actual value for each year, not count</span></a></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="data-visualization-with-ggplot2.html#cb273-1" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1998</span><span class="sc">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></span>
+<span id="cb273-2"><a href="data-visualization-with-ggplot2.html#cb273-2" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></span>
+<span id="cb273-3"><a href="data-visualization-with-ggplot2.html#cb273-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(year, sales) <span class="co"># combine the variables into one data frame called df</span></span>
+<span id="cb273-4"><a href="data-visualization-with-ggplot2.html#cb273-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-5"><a href="data-visualization-with-ggplot2.html#cb273-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> sales)) <span class="sc">+</span></span>
+<span id="cb273-6"><a href="data-visualization-with-ggplot2.html#cb273-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="co"># you need to specify stat = &#39;identity&#39; to plot the actual value for each year, not count</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 <p>Or you could use another geometry called <code>geom_col()</code> to do it easily.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> sales)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb273-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-visualization-with-ggplot2.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> sales)) <span class="sc">+</span></span>
+<span id="cb274-2"><a href="data-visualization-with-ggplot2.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 </div>
-<div id="line-plot-1" class="section level3">
+<div id="line-plot-1" class="section level3" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> Line plot</h3>
 <p>To show the usage of line plot in <code>ggplot2</code>, we use a new dataset <code>economics</code> from the <code>ggplot2</code> package. This dataset is produced from US economic time series data. Use <code>help()</code> to check more information of this dataset.</p>
 <p>In this example, we use <code>geom_line()</code> to draw a line plot.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="kw">data</span>(economics)</a>
-<a class="sourceLine" id="cb274-2" title="2"><span class="kw">ggplot</span>(economics,</a>
-<a class="sourceLine" id="cb274-3" title="3">       <span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb274-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">col =</span> <span class="st">&#39;Blue&#39;</span>) <span class="co"># indicate the color of the line by setting col = &#39;Blue&#39;</span></a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-visualization-with-ggplot2.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(economics)</span>
+<span id="cb275-2"><a href="data-visualization-with-ggplot2.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(economics,</span>
+<span id="cb275-3"><a href="data-visualization-with-ggplot2.html#cb275-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy)) <span class="sc">+</span></span>
+<span id="cb275-4"><a href="data-visualization-with-ggplot2.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&#39;Blue&#39;</span>) <span class="co"># indicate the color of the line by setting col = &#39;Blue&#39;</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <p>In this plot, it shows clearly the temporal trend of the number of unemployed population in the US. There two increase recently starting from 2001 and 2008, which match two economic risks around 2001 and 2008.</p>
 </div>
-<div id="boxplot-1" class="section level3">
+<div id="boxplot-1" class="section level3" number="7.2.4">
 <h3><span class="header-section-number">7.2.4</span> Boxplot</h3>
 <p>In the example below, we draw a boxplot for each transmission type. To do this, we map <code>am</code> to the x axis, and <code>mpg</code> to the y axis. We use <code>as.factor()</code> to transfer <code>am</code> to a factor (categorical variable).</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(am), <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb275-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-visualization-with-ggplot2.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(am), <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb276-2"><a href="data-visualization-with-ggplot2.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 </div>
-<div id="pie-chart-1" class="section level3">
+<div id="pie-chart-1" class="section level3" number="7.2.5">
 <h3><span class="header-section-number">7.2.5</span> Pie chart</h3>
 <p>In <code>ggplot2</code>, it is not as intuitive as the base function <code>pie()</code> to draw a pie chart. We use the same example to see the difference.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1">year &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1998</span><span class="op">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></a>
-<a class="sourceLine" id="cb276-2" title="2">sales &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></a>
-<a class="sourceLine" id="cb276-3" title="3">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(year, sales) <span class="co"># combine the variables into one data frame called df</span></a>
-<a class="sourceLine" id="cb276-4" title="4"></a>
-<a class="sourceLine" id="cb276-5" title="5"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&#39;&#39;</span>, <span class="dt">y =</span> sales, <span class="dt">fill =</span> <span class="kw">factor</span>(year))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb276-6" title="6"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb276-7" title="7"><span class="st">  </span><span class="kw">coord_polar</span>(<span class="st">&#39;y&#39;</span>) <span class="co"># transfer the coordinate system to the polar one</span></a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-visualization-with-ggplot2.html#cb277-1" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1998</span><span class="sc">:</span><span class="dv">2003</span>) <span class="co"># create variable year</span></span>
+<span id="cb277-2"><a href="data-visualization-with-ggplot2.html#cb277-2" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>, <span class="dv">400</span>, <span class="dv">550</span>) <span class="co"># create variable sales</span></span>
+<span id="cb277-3"><a href="data-visualization-with-ggplot2.html#cb277-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(year, sales) <span class="co"># combine the variables into one data frame called df</span></span>
+<span id="cb277-4"><a href="data-visualization-with-ggplot2.html#cb277-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-5"><a href="data-visualization-with-ggplot2.html#cb277-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sales, <span class="at">fill =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb277-6"><a href="data-visualization-with-ggplot2.html#cb277-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb277-7"><a href="data-visualization-with-ggplot2.html#cb277-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&#39;y&#39;</span>) <span class="co"># transfer the coordinate system to the polar one</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <p>What<code>ggplot2</code> does here to draw a pie plot is to create a bar plot first.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&#39;&#39;</span>, <span class="dt">y =</span> sales, <span class="dt">fill =</span> <span class="kw">factor</span>(year))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb277-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-visualization-with-ggplot2.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sales, <span class="at">fill =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb278-2"><a href="data-visualization-with-ggplot2.html#cb278-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 <p>And then transfer the coordinate system to the polar one.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&#39;&#39;</span>, <span class="dt">y =</span> sales, <span class="dt">fill =</span> <span class="kw">factor</span>(year))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb278-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb278-3" title="3"><span class="st">  </span><span class="kw">coord_polar</span>(<span class="st">&#39;y&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="data-visualization-with-ggplot2.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sales, <span class="at">fill =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb279-2"><a href="data-visualization-with-ggplot2.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb279-3"><a href="data-visualization-with-ggplot2.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&#39;y&#39;</span>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 </div>
 </div>
-<div id="facets" class="section level2">
+<div id="facets" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Facets</h2>
 <p>If you want to split up your data by one or more variables and plot each subset in one figure, <code>facet</code> is the element you want to use.</p>
 <p>In the following example, we draw a scatter plot for each number of forward gears. In each plot, we map <code>mpg</code> to the x axis and <code>wt</code> to y axis. The three plots are aligned in a row.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="co"># store the plot result in variable p</span></a>
-<a class="sourceLine" id="cb279-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt))</a>
-<a class="sourceLine" id="cb279-3" title="3">  <span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-visualization-with-ggplot2.html#cb280-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="co"># store the plot result in variable p</span></span>
+<span id="cb280-2"><a href="data-visualization-with-ggplot2.html#cb280-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt))</span>
+<span id="cb280-3"><a href="data-visualization-with-ggplot2.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <pre><code>## geom_point: na.rm = FALSE
 ## stat_identity: na.rm = FALSE
 ## position_identity</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>gear) <span class="co"># Facets, for each number of foward gears</span></a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-visualization-with-ggplot2.html#cb282-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(. <span class="sc">~</span> gear) <span class="co"># Facets, for each number of foward gears</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>If we want to align the plots in a column, exchange the position of the varialbe in the function.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"> p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(gear <span class="op">~</span><span class="st"> </span>.) <span class="co"># Facets, pay attention to the position of gear and the dot sign</span></a></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-visualization-with-ggplot2.html#cb283-1" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span> <span class="fu">facet_grid</span>(gear <span class="sc">~</span> .) <span class="co"># Facets, pay attention to the position of gear and the dot sign</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>We could put more variables to split the plots. In the following example, we put one more variable <code>vs</code> in the <code>facet_grid()</code>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(vs <span class="op">~</span><span class="st"> </span>gear) <span class="co"># add vs</span></a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="data-visualization-with-ggplot2.html#cb284-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(vs <span class="sc">~</span> gear) <span class="co"># add vs</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>We could use the <code>margins = T</code> to add more plots showing the aggregation of the plots in each column or row.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(vs <span class="op">~</span><span class="st"> </span>gear, <span class="dt">margins =</span> T) <span class="co"># add aggregation plots for each row and column</span></a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="data-visualization-with-ggplot2.html#cb285-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(vs <span class="sc">~</span> gear, <span class="at">margins =</span> T) <span class="co"># add aggregation plots for each row and column</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 <p>We could use <code>labeller = label_both</code> to add more information in the label.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(vs <span class="op">~</span><span class="st"> </span>gear, <span class="dt">labeller =</span> label_both) <span class="co"># add more info in the label</span></a></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="data-visualization-with-ggplot2.html#cb286-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(vs <span class="sc">~</span> gear, <span class="at">labeller =</span> label_both) <span class="co"># add more info in the label</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 </div>
-<div id="statistics" class="section level2">
+<div id="statistics" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> Statistics</h2>
 <p>You could fit a line to see the general trend of the scatter plot by adding <code>stat_smooth()</code>.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars,</a>
-<a class="sourceLine" id="cb286-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb286-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() </a>
-<a class="sourceLine" id="cb286-4" title="4">p <span class="op">+</span><span class="st"> </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="co"># linear line</span></a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="data-visualization-with-ggplot2.html#cb287-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars,</span>
+<span id="cb287-2"><a href="data-visualization-with-ggplot2.html#cb287-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
+<span id="cb287-3"><a href="data-visualization-with-ggplot2.html#cb287-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span>
+<span id="cb287-4"><a href="data-visualization-with-ggplot2.html#cb287-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="co"># linear line</span></span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="co"># non-linear line</span></a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="data-visualization-with-ggplot2.html#cb289-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="co"># non-linear line</span></span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>You could draw a histogram for the dataset.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(mpg))</a>
-<a class="sourceLine" id="cb288-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>) <span class="co"># the width of each category is 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="data-visualization-with-ggplot2.html#cb291-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(mpg))</span>
+<span id="cb291-2"><a href="data-visualization-with-ggplot2.html#cb291-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="co"># the width of each category is 5</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1">p <span class="op">+</span><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">3</span>) <span class="co"># the number of bins is 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="data-visualization-with-ggplot2.html#cb292-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">3</span>) <span class="co"># the number of bins is 3</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>You could fit a denisty line for the histogram.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>( <span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&#39;Black&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;White&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># use density instead of count</span></a>
-<a class="sourceLine" id="cb290-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">2</span>, <span class="dt">fill=</span><span class="st">&quot;Gray&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="data-visualization-with-ggplot2.html#cb293-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>( <span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;Black&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;White&#39;</span>) <span class="sc">+</span> <span class="co"># use density instead of count</span></span>
+<span id="cb293-2"><a href="data-visualization-with-ggplot2.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">fill=</span><span class="st">&quot;Gray&quot;</span>) </span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>Another way to show more statistics about your data is boxplot, which we have been introduced before.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(gear), <span class="dt">y =</span> mpg))</a>
-<a class="sourceLine" id="cb291-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="data-visualization-with-ggplot2.html#cb294-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(gear), <span class="at">y =</span> mpg))</span>
+<span id="cb294-2"><a href="data-visualization-with-ggplot2.html#cb294-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 </div>
-<div id="coordinates" class="section level2">
+<div id="coordinates" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Coordinates</h2>
 <p>While there are many coordinate systems supported by <code>ggplot2</code>, the most commonly used is Cartesian coordinate system, which is the combination of x axis and y axis orthogonally.</p>
-<div id="zooming-in-and-out" class="section level3">
+<div id="zooming-in-and-out" class="section level3" number="7.5.1">
 <h3><span class="header-section-number">7.5.1</span> Zooming in and out</h3>
 <p>In the following example, we zoom in our plot to a specific area.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb292-2" title="2"><span class="st">      </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb292-3" title="3">p <span class="op">+</span><span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">30</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="data-visualization-with-ggplot2.html#cb295-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
+<span id="cb295-2"><a href="data-visualization-with-ggplot2.html#cb295-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>()</span>
+<span id="cb295-3"><a href="data-visualization-with-ggplot2.html#cb295-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">30</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 </div>
-<div id="ratio" class="section level3">
+<div id="ratio" class="section level3" number="7.5.2">
 <h3><span class="header-section-number">7.5.2</span> Ratio</h3>
 <p>We could change the ratio of the length of a y unit relative to the length of a x unit (<span class="math inline">\(\frac{\text{y unit}}{\text{x unit}}\)</span>).</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb293-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb293-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb293-4" title="4">p <span class="op">+</span><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">1</span>) <span class="co"># 1 means x and y axes have the same unit</span></a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="data-visualization-with-ggplot2.html#cb296-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="co"># Data</span></span>
+<span id="cb296-2"><a href="data-visualization-with-ggplot2.html#cb296-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span> <span class="co"># Aesthetics</span></span>
+<span id="cb296-3"><a href="data-visualization-with-ggplot2.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb296-4"><a href="data-visualization-with-ggplot2.html#cb296-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span>  <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="co"># 1 means x and y axes have the same unit</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-visualization-with-ggplot2.html#cb297-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 </div>
-<div id="swaping-the-axes" class="section level3">
+<div id="swaping-the-axes" class="section level3" number="7.5.3">
 <h3><span class="header-section-number">7.5.3</span> Swaping the axes</h3>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="data-visualization-with-ggplot2.html#cb298-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(am), <span class="dt">y =</span> mpg)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb296-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb296-3" title="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-visualization-with-ggplot2.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(am), <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb299-2"><a href="data-visualization-with-ggplot2.html#cb299-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb299-3"><a href="data-visualization-with-ggplot2.html#cb299-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="co"># Data</span></a>
-<a class="sourceLine" id="cb297-2" title="2">       <span class="kw">aes</span>(gear)) <span class="op">+</span><span class="st"> </span><span class="co"># Aesthetics</span></a>
-<a class="sourceLine" id="cb297-3" title="3"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb297-4" title="4"><span class="st">  </span><span class="kw">scale_y_reverse</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="data-visualization-with-ggplot2.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="co"># Data</span></span>
+<span id="cb300-2"><a href="data-visualization-with-ggplot2.html#cb300-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(gear)) <span class="sc">+</span> <span class="co"># Aesthetics</span></span>
+<span id="cb300-3"><a href="data-visualization-with-ggplot2.html#cb300-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb300-4"><a href="data-visualization-with-ggplot2.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 </div>
-<div id="polar-coordinate-system" class="section level3">
+<div id="polar-coordinate-system" class="section level3" number="7.5.4">
 <h3><span class="header-section-number">7.5.4</span> Polar coordinate system</h3>
 <p>We touched the polar coordinate system a little bit when drawing a pie chart.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">&#39;&#39;</span>, <span class="dt">fill =</span> <span class="kw">factor</span>(gear))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb298-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb298-3" title="3"><span class="st">  </span><span class="kw">coord_polar</span>(<span class="dt">theta =</span> <span class="st">&#39;y&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="data-visualization-with-ggplot2.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">fill =</span> <span class="fu">factor</span>(gear))) <span class="sc">+</span></span>
+<span id="cb301-2"><a href="data-visualization-with-ggplot2.html#cb301-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb301-3"><a href="data-visualization-with-ggplot2.html#cb301-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&#39;y&#39;</span>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
 <p>We could do this in a different way.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="kw">factor</span>(gear))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb299-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">width =</span> <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&#39;Black&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;Grey&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb299-3" title="3"><span class="st">  </span><span class="kw">coord_polar</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="data-visualization-with-ggplot2.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(gear))) <span class="sc">+</span></span>
+<span id="cb302-2"><a href="data-visualization-with-ggplot2.html#cb302-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&#39;Black&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;Grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb302-3"><a href="data-visualization-with-ggplot2.html#cb302-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
 </div>
 </div>
-<div id="themes" class="section level2">
+<div id="themes" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Themes</h2>
 <p><code>ggplot2</code> is powerful in its flexibility of themes.</p>
-<div id="add-labels" class="section level3">
+<div id="add-labels" class="section level3" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Add labels</h3>
 <p>Add labels with <code>labs()</code> function.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> wt)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb300-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb300-3" title="3">p <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Plot 1&#39;</span>, <span class="co"># title of the plot</span></a>
-<a class="sourceLine" id="cb300-4" title="4">         <span class="dt">subtitle =</span> <span class="st">&#39;Subplot1&#39;</span>, <span class="co"># sub title</span></a>
-<a class="sourceLine" id="cb300-5" title="5">         <span class="dt">x =</span> <span class="st">&#39;Miles/(US) gallon&#39;</span>, <span class="co"># x label</span></a>
-<a class="sourceLine" id="cb300-6" title="6">         <span class="dt">y =</span> <span class="st">&#39;Weight (1000 lbs)&#39;</span>) <span class="co"># y label</span></a></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="data-visualization-with-ggplot2.html#cb303-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span></span>
+<span id="cb303-2"><a href="data-visualization-with-ggplot2.html#cb303-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb303-3"><a href="data-visualization-with-ggplot2.html#cb303-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Plot 1&#39;</span>, <span class="co"># title of the plot</span></span>
+<span id="cb303-4"><a href="data-visualization-with-ggplot2.html#cb303-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&#39;Subplot1&#39;</span>, <span class="co"># sub title</span></span>
+<span id="cb303-5"><a href="data-visualization-with-ggplot2.html#cb303-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&#39;Miles/(US) gallon&#39;</span>, <span class="co"># x label</span></span>
+<span id="cb303-6"><a href="data-visualization-with-ggplot2.html#cb303-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&#39;Weight (1000 lbs)&#39;</span>) <span class="co"># y label</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
 <p>Or use <code>ggtitle()</code>, <code>xlab()</code>, and <code>ylab()</code> instead.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&#39;Plot1&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb301-2" title="2"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Miles/(US) gallon&#39;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># x label</span></a>
-<a class="sourceLine" id="cb301-3" title="3"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Weight (1000 lbs)&#39;</span>) <span class="co"># y label</span></a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="data-visualization-with-ggplot2.html#cb304-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&#39;Plot1&#39;</span>) <span class="sc">+</span></span>
+<span id="cb304-2"><a href="data-visualization-with-ggplot2.html#cb304-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Miles/(US) gallon&#39;</span>) <span class="sc">+</span> <span class="co"># x label</span></span>
+<span id="cb304-3"><a href="data-visualization-with-ggplot2.html#cb304-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Weight (1000 lbs)&#39;</span>) <span class="co"># y label</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
 </div>
-<div id="change-ticks" class="section level3">
+<div id="change-ticks" class="section level3" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Change ticks</h3>
 <p>Here is an example of changing the ticks for a discrete variable.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(am), <span class="dt">y =</span> mpg))</a>
-<a class="sourceLine" id="cb302-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb302-3" title="3"><span class="st">    </span><span class="kw">scale_x_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Transmission&quot;</span>, <span class="co"># name of the x axis</span></a>
-<a class="sourceLine" id="cb302-4" title="4">                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&#39;Automatic&#39;</span>, <span class="st">&#39;Manual&#39;</span>)) <span class="co"># change 0 and 1 to automatic and manaual</span></a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="data-visualization-with-ggplot2.html#cb305-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(am), <span class="at">y =</span> mpg))</span>
+<span id="cb305-2"><a href="data-visualization-with-ggplot2.html#cb305-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb305-3"><a href="data-visualization-with-ggplot2.html#cb305-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Transmission&quot;</span>, <span class="co"># name of the x axis</span></span>
+<span id="cb305-4"><a href="data-visualization-with-ggplot2.html#cb305-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Automatic&#39;</span>, <span class="st">&#39;Manual&#39;</span>)) <span class="co"># change 0 and 1 to automatic and manaual</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 </div>
-<div id="theme-function" class="section level3">
+<div id="theme-function" class="section level3" number="7.6.3">
 <h3><span class="header-section-number">7.6.3</span> theme() function</h3>
-<p><code>theme()</code> function could help to change the styles of every components of the plots. Here are a few examples about it <span class="citation">(ggplot2 <a href="#ref-ggplot1">2019</a>)</span>.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> wt, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb303-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb303-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Fuel economy declines as weight increases&#39;</span>)</a>
-<a class="sourceLine" id="cb303-4" title="4">p <span class="co"># original plot</span></a></code></pre></div>
+<p><code>theme()</code> function could help to change the styles of every components of the plots. Here are a few examples about it <span class="citation">(<a href="references.html#ref-ggplot1" role="doc-biblioref">ggplot2 2019</a>)</span>.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="data-visualization-with-ggplot2.html#cb306-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb306-2"><a href="data-visualization-with-ggplot2.html#cb306-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb306-3"><a href="data-visualization-with-ggplot2.html#cb306-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Fuel economy declines as weight increases&#39;</span>)</span>
+<span id="cb306-4"><a href="data-visualization-with-ggplot2.html#cb306-4" aria-hidden="true" tabindex="-1"></a>p <span class="co"># original plot</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 <p>We could use <code>plot.title</code> to change the style of a title in the plot. In the following exmaple, we change the font size of the title by setting <code>element_text()</code> and making <code>size</code> to be twice larger as the default one.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">2</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="data-visualization-with-ggplot2.html#cb307-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">2</span>)))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p>We could also use absolute value to indicate the size directly.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="data-visualization-with-ggplot2.html#cb308-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <p>We could change the background of the plot by setting the value of <code>plot.background</code> in the <code>theme()</code> function. For example, if we want to change the color, we could set <code>element_rect()</code> and <code>fill = 'red'</code>.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&#39;red&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="data-visualization-with-ggplot2.html#cb309-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;red&#39;</span>))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
 <p>More specifically, if we want to change the style of the panel, which is the inner part restricted by x and y axes, we could set the value of <code>panel.background</code>.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&#39;green&#39;</span>, <span class="dt">colour =</span> <span class="st">&#39;red&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="data-visualization-with-ggplot2.html#cb310-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;green&#39;</span>, <span class="at">colour =</span> <span class="st">&#39;red&#39;</span>))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
 <p>We could set the line type of the panel’s border.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="data-visualization-with-ggplot2.html#cb311-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>, <span class="at">fill =</span> <span class="cn">NA</span>))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 <p>Change the attributes of the lines for the grid. <code>element_line()</code> stands for the attributes of the lines.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>),</a>
-<a class="sourceLine" id="cb309-2" title="2">          <span class="dt">panel.grid.minor =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;blue&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="data-visualization-with-ggplot2.html#cb312-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;black&#39;</span>),</span>
+<span id="cb312-2"><a href="data-visualization-with-ggplot2.html#cb312-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;blue&#39;</span>))</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 <p>Use <code>element_blank()</code> to remove the themes of the target.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb310-2" title="2">          <span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="data-visualization-with-ggplot2.html#cb313-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb313-2"><a href="data-visualization-with-ggplot2.html#cb313-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>We could put the gridline on the top of our data by setting <code>panel.ontop = TRUE</code>.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb311-2" title="2">  <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb311-3" title="3">  <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;Blue&#39;</span>),</a>
-<a class="sourceLine" id="cb311-4" title="4">  <span class="dt">panel.ontop =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb311-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="data-visualization-with-ggplot2.html#cb314-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb314-2"><a href="data-visualization-with-ggplot2.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>),</span>
+<span id="cb314-3"><a href="data-visualization-with-ggplot2.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&#39;Blue&#39;</span>),</span>
+<span id="cb314-4"><a href="data-visualization-with-ggplot2.html#cb314-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.ontop =</span> <span class="cn">TRUE</span></span>
+<span id="cb314-5"><a href="data-visualization-with-ggplot2.html#cb314-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 <p>Change the line style of the axis.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb312-2" title="2">  <span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">colour =</span> <span class="st">&#39;red&#39;</span>)</a>
-<a class="sourceLine" id="cb312-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="data-visualization-with-ggplot2.html#cb315-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb315-2"><a href="data-visualization-with-ggplot2.html#cb315-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">colour =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb315-3"><a href="data-visualization-with-ggplot2.html#cb315-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
 <p>Change the text style of the axis.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb313-2" title="2">  <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&#39;Green&#39;</span>, <span class="dt">size =</span> <span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb313-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="data-visualization-with-ggplot2.html#cb316-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb316-2"><a href="data-visualization-with-ggplot2.html#cb316-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">&#39;Green&#39;</span>, <span class="at">size =</span> <span class="dv">15</span>)</span>
+<span id="cb316-3"><a href="data-visualization-with-ggplot2.html#cb316-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <p>Change the attributes of the text for the axis ticks.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb314-2" title="2">  <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb314-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="data-visualization-with-ggplot2.html#cb317-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb317-2"><a href="data-visualization-with-ggplot2.html#cb317-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>)</span>
+<span id="cb317-3"><a href="data-visualization-with-ggplot2.html#cb317-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
 <p>And y label.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb315-2" title="2">  <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="fl">1.5</span>), <span class="dt">angle =</span> <span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb315-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="data-visualization-with-ggplot2.html#cb318-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb318-2"><a href="data-visualization-with-ggplot2.html#cb318-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">angle =</span> <span class="dv">30</span>)</span>
+<span id="cb318-3"><a href="data-visualization-with-ggplot2.html#cb318-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
 <p>Now, let’s see what we could do for the legend.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb316-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> <span class="kw">factor</span>(cyl), <span class="dt">shape =</span> <span class="kw">factor</span>(vs))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb316-3" title="3"><span class="st">  </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb316-4" title="4">    <span class="dt">x =</span> <span class="st">&#39;Weight (1000 lbs)&#39;</span>,</a>
-<a class="sourceLine" id="cb316-5" title="5">    <span class="dt">y =</span> <span class="st">&#39;Fuel economy (mpg)&#39;</span>,</a>
-<a class="sourceLine" id="cb316-6" title="6">    <span class="dt">colour =</span> <span class="st">&#39;Cylinders&#39;</span>,</a>
-<a class="sourceLine" id="cb316-7" title="7">    <span class="dt">shape =</span> <span class="st">&#39;Transmission system&#39;</span></a>
-<a class="sourceLine" id="cb316-8" title="8">  )</a>
-<a class="sourceLine" id="cb316-9" title="9">p</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="data-visualization-with-ggplot2.html#cb319-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
+<span id="cb319-2"><a href="data-visualization-with-ggplot2.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> <span class="fu">factor</span>(cyl), <span class="at">shape =</span> <span class="fu">factor</span>(vs))) <span class="sc">+</span></span>
+<span id="cb319-3"><a href="data-visualization-with-ggplot2.html#cb319-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb319-4"><a href="data-visualization-with-ggplot2.html#cb319-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;Weight (1000 lbs)&#39;</span>,</span>
+<span id="cb319-5"><a href="data-visualization-with-ggplot2.html#cb319-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;Fuel economy (mpg)&#39;</span>,</span>
+<span id="cb319-6"><a href="data-visualization-with-ggplot2.html#cb319-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&#39;Cylinders&#39;</span>,</span>
+<span id="cb319-7"><a href="data-visualization-with-ggplot2.html#cb319-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">&#39;Transmission system&#39;</span></span>
+<span id="cb319-8"><a href="data-visualization-with-ggplot2.html#cb319-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb319-9"><a href="data-visualization-with-ggplot2.html#cb319-9" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
 <p>Remove the legend by setting its postion as <code>legend.position = 'none'</code>.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb317-2" title="2">  <span class="dt">legend.position =</span> <span class="st">&#39;none&#39;</span></a>
-<a class="sourceLine" id="cb317-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="data-visualization-with-ggplot2.html#cb320-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb320-2"><a href="data-visualization-with-ggplot2.html#cb320-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span></span>
+<span id="cb320-3"><a href="data-visualization-with-ggplot2.html#cb320-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb318-2" title="2">  <span class="dt">legend.position =</span> <span class="st">&#39;top&#39;</span></a>
-<a class="sourceLine" id="cb318-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="data-visualization-with-ggplot2.html#cb321-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb321-2"><a href="data-visualization-with-ggplot2.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.position =</span> <span class="st">&#39;top&#39;</span></span>
+<span id="cb321-3"><a href="data-visualization-with-ggplot2.html#cb321-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>By setting <code>legend.justification</code> for the legend, we anchor point for positioning legend inside plot (“center” or two-element numeric vector) or the justification according to the plot area when positioned outside the plot</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb319-2" title="2">  <span class="dt">legend.justification =</span> <span class="st">&#39;top&#39;</span></a>
-<a class="sourceLine" id="cb319-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="data-visualization-with-ggplot2.html#cb322-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb322-2"><a href="data-visualization-with-ggplot2.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.justification =</span> <span class="st">&#39;top&#39;</span></span>
+<span id="cb322-3"><a href="data-visualization-with-ggplot2.html#cb322-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb320-2" title="2">  <span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">95</span>, <span class="fl">.95</span>),</a>
-<a class="sourceLine" id="cb320-3" title="3">  <span class="dt">legend.justification =</span> <span class="kw">c</span>(<span class="st">&#39;right&#39;</span>, <span class="st">&#39;top&#39;</span>),</a>
-<a class="sourceLine" id="cb320-4" title="4">  <span class="dt">legend.box.just =</span> <span class="st">&#39;right&#39;</span></a>
-<a class="sourceLine" id="cb320-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="data-visualization-with-ggplot2.html#cb323-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb323-2"><a href="data-visualization-with-ggplot2.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">95</span>, .<span class="dv">95</span>),</span>
+<span id="cb323-3"><a href="data-visualization-with-ggplot2.html#cb323-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">&#39;right&#39;</span>, <span class="st">&#39;top&#39;</span>),</span>
+<span id="cb323-4"><a href="data-visualization-with-ggplot2.html#cb323-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.just =</span> <span class="st">&#39;right&#39;</span></span>
+<span id="cb323-5"><a href="data-visualization-with-ggplot2.html#cb323-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb321-2" title="2">  <span class="dt">legend.box.background =</span> <span class="kw">element_rect</span>(),</a>
-<a class="sourceLine" id="cb321-3" title="3">  <span class="dt">legend.box.margin =</span> <span class="kw">margin</span>(<span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb321-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="data-visualization-with-ggplot2.html#cb324-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb324-2"><a href="data-visualization-with-ggplot2.html#cb324-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(),</span>
+<span id="cb324-3"><a href="data-visualization-with-ggplot2.html#cb324-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>)</span>
+<span id="cb324-4"><a href="data-visualization-with-ggplot2.html#cb324-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <p>Set attributes for the key of the legend.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb322-2" title="2">  <span class="dt">legend.key =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">colour =</span> <span class="st">&#39;black&#39;</span>)</a>
-<a class="sourceLine" id="cb322-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="data-visualization-with-ggplot2.html#cb325-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb325-2"><a href="data-visualization-with-ggplot2.html#cb325-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&#39;white&#39;</span>, <span class="at">colour =</span> <span class="st">&#39;black&#39;</span>)</span>
+<span id="cb325-3"><a href="data-visualization-with-ggplot2.html#cb325-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 <p>Set attributes for the text of the legend.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb323-2" title="2">  <span class="dt">legend.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>, <span class="dt">colour =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">face =</span> <span class="st">&#39;bold&#39;</span>)</a>
-<a class="sourceLine" id="cb323-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="data-visualization-with-ggplot2.html#cb326-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(</span>
+<span id="cb326-2"><a href="data-visualization-with-ggplot2.html#cb326-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">colour =</span> <span class="st">&#39;red&#39;</span>, <span class="at">face =</span> <span class="st">&#39;bold&#39;</span>)</span>
+<span id="cb326-3"><a href="data-visualization-with-ggplot2.html#cb326-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
 <p>If you do not like to customize the theme one element by one element. <code>ggplot2</code> also provides some function which give you a complete theme. For example, the <code>theme_bw()</code> we used at the start of this lecture.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="data-visualization-with-ggplot2.html#cb327-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="data-visualization-with-ggplot2.html#cb328-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_dark</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="data-visualization-with-ggplot2.html#cb329-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_dark</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <p>Please check <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here</a> for more complete theme.</p>
 
 </div>
-</div>
-</div>
-<h3> References</h3>
-<div id="refs" class="references">
-<div id="ref-datacamp1">
-<p>DataCamp. 2019. “Data Visualization with Ggplot2.” November 3, 2019. <a href="https://www.datacamp.com/courses/data-visualization-with-ggplot2-1">https://www.datacamp.com/courses/data-visualization-with-ggplot2-1</a>.</p>
-</div>
-<div id="ref-ggplot1">
-<p>ggplot2. 2019. “Modify Components of a Theme.” November 5, 2019. <a href="https://ggplot2.tidyverse.org/reference/theme.html">https://ggplot2.tidyverse.org/reference/theme.html</a>.</p>
 </div>
 </div>
             </section>
@@ -761,11 +778,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -773,12 +792,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -790,6 +808,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

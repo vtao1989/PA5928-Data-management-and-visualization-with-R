@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Spatial Data Visualization | PA 5928 Data Management &amp; Visualization with R</title>
   <meta name="description" content="This is the website for couse PA 5928 in the University of Minnesota" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Spatial Data Visualization | PA 5928 Data Management &amp; Visualization with R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tao Tao (University of Minnesota)" />
 
 
-<meta name="date" content="2020-05-30" />
+<meta name="date" content="2021-02-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="exploratory-data-analysis.html"/>
 <link rel="next" href="statistics-in-r.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +41,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -50,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -128,7 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">PA 5928 Data Management & Visualization with R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Course Syllabus</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-prerequisites"><i class="fa fa-check"></i><b>1.2</b> Course Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#logistics"><i class="fa fa-check"></i><b>1.3</b> Logistics</a></li>
@@ -136,13 +142,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#in-class-exercise-and-final-project"><i class="fa fa-check"></i><b>1.5</b> In-class exercise and final project</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#course-schedule-tentative"><i class="fa fa-check"></i><b>1.6</b> Course Schedule (Tentative)</a></li>
 <li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#homework-and-projects-collaboration-and-submission-policy"><i class="fa fa-check"></i><b>1.7</b> Homework and projects collaboration and submission policy</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a><ul>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#some-results-from-the-online-survey"><i class="fa fa-check"></i><b>1.8</b> Some results from the online survey</a>
+<ul>
 <li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#question-1"><i class="fa fa-check"></i><b>1.8.1</b> Question 1</a></li>
 <li class="chapter" data-level="1.8.2" data-path="index.html"><a href="index.html#question-2"><i class="fa fa-check"></i><b>1.8.2</b> Question 2</a></li>
 <li class="chapter" data-level="1.8.3" data-path="index.html"><a href="index.html#question-3"><i class="fa fa-check"></i><b>1.8.3</b> Question 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a><ul>
+<li class="chapter" data-level="2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to RStudio</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-r"><i class="fa fa-check"></i><b>2.1</b> What is R</a></li>
 <li class="chapter" data-level="2.2" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#what-is-rstudio"><i class="fa fa-check"></i><b>2.2</b> What is RStudio</a></li>
 <li class="chapter" data-level="2.3" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#install-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Install R + RStudio</a></li>
@@ -153,9 +161,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#make-notes"><i class="fa fa-check"></i><b>2.8</b> Make notes</a></li>
 <li class="chapter" data-level="2.9" data-path="introduction-to-rstudio.html"><a href="introduction-to-rstudio.html#tips"><i class="fa fa-check"></i><b>2.9</b> Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#variable-types"><i class="fa fa-check"></i><b>3.1</b> Variable types</a></li>
-<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a><ul>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#operations"><i class="fa fa-check"></i><b>3.2</b> Operations</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assignment-operations"><i class="fa fa-check"></i><b>3.2.1</b> Assignment operations</a></li>
 <li class="chapter" data-level="3.2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#arithmetic-operations"><i class="fa fa-check"></i><b>3.2.2</b> Arithmetic operations</a></li>
 <li class="chapter" data-level="3.2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#relational-operations"><i class="fa fa-check"></i><b>3.2.3</b> Relational operations</a></li>
@@ -166,8 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#loops"><i class="fa fa-check"></i><b>3.5</b> Loops</a></li>
 <li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#functions"><i class="fa fa-check"></i><b>3.6</b> Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a><ul>
-<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a><ul>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with Base Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-and-save-datasets"><i class="fa fa-check"></i><b>4.1</b> Import and save datasets</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#import-data"><i class="fa fa-check"></i><b>4.1.1</b> Import data</a></li>
 <li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#save-file"><i class="fa fa-check"></i><b>4.1.2</b> Save file</a></li>
 <li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#file-location"><i class="fa fa-check"></i><b>4.1.3</b> File location</a></li>
@@ -180,7 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#merge-two-datasets"><i class="fa fa-check"></i><b>4.7</b> Merge two datasets</a></li>
 <li class="chapter" data-level="4.8" data-path="data-manipulation-with-base-functions.html"><a href="data-manipulation-with-base-functions.html#column-operation"><i class="fa fa-check"></i><b>4.8</b> Column operation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select"><i class="fa fa-check"></i><b>5.1</b> select()</a></li>
 <li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filter"><i class="fa fa-check"></i><b>5.2</b> filter()</a></li>
 <li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arrange"><i class="fa fa-check"></i><b>5.3</b> arrange()</a></li>
@@ -188,7 +201,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#group_by-and-summarise"><i class="fa fa-check"></i><b>5.5</b> group_by() and summarise()</a></li>
 <li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#join"><i class="fa fa-check"></i><b>5.6</b> join()</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a><ul>
+<li class="chapter" data-level="6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html"><i class="fa fa-check"></i><b>6</b> Data Visualization with Base Functions</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#scatter-plot"><i class="fa fa-check"></i><b>6.1</b> Scatter plot</a></li>
 <li class="chapter" data-level="6.2" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#line-plot"><i class="fa fa-check"></i><b>6.2</b> Line plot</a></li>
 <li class="chapter" data-level="6.3" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#bar-plot"><i class="fa fa-check"></i><b>6.3</b> Bar plot</a></li>
@@ -197,9 +211,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#boxplot"><i class="fa fa-check"></i><b>6.6</b> Boxplot</a></li>
 <li class="chapter" data-level="6.7" data-path="data-visualization-with-base-functions.html"><a href="data-visualization-with-base-functions.html#color-in-r"><i class="fa fa-check"></i><b>6.7</b> Color in R</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data Visualization with ggplot2</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#grammer-of-graphics-gg"><i class="fa fa-check"></i><b>7.1</b> Grammer of Graphics (gg)</a></li>
-<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a><ul>
+<li class="chapter" data-level="7.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#data-aesthetics-and-geometries"><i class="fa fa-check"></i><b>7.2</b> Data, Aesthetics, and Geometries</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#scatter-plot-1"><i class="fa fa-check"></i><b>7.2.1</b> Scatter plot</a></li>
 <li class="chapter" data-level="7.2.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#bar-plot-1"><i class="fa fa-check"></i><b>7.2.2</b> Bar plot</a></li>
 <li class="chapter" data-level="7.2.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#line-plot-1"><i class="fa fa-check"></i><b>7.2.3</b> Line plot</a></li>
@@ -208,19 +224,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#facets"><i class="fa fa-check"></i><b>7.3</b> Facets</a></li>
 <li class="chapter" data-level="7.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#statistics"><i class="fa fa-check"></i><b>7.4</b> Statistics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a><ul>
+<li class="chapter" data-level="7.5" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#coordinates"><i class="fa fa-check"></i><b>7.5</b> Coordinates</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#zooming-in-and-out"><i class="fa fa-check"></i><b>7.5.1</b> Zooming in and out</a></li>
 <li class="chapter" data-level="7.5.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#ratio"><i class="fa fa-check"></i><b>7.5.2</b> Ratio</a></li>
 <li class="chapter" data-level="7.5.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#swaping-the-axes"><i class="fa fa-check"></i><b>7.5.3</b> Swaping the axes</a></li>
 <li class="chapter" data-level="7.5.4" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#polar-coordinate-system"><i class="fa fa-check"></i><b>7.5.4</b> Polar coordinate system</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a><ul>
+<li class="chapter" data-level="7.6" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#themes"><i class="fa fa-check"></i><b>7.6</b> Themes</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#add-labels"><i class="fa fa-check"></i><b>7.6.1</b> Add labels</a></li>
 <li class="chapter" data-level="7.6.2" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#change-ticks"><i class="fa fa-check"></i><b>7.6.2</b> Change ticks</a></li>
 <li class="chapter" data-level="7.6.3" data-path="data-visualization-with-ggplot2.html"><a href="data-visualization-with-ggplot2.html#theme-function"><i class="fa fa-check"></i><b>7.6.3</b> theme() function</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="8" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Data Analysis</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#introduction-of-the-dataset-and-research-question"><i class="fa fa-check"></i><b>8.1</b> Introduction of the dataset and research question</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-munipulation"><i class="fa fa-check"></i><b>8.2</b> Data munipulation</a></li>
 <li class="chapter" data-level="8.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#data-visualization"><i class="fa fa-check"></i><b>8.3</b> Data visualization</a></li>
@@ -228,7 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-examples"><i class="fa fa-check"></i><b>8.5</b> More examples</a></li>
 <li class="chapter" data-level="8.6" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#more-more-example"><i class="fa fa-check"></i><b>8.6</b> More more example</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Visualization</a><ul>
+<li class="chapter" data-level="9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Visualization</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#why-spatial-visualization-with-r"><i class="fa fa-check"></i><b>9.1</b> Why spatial visualization with R?</a></li>
 <li class="chapter" data-level="9.2" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#some-basics-about-spatial-data"><i class="fa fa-check"></i><b>9.2</b> Some basics about spatial data</a></li>
 <li class="chapter" data-level="9.3" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#read-files"><i class="fa fa-check"></i><b>9.3</b> Read files</a></li>
@@ -239,8 +259,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.8" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#add-other-layers-to-the-current-plot"><i class="fa fa-check"></i><b>9.8</b> Add other layers to the current plot</a></li>
 <li class="chapter" data-level="9.9" data-path="spatial-data-visualization.html"><a href="spatial-data-visualization.html#geospatial-data-analysis"><i class="fa fa-check"></i><b>9.9</b> Geospatial data analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a><ul>
-<li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a><ul>
+<li class="chapter" data-level="10" data-path="statistics-in-r.html"><a href="statistics-in-r.html"><i class="fa fa-check"></i><b>10</b> Statistics in R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#simple-statistics"><i class="fa fa-check"></i><b>10.1</b> Simple statistics</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="statistics-in-r.html"><a href="statistics-in-r.html#mean-and-median"><i class="fa fa-check"></i><b>10.1.1</b> Mean and median</a></li>
 <li class="chapter" data-level="10.1.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#minimum-and-maximum-value"><i class="fa fa-check"></i><b>10.1.2</b> Minimum and maximum value</a></li>
 <li class="chapter" data-level="10.1.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#quantiles"><i class="fa fa-check"></i><b>10.1.3</b> Quantiles</a></li>
@@ -248,11 +270,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="statistics-in-r.html"><a href="statistics-in-r.html#linear-regression"><i class="fa fa-check"></i><b>10.2</b> Linear regression</a></li>
 <li class="chapter" data-level="10.3" data-path="statistics-in-r.html"><a href="statistics-in-r.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic regression</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous</a><ul>
+<li class="chapter" data-level="11" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>11</b> Miscellaneous</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="miscellaneous.html"><a href="miscellaneous.html#something-related-to-in-class-exercises-and-grading-rubic"><i class="fa fa-check"></i><b>11.1</b> Something related to in-class exercises and grading rubic</a></li>
 <li class="chapter" data-level="11.2" data-path="miscellaneous.html"><a href="miscellaneous.html#comparison-between-r-and-stata"><i class="fa fa-check"></i><b>11.2</b> Comparison between R and Stata</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>12</b> Final Project</a><ul>
+<li class="chapter" data-level="12" data-path="final-project.html"><a href="final-project.html"><i class="fa fa-check"></i><b>12</b> Final Project</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="final-project.html"><a href="final-project.html#description"><i class="fa fa-check"></i><b>12.1</b> Description</a></li>
 <li class="chapter" data-level="12.2" data-path="final-project.html"><a href="final-project.html#timeline"><i class="fa fa-check"></i><b>12.2</b> Timeline</a></li>
 <li class="chapter" data-level="12.3" data-path="final-project.html"><a href="final-project.html#proposal"><i class="fa fa-check"></i><b>12.3</b> Proposal</a></li>
@@ -280,15 +304,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="spatial-data-visualization" class="section level1">
+<div id="spatial-data-visualization" class="section level1" number="9">
 <h1><span class="header-section-number">Chapter 9</span> Spatial Data Visualization</h1>
 <p>In this chapter, we will learn how to deal with the geospatial dataset with packages <code>sf</code>. We will also interact it with <code>ggplot2</code>. <a href="Spatial_data_visualization_slides/spatial_data_visualization_R.html">Link</a> for the slides of this lecutre.</p>
-<div id="why-spatial-visualization-with-r" class="section level2">
+<div id="why-spatial-visualization-with-r" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Why spatial visualization with R?</h2>
 <p>The common solutions for creating maps include several GIS (Geographic Information System) softwares: ArcGIS, QGIS, <em>etc</em>. They are powerful in spatial data visualization and analysis. However, they do have some disadvantages, such as the workflow is not easy to reproduce, not good at statistical computing, <em>etc</em>. As R has more and more powerful packages that could deal with geospatial data, many researchers and practitioners start to use R in their work. Comparing ArcGIS (or QGIS) with R, is similiar with comparing Stata with R. Both of them have pros and cons. Whether or not you use them depends on your personal perference and task requirements.</p>
 <p>Then when we should use R to do spatial data visualization, not ArcGIS? Well, one situation is that you do not have access to ArcGIS (ArcGIS is not free), then R is a good choice for you. Another situation could be that you have used R for your data analysis and then you could continue to use R to do spatial visualization. You do not need to change the working environment in this case. Or if you want to make your work more reproducible, R is a good choice since its codes can be recycled for other similar work and you could check your codes to track your data analysis history.</p>
 </div>
-<div id="some-basics-about-spatial-data" class="section level2">
+<div id="some-basics-about-spatial-data" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Some basics about spatial data</h2>
 <p>Spatial data has some differences with our common data. The largest one is that it has spatial attributes for indicate locations. Those spatial attributes could be points, lines, or/and ploygon. It could also be the combination of these elements. Points could be the positions for a single-family house, an intersection, a bar, <em>etc</em>. Lines could be the segments streets, rivers, <em>etc</em>. Polygons could be the boundaries states, counties, cities, <em>etc</em>. As shown in the figure below <a href="https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/">Source</a>. While they are different spatial attributes, they are all combined with points.</p>
 <p><img src="Pics/spatial_data1.png" /></p>
@@ -298,78 +322,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Pics/CRS.PNG" /></p>
 <p>After reviewing some concepts for geospatial data. Let’s write some codes in R.</p>
 <p>Before start, let’s install the package first.</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1"><span class="kw">install.packages</span>(<span class="st">&#39;sf&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="spatial-data-visualization.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;sf&#39;</span>)</span></code></pre></div>
 <p>And import the package.</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="kw">library</span>(sf)</a></code></pre></div>
-<pre><code>## Linking to GEOS 3.6.1, GDAL 2.2.3, PROJ 4.9.3</code></pre>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="spatial-data-visualization.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
 </div>
-<div id="read-files" class="section level2">
+<div id="read-files" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Read files</h2>
 <p>The file format to store the spatial data is <strong>shapefile</strong>. We could import the shapefile with <code>st_read()</code> function into R.</p>
 <p>The dataset is from the <a href="https://gisdata.mn.gov/dataset/us-mn-state-metc-society-census2010realign">Minnesota Geospatial Commons</a>. It contains the geospatial information of the census tracts of the Twin Cities metro area.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1">map &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;Census2010RealignTract.shp&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="spatial-data-visualization.html#cb357-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&#39;Census2010RealignTract.shp&#39;</span>)</span></code></pre></div>
 <pre><code>## Reading layer `Census2010RealignTract&#39; from data source `C:\UMN\Course\R_course\PA5928-Data-management-and-visualization-with-R\Census2010RealignTract.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 708 features and 10 fields
 ## geometry type:  POLYGON
 ## dimension:      XY
 ## bbox:           xmin: 419967.5 ymin: 4924224 xmax: 521254.7 ymax: 5029010
-## epsg (SRID):    26915
-## proj4string:    +proj=utm +zone=15 +datum=NAD83 +units=m +no_defs</code></pre>
+## projected CRS:  NAD83 / UTM zone 15N</code></pre>
 <p>After running the codes, the console has shown some information about the shapefile we just read.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1"><span class="kw">class</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="spatial-data-visualization.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(map)</span></code></pre></div>
 <pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
 <p>With <code>class()</code>, we could check the type of the variable. It is both <code>sf</code> and <code>data.frame</code>. <code>sf</code> means the dataset is a type of geospatial data and contains some related information. <code>data.frame</code> means that the dataset is also a data frame and could be managed by many functions working on data frames.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">head</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="spatial-data-visualization.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(map)</span></code></pre></div>
 <pre><code>## Simple feature collection with 6 features and 10 fields
 ## geometry type:  POLYGON
 ## dimension:      XY
 ## bbox:           xmin: 427577.5 ymin: 4924224 xmax: 516478.2 ymax: 4949418
-## epsg (SRID):    26915
-## proj4string:    +proj=utm +zone=15 +datum=NAD83 +units=m +no_defs
-##   TRACT STATE  CO TRACTCE10       GEOID   ALAND10 AWATER10    Acres
-## 1 61502    27 037    061502 27037061502 149642919  4668565 38134.50
-## 2 61402    27 037    061402 27037061402 211963640  3786753 53258.86
-## 3 81200    27 139    081200 27139081200  90667239  3288582 23205.13
-## 4 61501    27 037    061501 27037061501 168761402  1932931 42132.88
-## 5 81100    27 139    081100 27139081100 183756089  3059699 46115.82
-## 6 81300    27 139    081300 27139081300 218177258  3688572 55189.04
-##   Shape_Leng Shape_Area                       geometry
-## 1   54449.32  154324840 POLYGON ((477636.4 4932330,...
-## 2   66036.81  215530975 POLYGON ((496883.5 4929115,...
-## 3   38782.40   93907812 POLYGON ((448700 4932487, 4...
-## 4   65971.67  170505702 POLYGON ((496863.3 4932245,...
-## 5   58071.16  186624108 POLYGON ((458497.9 4932388,...
-## 6   94116.03  223342132 POLYGON ((439064.1 4943284,...</code></pre>
+## projected CRS:  NAD83 / UTM zone 15N
+##   TRACT STATE  CO TRACTCE10       GEOID   ALAND10 AWATER10    Acres Shape_Leng
+## 1 61502    27 037    061502 27037061502 149642919  4668565 38134.50   54449.32
+## 2 61402    27 037    061402 27037061402 211963640  3786753 53258.86   66036.81
+## 3 81200    27 139    081200 27139081200  90667239  3288582 23205.13   38782.40
+## 4 61501    27 037    061501 27037061501 168761402  1932931 42132.88   65971.67
+## 5 81100    27 139    081100 27139081100 183756089  3059699 46115.82   58071.16
+## 6 81300    27 139    081300 27139081300 218177258  3688572 55189.04   94116.03
+##   Shape_Area                       geometry
+## 1  154324840 POLYGON ((477636.4 4932330,...
+## 2  215530975 POLYGON ((496883.5 4929115,...
+## 3   93907812 POLYGON ((448700 4932487, 4...
+## 4  170505702 POLYGON ((496863.3 4932245,...
+## 5  186624108 POLYGON ((458497.9 4932388,...
+## 6  223342132 POLYGON ((439064.1 4943284,...</code></pre>
 <p>With <code>head()</code>, we could see that there is a column called <code>geometry</code>. Every <code>sf</code> file will have this column, where stores the geospatial information of the observations. Other columns are just normal columns containing information for the observations.</p>
 <p>We could use <code>st_crs()</code> to check the CRS of the variable.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" title="1"><span class="kw">st_crs</span>(map)</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="spatial-data-visualization.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(map)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
-##   EPSG: 26915 
-##   proj4string: &quot;+proj=utm +zone=15 +datum=NAD83 +units=m +no_defs&quot;</code></pre>
+##   User input: NAD83 / UTM zone 15N 
+##   wkt:
+## PROJCRS[&quot;NAD83 / UTM zone 15N&quot;,
+##     BASEGEOGCRS[&quot;NAD83&quot;,
+##         DATUM[&quot;North American Datum 1983&quot;,
+##             ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4269]],
+##     CONVERSION[&quot;UTM zone 15N&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,0,
+##             ANGLEUNIT[&quot;Degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-93,
+##             ANGLEUNIT[&quot;Degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.9996,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,500000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;(E)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;(N)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     ID[&quot;EPSG&quot;,26915]]</code></pre>
 <p>Luckily, this variable contains the right CRS. For the maps in the area of Minnesota, the CRS is the one showing above, 26915 for <code>EPSG</code>.</p>
 <p>However, sometimes, the file does not have CRS information. You have to check the original source of the file and assign the right CRS to it.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1"><span class="kw">st_crs</span>(map) &lt;-<span class="st"> </span><span class="dv">26915</span></a></code></pre></div>
-<pre><code>## Warning: st_crs&lt;- : replacing crs does not reproject data; use st_transform
-## for that</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="spatial-data-visualization.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(map) <span class="ot">&lt;-</span> <span class="dv">26915</span></span></code></pre></div>
 <p>By doing this, there is a message telling that this function will not do the transformation for us. Sometimes, even if the file contains the right CRS, its CRS might be different from other files. <strong>If you want to map them in the same page or want to do geospatial data analysis among them, you have to transfer the CRSs of them to the same one. You could do this by using <code>st_transform()</code>.</strong></p>
 <p>We could use <code>ggplot2</code> to visualize the map. For simply mapping the polygons, we do not need to speficify <code>aes()</code>. And we use <code>geom_sf()</code> to plot map.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb359-2" title="2"></a>
-<a class="sourceLine" id="cb359-3" title="3"><span class="kw">ggplot</span>(map) <span class="op">+</span></a>
-<a class="sourceLine" id="cb359-4" title="4"><span class="st">  </span><span class="kw">geom_sf</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="spatial-data-visualization.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb366-2"><a href="spatial-data-visualization.html#cb366-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb366-3"><a href="spatial-data-visualization.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map) <span class="sc">+</span></span>
+<span id="cb366-4"><a href="spatial-data-visualization.html#cb366-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 </div>
-<div id="deal-with-spatial-data-like-data-frame" class="section level2">
+<div id="deal-with-spatial-data-like-data-frame" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Deal with spatial data like data frame</h2>
 <p>As the spatial data is also a data frame in R. We could use <code>dplyr</code> to deal with it. For example, select the column we want.</p>
 <p>The current spatial data <code>map</code> contains some variables we do not need, so we could select the useful ones by using <code>select()</code> function in <code>dplyr</code>. Please pay attention that we do not need to select the geometry column. It will be selected automatically. In this lecture, we only select GEOID, which is the ID for each area/tract.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb360-2" title="2">new_map &lt;-<span class="st"> </span>map <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb360-3" title="3"><span class="st">  </span><span class="kw">select</span>(GEOID)</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="spatial-data-visualization.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb367-2"><a href="spatial-data-visualization.html#cb367-2" aria-hidden="true" tabindex="-1"></a>new_map <span class="ot">&lt;-</span> map <span class="sc">%&gt;%</span></span>
+<span id="cb367-3"><a href="spatial-data-visualization.html#cb367-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID)</span></code></pre></div>
 <p>We could join other data to the current geospatial variable by the join functions in <code>dplyr</code>. Firstly, we import the data.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb361-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;data.csv&#39;</span>)</a></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="spatial-data-visualization.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb368-2"><a href="spatial-data-visualization.html#cb368-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data.csv&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   GEOID = col_double(),
 ##   POPTOTAL = col_double(),
@@ -418,80 +473,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">class</span>(new_map<span class="op">$</span>GEOID)</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="spatial-data-visualization.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(new_map<span class="sc">$</span>GEOID)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="kw">class</span>(data<span class="op">$</span>GEOID)</a></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="spatial-data-visualization.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>GEOID)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>We could join this data to the map by using the GEOID column. Before join operation, we have to transfer the GEOID to match the data type of GEOID in the map file. Currently, their types are different, one is factor and other is numeric. They have to be the same data type before joining.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1">data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb367-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">GEOID =</span> <span class="kw">factor</span>(GEOID))</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="spatial-data-visualization.html#cb374-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb374-2"><a href="spatial-data-visualization.html#cb374-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">factor</span>(GEOID))</span></code></pre></div>
 <p>Then, we do the join operation.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1">new_map &lt;-<span class="st"> </span>new_map <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb368-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(data, <span class="dt">by =</span> <span class="st">&#39;GEOID&#39;</span>)</a></code></pre></div>
-<pre><code>## Warning: Column `GEOID` joining factors with different levels, coercing to
-## character vector</code></pre>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="spatial-data-visualization.html#cb375-1" aria-hidden="true" tabindex="-1"></a>new_map <span class="ot">&lt;-</span> new_map <span class="sc">%&gt;%</span></span>
+<span id="cb375-2"><a href="spatial-data-visualization.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data, <span class="at">by =</span> <span class="st">&#39;GEOID&#39;</span>)</span></code></pre></div>
 <p>This message tells us that the levels of factors in the GEOIDs of the two files are different. This makes sense, since the data file has more observations, which also will have more levels.</p>
 </div>
-<div id="data-management" class="section level2">
+<div id="data-management" class="section level2" number="9.5">
 <h2><span class="header-section-number">9.5</span> Data management</h2>
 <p>We calculate the percentage of old people in each census tract.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1">new_map &lt;-<span class="st"> </span>new_map <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb370-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">old_percent =</span> AGE65UP<span class="op">/</span>POPTOTAL)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="spatial-data-visualization.html#cb376-1" aria-hidden="true" tabindex="-1"></a>new_map <span class="ot">&lt;-</span> new_map <span class="sc">%&gt;%</span></span>
+<span id="cb376-2"><a href="spatial-data-visualization.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">old_percent =</span> AGE65UP<span class="sc">/</span>POPTOTAL)</span></code></pre></div>
 </div>
-<div id="spatial-data-visualization-1" class="section level2">
+<div id="spatial-data-visualization-1" class="section level2" number="9.6">
 <h2><span class="header-section-number">9.6</span> Spatial data visualization</h2>
 <p>We could use <code>ggplot2</code> by its <code>geom_sf()</code> function.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(new_map, <span class="kw">aes</span>(<span class="dt">fill =</span> old_percent)) <span class="op">+</span><span class="st"> </span><span class="co"># use fill to indicate the variable you want to visualize</span></a>
-<a class="sourceLine" id="cb371-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>()</a>
-<a class="sourceLine" id="cb371-3" title="3">p</a></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="spatial-data-visualization.html#cb377-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(new_map, <span class="fu">aes</span>(<span class="at">fill =</span> old_percent)) <span class="sc">+</span> <span class="co"># use fill to indicate the variable you want to visualize</span></span>
+<span id="cb377-2"><a href="spatial-data-visualization.html#cb377-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span>
+<span id="cb377-3"><a href="spatial-data-visualization.html#cb377-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 <p>The color is not good, we could add <code>scale_fill_gradient()</code> to specify the colours we want.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="spatial-data-visualization.html#cb378-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">&#39;white&#39;</span>, <span class="at">high =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 <p>Again, we could add more information to make the figure better and more readable, and change the theme a little bit.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb373-2" title="2"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Distribution of old population in the Twin Cities area&#39;</span>,</a>
-<a class="sourceLine" id="cb373-3" title="3">       <span class="dt">fill =</span> <span class="st">&#39;Percentage&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb373-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="spatial-data-visualization.html#cb379-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">&#39;white&#39;</span>, <span class="at">high =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb379-2"><a href="spatial-data-visualization.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Distribution of old population in the Twin Cities area&#39;</span>,</span>
+<span id="cb379-3"><a href="spatial-data-visualization.html#cb379-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&#39;Percentage&#39;</span>) <span class="sc">+</span></span>
+<span id="cb379-4"><a href="spatial-data-visualization.html#cb379-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
 <p>Finally, we could use <code>ggsave()</code> to save the plot we want after we run the <code>ggplot()</code> function.</p>
 </div>
-<div id="more-example" class="section level2">
+<div id="more-example" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> More example</h2>
 <p>We could visualize the population directly in the map with <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">ggplot</span>(new_map, <span class="kw">aes</span>(<span class="dt">fill =</span> POPTOTAL)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb374-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">colour =</span> <span class="st">&#39;White&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb374-3" title="3"><span class="st">  </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">high =</span> <span class="st">&#39;Orange&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb374-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Distribution of population in the Twin Cities area&#39;</span>,</a>
-<a class="sourceLine" id="cb374-5" title="5">       <span class="dt">fill =</span> <span class="st">&#39;Population&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb374-6" title="6"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="spatial-data-visualization.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(new_map, <span class="fu">aes</span>(<span class="at">fill =</span> POPTOTAL)) <span class="sc">+</span></span>
+<span id="cb380-2"><a href="spatial-data-visualization.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">colour =</span> <span class="st">&#39;White&#39;</span>) <span class="sc">+</span></span>
+<span id="cb380-3"><a href="spatial-data-visualization.html#cb380-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">&#39;white&#39;</span>, <span class="at">high =</span> <span class="st">&#39;Orange&#39;</span>) <span class="sc">+</span></span>
+<span id="cb380-4"><a href="spatial-data-visualization.html#cb380-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Distribution of population in the Twin Cities area&#39;</span>,</span>
+<span id="cb380-5"><a href="spatial-data-visualization.html#cb380-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&#39;Population&#39;</span>) <span class="sc">+</span></span>
+<span id="cb380-6"><a href="spatial-data-visualization.html#cb380-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 </div>
-<div id="add-other-layers-to-the-current-plot" class="section level2">
+<div id="add-other-layers-to-the-current-plot" class="section level2" number="9.8">
 <h2><span class="header-section-number">9.8</span> Add other layers to the current plot</h2>
 <p>We could add other layers to the current plot. We import the spatial data of the transit routes in the metro area.</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1">transit_route &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&#39;TransitRoutes.shp&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="spatial-data-visualization.html#cb381-1" aria-hidden="true" tabindex="-1"></a>transit_route <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&#39;TransitRoutes.shp&#39;</span>)</span></code></pre></div>
 <pre><code>## Reading layer `TransitRoutes&#39; from data source `C:\UMN\Course\R_course\PA5928-Data-management-and-visualization-with-R\TransitRoutes.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 227 features and 32 fields
 ## geometry type:  MULTILINESTRING
 ## dimension:      XY
 ## bbox:           xmin: 409591 ymin: 4947433 xmax: 515317.7 ymax: 5046090
-## epsg (SRID):    26915
-## proj4string:    +proj=utm +zone=15 +datum=NAD83 +units=m +no_defs</code></pre>
+## projected CRS:  NAD83 / UTM zone 15N</code></pre>
 <p>We add the transit route layers to the current plot by adding one more <code>geom_sf()</code>.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1"><span class="kw">ggplot</span>(new_map) <span class="op">+</span></a>
-<a class="sourceLine" id="cb377-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb377-3" title="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> transit_route)</a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="spatial-data-visualization.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(new_map) <span class="sc">+</span></span>
+<span id="cb383-2"><a href="spatial-data-visualization.html#cb383-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb383-3"><a href="spatial-data-visualization.html#cb383-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> transit_route)</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <p>Add titles and themes to it.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1"><span class="kw">ggplot</span>(new_map) <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-2" title="2"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">colour =</span> <span class="st">&#39;Grey&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-3" title="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> transit_route, <span class="dt">colour =</span> <span class="st">&#39;Blue&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-4" title="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Transit route in the Twin Cities Metro area&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb378-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="spatial-data-visualization.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(new_map) <span class="sc">+</span></span>
+<span id="cb384-2"><a href="spatial-data-visualization.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">colour =</span> <span class="st">&#39;Grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb384-3"><a href="spatial-data-visualization.html#cb384-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> transit_route, <span class="at">colour =</span> <span class="st">&#39;Blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb384-4"><a href="spatial-data-visualization.html#cb384-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Transit route in the Twin Cities Metro area&#39;</span>) <span class="sc">+</span></span>
+<span id="cb384-5"><a href="spatial-data-visualization.html#cb384-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
 </div>
-<div id="geospatial-data-analysis" class="section level2">
+<div id="geospatial-data-analysis" class="section level2" number="9.9">
 <h2><span class="header-section-number">9.9</span> Geospatial data analysis</h2>
 <p>For those who are familiar with geospatial operations in ArcGIS, <code>sf</code> also provides functions to do geospatial data analysis, such as spatial join, intersect, clip, <em>etc</em>. For example, you could use <code>st_join()</code> to carry out spatial join, use <code>st_intersects()</code> to do intersect, and <code>st_intersection()</code> to do clip. You could find more <a href="https://r-spatial.github.io/sf/index.html">here</a>.</p>
 
@@ -508,11 +560,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -520,12 +574,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -537,6 +590,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
