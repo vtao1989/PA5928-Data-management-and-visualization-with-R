@@ -45,7 +45,7 @@ At the end of this course, students will be able to:
 * In-class exercise codes: 60%
 * Final project: 40%
 
-## Course Schedule (Tentative)
+## Course Schedule
 
 
 | #  | Date  | Topic                               | Notes |

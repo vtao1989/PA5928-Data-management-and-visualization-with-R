@@ -111,3 +111,4 @@ proposal
 data-analysis
 final-report
 references
+course-schedule
