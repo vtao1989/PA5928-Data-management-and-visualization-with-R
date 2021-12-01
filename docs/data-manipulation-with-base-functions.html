@@ -342,13 +342,13 @@ Besides importing data by codes, you could also import data with the system tool
 <div id="file-location" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> File location</h3>
 <p>As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.</p>
-<p>You could aovid this. First put your R file and dataset in the same folder. Then start the R file by double clicking. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.</p>
+<p>You could avoid this. First put your R file and dataset in the same folder. Then start the R file by double clicking. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.</p>
 <p>This is recommended. Since it will easier for others to check your codes since they do not need to change the path of the file.</p>
 </div>
 </div>
 <div id="view-data" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> View data</h2>
-<p>You could view the variable names and simple discription in the <code>Environment</code> pane on the right-top position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset <code>mtcars</code> as a example. By importing this dataset, use <code>data()</code> function.</p>
+<p>You could view the variable names and simple description in the <code>Environment</code> pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in new window. Here, we use the built-in dataset <code>mtcars</code> as a example. By importing this dataset, use <code>data()</code> function.</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-manipulation-with-base-functions.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span></code></pre></div>
 <p>You could also view the data in the new window by <code>View()</code> function. Please pay attention that it is initial-capitalized.</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-manipulation-with-base-functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(mtcars)</span></code></pre></div>
@@ -394,7 +394,7 @@ Besides importing data by codes, you could also import data with the system tool
 ##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
 ##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
 ##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
-<p>List the dimentions of the dataset</p>
+<p>List the dimensions of the dataset</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-manipulation-with-base-functions.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mtcars)</span></code></pre></div>
 <pre><code>## [1] 32 11</code></pre>
 <p>List the number of rows in the dataset</p>
@@ -480,7 +480,7 @@ Besides importing data by codes, you could also import data with the system tool
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-manipulation-with-base-functions.html#cb186-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
 <span id="cb186-2"><a href="data-manipulation-with-base-functions.html#cb186-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="cn">NA</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
 <span id="cb186-3"><a href="data-manipulation-with-base-functions.html#cb186-3" aria-hidden="true" tabindex="-1"></a>Score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="cn">NA</span>, <span class="dv">90</span>) <span class="co"># create variable Score</span></span>
-<span id="cb186-4"><a href="data-manipulation-with-base-functions.html#cb186-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score) <span class="co"># combine the varibles into one data frame called df</span></span>
+<span id="cb186-4"><a href="data-manipulation-with-base-functions.html#cb186-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score) <span class="co"># combine the variables into one data frame called df</span></span>
 <span id="cb186-5"><a href="data-manipulation-with-base-functions.html#cb186-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(df)</span></code></pre></div>
 <pre><code>##         ID  Name Score
 ## [1,] FALSE FALSE FALSE
@@ -536,7 +536,7 @@ Besides importing data by codes, you could also import data with the system tool
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-manipulation-with-base-functions.html#cb202-1" aria-hidden="true" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="co"># create variable ID</span></span>
 <span id="cb202-2"><a href="data-manipulation-with-base-functions.html#cb202-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
 <span id="cb202-3"><a href="data-manipulation-with-base-functions.html#cb202-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
-<span id="cb202-4"><a href="data-manipulation-with-base-functions.html#cb202-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the varibles into one data frame called df1</span></span>
+<span id="cb202-4"><a href="data-manipulation-with-base-functions.html#cb202-4" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1) <span class="co"># combine the variables into one data frame called df1</span></span>
 <span id="cb202-5"><a href="data-manipulation-with-base-functions.html#cb202-5" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>##   ID Name Score1
 ## 1  1    A   69.5
@@ -545,7 +545,7 @@ Besides importing data by codes, you could also import data with the system tool
 ## 4  4    D   90.0</code></pre>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-manipulation-with-base-functions.html#cb204-1" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;C&#39;</span>) <span class="co"># create variable Name</span></span>
 <span id="cb204-2"><a href="data-manipulation-with-base-functions.html#cb204-2" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>) <span class="co"># create variable Score2</span></span>
-<span id="cb204-3"><a href="data-manipulation-with-base-functions.html#cb204-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the varibles into one data frame called df2</span></span>
+<span id="cb204-3"><a href="data-manipulation-with-base-functions.html#cb204-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Name, Score2) <span class="co"># combine the variables into one data frame called df2</span></span>
 <span id="cb204-4"><a href="data-manipulation-with-base-functions.html#cb204-4" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
 <pre><code>##   Name Score2
 ## 1    A     98
@@ -575,7 +575,7 @@ Besides importing data by codes, you could also import data with the system tool
 <span id="cb210-2"><a href="data-manipulation-with-base-functions.html#cb210-2" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>) <span class="co"># create variable Name</span></span>
 <span id="cb210-3"><a href="data-manipulation-with-base-functions.html#cb210-3" aria-hidden="true" tabindex="-1"></a>Score1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">69.5</span>, <span class="fl">77.5</span>, <span class="dv">99</span>, <span class="dv">90</span>) <span class="co"># create variable Score1</span></span>
 <span id="cb210-4"><a href="data-manipulation-with-base-functions.html#cb210-4" aria-hidden="true" tabindex="-1"></a>Score2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">46</span>, <span class="dv">55</span>, <span class="dv">70</span>) <span class="co"># create variable Score2</span></span>
-<span id="cb210-5"><a href="data-manipulation-with-base-functions.html#cb210-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1, Score2) <span class="co"># combine the varibles into one data frame called df</span></span>
+<span id="cb210-5"><a href="data-manipulation-with-base-functions.html#cb210-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, Name, Score1, Score2) <span class="co"># combine the variables into one data frame called df</span></span>
 <span id="cb210-6"><a href="data-manipulation-with-base-functions.html#cb210-6" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   ID Name Score1 Score2
 ## 1  1    A   69.5     98

@@ -1,10 +1,10 @@
 # Spatial Data Visualization
 
-In this chapter, we will learn how to deal with the geospatial dataset with packages ``sf``. We will also interact it with ``ggplot2``. [Link](Spatial_data_visualization_slides/spatial_data_visualization_R.html) for the slides of this lecutre.
+In this chapter, we will learn how to deal with the geospatial dataset with packages ``sf``. We will also interact it with ``ggplot2``. [Link](Spatial_data_visualization_slides/spatial_data_visualization_R.html) for the slides of this lecture.
 
 ## Why spatial visualization with R?
 
-The common solutions for creating maps include several GIS (Geographic Information System) softwares: ArcGIS, QGIS, *etc*. They are powerful in spatial data visualization and analysis. However, they do have some disadvantages, such as the workflow is not easy to reproduce, not good at statistical computing, *etc*. As R has more and more powerful packages that could deal with geospatial data, many researchers and practitioners start to use R in their work. Comparing ArcGIS (or QGIS) with R, is similiar with comparing Stata with R. Both of them have pros and cons. Whether or not you use them depends on your personal perference and task requirements.
+The common solutions for creating maps include GIS (Geographic Information System) software: ArcGIS, QGIS, *etc*. They are powerful in spatial data visualization and analysis. However, they do have some disadvantages, such as the workflow is not easy to reproduce, not good at statistical computing, *etc*. As R has more and more powerful packages that could deal with geospatial data, many researchers and practitioners start to use R in their work. Comparing ArcGIS (or QGIS) with R, is similar with comparing Stata with R. Both of them have pros and cons. Whether or not you use them depends on your personal preference and task requirements.
 
 Then when we should use R to do spatial data visualization, not ArcGIS? Well, one situation is that you do not have access to ArcGIS (ArcGIS is not free), then R is a good choice for you. Another situation could be that you have used R for your data analysis and then you could continue to use R to do spatial visualization. You do not need to change the working environment in this case. Or if you want to make your work more reproducible, R is a good choice since its codes can be recycled for other similar work and you could check your codes to track your data analysis history.
 
@@ -14,11 +14,11 @@ Spatial data has some differences with our common data. The largest one is that 
 
 ![](Pics/spatial_data1.png)
 
-For a spatial data file in R, it is similar to the common dataset. It is a 2-D table with each column for a variable. The spatial data also has a column called ``geometry``. This is the variable indicating the spatial attributes. For example, for a spatial file including the points of several cities in Minnesota. Its geometry column will be the longitudes and latitudes of those points. If a spatial file contains the boundaries of the states in the U.S., then its geometry column will be the locations of the polygons. If a sptial data has the information of points, it is called point spatial data. If a spatial data has the information of lines, it is called line spatial data. If a spatial data has the information of polygons, it is called polygon data. A spatial data file can only include one type of spatial attribute.
+For a spatial data file in R, it is similar to the common dataset. It is a 2-D table with each column for a variable. The spatial data also has a column called ``geometry``. This is the variable indicating the spatial attributes. For example, for a spatial file including the points of several cities in Minnesota. Its geometry column will be the longitudes and latitudes of those points. If a spatial file contains the boundaries of the states in the U.S., then its geometry column will be the locations of the polygons. If a spatial data has the information of points, it is called point spatial data. If a spatial data has the information of lines, it is called line spatial data. If a spatial data has the information of polygons, it is called polygon data. A spatial data file can only include one type of spatial attribute.
 
 ![](Pics/spatial_data.PNG)
 
-For all geospatial varialbes, they should have a very important information called coordinate reference system (CRS). We will not expand the concept in this lecture. The simple idea is that it is the system to locate geographical entities. For example, you could use longitude and latitude to locate the position of everything on earth, which is a 3D sphere. Or you could use another type of CRS to locate the position of something in a 2D flattened map, as shown in the figure below ([Source](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/)). For the a same position, its indices will be different in different CRSs. There are two formats of CRS. One is ``EPSG`` and the other is ``proj4string``. ``EPSG`` is a conbination of numbers. ``proj4string`` contains variables and values. You could find more information about them in this [link](https://spatialreference.org/).
+For all geospatial variables, they should have a very important information called coordinate reference system (CRS). We will not expand the concept in this lecture. The simple idea is that it is the system to locate geographical entities. For example, you could use longitude and latitude to locate the position of everything on earth, which is a 3D sphere. Or you could use another type of CRS to locate the position of something in a 2D flattened map, as shown in the figure below ([Source](https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-to-coordinate-reference-systems/)). For the a same position, its indice will be different in different CRSs. There are two formats of CRS. One is ``EPSG`` and the other is ``proj4string``. ``EPSG`` is a combination of numbers. ``proj4string`` contains variables and values. You could find more information about them in this [link](https://spatialreference.org/).
 
 ![](Pics/CRS.PNG)
 
@@ -76,7 +76,7 @@ st_crs(map) <- 26915
 
 By doing this, there is a message telling that this function will not do the transformation for us. Sometimes, even if the file contains the right CRS, its CRS might be different from other files. **If you want to map them in the same page or want to do geospatial data analysis among them, you have to transfer the CRSs of them to the same one. You could do this by using ``st_transform()``.**
 
-We could use ``ggplot2`` to visualize the map. For simply mapping the polygons, we do not need to speficify ``aes()``. And we use ``geom_sf()`` to plot map.
+We could use ``ggplot2`` to visualize the map. For simply mapping the polygons, we do not need to specify ``aes()``. And we use ``geom_sf()`` to plot map.
 
 ```{r}
 library(ggplot2)

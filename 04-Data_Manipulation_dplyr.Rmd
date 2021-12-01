@@ -36,7 +36,7 @@ head(df, 3)
 
 The codes above is kind of a *traditional* way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use ``dplyr``.
 
-The codes below is a more ``dplyr`` way people use ``dplyr``. We start with the name of the data frame. Then, we put a speical sign ``%>%`` called ``pipe`` after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with ``head()`` functions. 
+The codes below is a more ``dplyr`` way people use ``dplyr``. We start with the name of the data frame. Then, we put a special sign ``%>%`` called ``pipe`` after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with ``head()`` functions. 
 
 ```{r}
 mtcars %>% # name of the data frame
@@ -44,7 +44,7 @@ mtcars %>% # name of the data frame
   head(3)
 ```
 
-We will keep using this fasion in the following lecutre.
+We will keep using this fashion in the following lecture.
 
 Besides choosing some columns you want, you could also exclude the column you do not want by putting a negative sign ``-`` before the variable.
 

@@ -22,7 +22,7 @@ Introductory statistics (regression is not necessary); ability to create bar gra
 ## Logistics
 
 Instructor: Tao Tao, taotao@umn.edu  
-Location: HHH 85  
+Location: HHH 85 Lab  
 Time: Starting 10/8: Tuesdays 9:45AM to 11:00AM   
 Office hours: Tuesday from 2:00 pm to 4:00 pm at HHH 271  
 Canvas: All course notes will be posted in this course website, but links will be provided on ``Canvas``. ``Canvas`` will also be used to submit your in-class exercises, final project, and grades.  So you only need to pay attention to ``Canvas`` to check everything!
@@ -64,7 +64,7 @@ At the end of this course, students will be able to:
 ## Homework and projects collaboration and submission policy
 
 1. **Students can discuss their works with other students, but must code and write up notes by themselves. [Plagiarism](https://communitystandards.umn.edu/content/plagiarism) is not allowed by the university policies. Please do be careful about this.**
-2. In-class exercises and projects should be submitted through **Canvas**. If you cannot attend the class, please write a email to the instuctor including a valid reason before the class. Then you can make up the in-class exercise in the following one week after the class.
+2. In-class exercises and projects should be submitted through **Canvas**. If you cannot attend the class, please write a email to the instructor including a valid reason before the class. Then you can make up the in-class exercise in the following one week after the class.
 3. When you communicate the instructor with emails, please include ``PA 5928`` at the beginning of your title.
 
 ## Some results from the online survey

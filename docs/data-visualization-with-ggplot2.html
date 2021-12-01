@@ -306,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="data-visualization-with-ggplot2.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <div id="grammer-of-graphics-gg" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Grammer of Graphics (gg)</h2>
-<p>We have grammar for languages. We also have grammar for graphcis. That’s where <code>gg</code> of <code>ggplot2</code> comes from. For <code>ggplot2</code>, it has seven grammatical elements listed in the table below <span class="citation">(<a href="references.html#ref-datacamp1" role="doc-biblioref">DataCamp 2019</a>)</span>.</p>
+<p>We have grammar for languages. We also have grammar for graphics. That’s where <code>gg</code> of <code>ggplot2</code> comes from. For <code>ggplot2</code>, it has seven grammatical elements listed in the table below <span class="citation">(<a href="references.html#ref-datacamp1" role="doc-biblioref">DataCamp 2019</a>)</span>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -362,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="data-aesthetics-and-geometries" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Data, Aesthetics, and Geometries</h2>
-<p>Generally, if you want to draw figures with <code>ggplot2</code>, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the varialbes of <code>mpg</code> and <code>wp</code> (aesthetic) of the dataset <code>mtcars</code> (data) with a scatter plot (geometry).</p>
+<p>Generally, if you want to draw figures with <code>ggplot2</code>, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the variables of <code>mpg</code> and <code>wp</code> (aesthetic) of the dataset <code>mtcars</code> (data) with a scatter plot (geometry).</p>
 <p>Similar to <code>dplyr</code>, <code>ggplot2</code> also has its own fashion of coding. We start with the <code>ggplot()</code> function. <strong>Please pay attention that there is no <code>2</code> in the name of the function</strong>. In the function, we first indicate the name of the dataset or data frame. Then we use <code>aes()</code> to indicate the scales we want to map our data. Here, we map <code>mpg</code> to x axis, and <code>wt</code> to y axis. Then we use a plus sign <code>+</code> to connect it to other functions. We are going to draw a scatter plot, so we use <code>geom_point()</code>.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="data-visualization-with-ggplot2.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="co"># Data</span></span>
 <span id="cb268-2"><a href="data-visualization-with-ggplot2.html#cb268-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt)) <span class="sc">+</span> <span class="co"># Aesthetics</span></span>
@@ -375,12 +375,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb269-3"><a href="data-visualization-with-ggplot2.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 <p>Now we have more information in the result. While the weight is heavier, the hourse power is stronger.</p>
-<p>Here, <code>hp</code> is a continous variable, so <code>ggplot2</code> uses the darkness of the color to indicate the value. However, if we use a categorical varibable or a factor (e.g. binomial variable), <code>ggplot2</code> will use different colors to show different types.</p>
+<p>Here, <code>hp</code> is a continuous variable, so <code>ggplot2</code> uses the darkness of the color to indicate the value. However, if we use a categorical variable or a factor (e.g. binomial variable), <code>ggplot2</code> will use different colors to show different types.</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-visualization-with-ggplot2.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,</span>
 <span id="cb270-2"><a href="data-visualization-with-ggplot2.html#cb270-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> wt, <span class="at">col =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
 <span id="cb270-3"><a href="data-visualization-with-ggplot2.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
-<p>Here, <code>am</code> stands for the types of transmission system (0 = automatic, 1 = manual). We use <code>factor()</code> to transfer this variable to a categorical one. <code>ggplot2</code> uses one color for automatic transmission and another color for mannual transmission.</p>
+<p>Here, <code>am</code> stands for the types of transmission system (0 = automatic, 1 = manual). We use <code>factor()</code> to transfer this variable to a categorical one. <code>ggplot2</code> uses one color for automatic transmission and another color for manual transmission.</p>
 <p>Besides <code>color</code>, there are several other parameters to show different aesthetics of the plots. There are differences between the usages of continuous variable and categorical variable. If you want to map variables in those aesthetics, you have to do it in the <code>aes()</code> function.</p>
 <table>
 <thead>
@@ -424,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td>fill</td>
-<td>Fill colour</td>
+<td>Fill color</td>
 <td>✓</td>
 <td>✓</td>
 </tr>
@@ -448,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>As for geometries, there are many different types you can use for different plots. For examples, <code>geom_point()</code> for scatter plot, <code>geom_bar()</code> for bar plot, <code>geom_boxplot()</code> for boxplot, <em>etc</em>. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, <em>etc</em> in the following parts.</p>
+<p>As for geometries, there are many different types you can use for different plots. For examples, <code>geom_point()</code> for scatter plot, <code>geom_bar()</code> for bar plot, <code>geom_boxplot()</code> for boxplot, <em>etc</em>. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as scatter plot, bar plot, line plot, <em>etc</em> in the following parts.</p>
 <div id="scatter-plot-1" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Scatter plot</h3>
 <p>We use <code>geom_point()</code> to plot scatter plot in R with <code>ggplot2</code>. In the example below, we map <code>mpg</code> to x axis, and <code>wt</code> to y axis. We indicate the transparency by set <code>alpha = hp</code>. The transparency of each point is decided by its value of <code>hp</code>.</p>
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## geom_point: na.rm = FALSE
 ## stat_identity: na.rm = FALSE
 ## position_identity</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-visualization-with-ggplot2.html#cb282-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(. <span class="sc">~</span> gear) <span class="co"># Facets, for each number of foward gears</span></span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="data-visualization-with-ggplot2.html#cb282-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(. <span class="sc">~</span> gear) <span class="co"># Facets, for each number of forward gears</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>If we want to align the plots in a column, exchange the position of the varialbe in the function.</p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-visualization-with-ggplot2.html#cb283-1" aria-hidden="true" tabindex="-1"></a> p <span class="sc">+</span> <span class="fu">facet_grid</span>(gear <span class="sc">~</span> .) <span class="co"># Facets, pay attention to the position of gear and the dot sign</span></span></code></pre></div>

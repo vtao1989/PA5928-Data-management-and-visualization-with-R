@@ -52,7 +52,7 @@ barplot(df$sales,
 
 ## Add more elements in the plots
 
-For a reader-friendly plots, you have to add more information such as titile, labels, and legend. For the plot above, we could use the codes below to make it more informative.
+For a reader-friendly plots, you have to add more information such as title, labels, and legend. For the plot above, we could use the codes below to make it more informative.
 
 ```{r}
 barplot(df$sales,
@@ -61,7 +61,7 @@ barplot(df$sales,
         xlab = 'Year', # add label tag for the x-axis
         ylab = 'Sales (million dollors)',  # add label for the y-axis
         ylim = c(0, 1000), # set the range of y axis, you could set the range of x axis with xlim
-        legend = 'Sales') # add lengend name
+        legend = 'Sales') # add legend name
 ```
 
 ## Pie chart

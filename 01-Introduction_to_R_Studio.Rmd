@@ -4,13 +4,13 @@
 In this chapter, we will go through some basic operations of RStudio.
 
 ## What is R
-**R** is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, [statistics](https://r-statistics.co/Linear-Regression.html), [machine learning](https://vtao1989.github.io/DisToTransit_statistics/)) and graphics ([static plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) and [interactive plots](https://plot.ly/r/3d-surface-plots/)). You can also use it to create website (like this course website), write papers, analyze texts, *etc*. The most important thing is that **R is free and easy to use**, that's why it has been applied in many fileds.
+**R** is a type of programming language and supports many tasks including statistical computation (data cleaning, data management, [statistics](https://r-statistics.co/Linear-Regression.html), [machine learning](https://vtao1989.github.io/DisToTransit_statistics/)) and graphics ([static plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html) and [interactive plots](https://plot.ly/r/3d-surface-plots/)). You can also use it to create website (like this course website), write papers, analyze texts, *etc*. The most important thing is that **R is free and easy to use**, that's why it has been applied in many fields.
 
 ## What is RStudio
 **RStudio** is a programming software for editing and running R code. It has many great features to make R programming easier!
 
 ## Install R + RStudio
-For better coding and running R, you should install both R and RStudio. You could code R with the installation of R only, however, RStudio provides you with more conveinece in coding. In this course, we will use RStudio to do all the course lectures and exercises. So please make sure you install both of them!  
+For better coding and running R, you should install both R and RStudio. You could code R with the installation of R only, however, RStudio provides you with more convenience in coding. In this course, we will use RStudio to do all the course lectures and exercises. So please make sure you install both of them!  
 R could be downloaded [here](https://www.r-project.org/) and RStudio could be downloaded [here](https://www.rstudio.com/products/rstudio/download/). Both Windows OS (Operating System) and Mac OS are supported, so please choose the right one you need for your own system. (If you have any questions about the installation of R or RStudio, please come to me in the office hours or ask [IT](https://it.umn.edu/) for help)  
 Or you could use the computers in the lab when there is no lecture.
 
@@ -19,7 +19,7 @@ Below is a screenshot of the user interface of RStudio. You will find couple of 
 
 1. **Menu/Tool Bar**
 2. **Source**  The pane where you write and edit your codes.
-3. **Environment/History** Environment lists all the variables that you are currently using. History presents the codes you have runned before.
+3. **Environment/History** Environment lists all the variables that you are currently using. History presents the codes you have run before.
 4. **Console** Console is the original R interactive window. You could run codes and see the results here.
 5. **Plot/Help** Plot window shows the output figures. Help window presents the information of the function or package you are checking.
 
@@ -52,7 +52,7 @@ We could run the codes in several ways:
 print('Hello, world!')
 ```
 
-Because what we need to output here is a **string varible**, we have to put them in the quotation mark. Either single quotation or double quotation mark works well. Let's see another example.
+Because what we need to output here is a **string variable**, we have to put them in the quotation mark. Either single quotation or double quotation mark works well. Let's see another example.
 
 ```{r}
 print(5928)
@@ -101,7 +101,7 @@ R will not run the codes after hash tags in each line.
 Please try to write simple but necessary notes for the codes. Keep this as a good habbit and you will thank yourself in the future.
 
 ## Tips
-1. You could divide your codes into sections by enterting chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.
+1. You could divide your codes into sections by entering chunks before each sections with the shortcut: Ctrl + Shift + R. This will help you organize your codes.
 2. Use ``?`` or ``help()`` function to find the related instruction or help page, for example, if you want to find the instruction of ``library()`` function, just code
 ```
 ?library

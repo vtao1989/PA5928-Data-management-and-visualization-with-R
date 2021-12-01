@@ -2,7 +2,7 @@
 
 A variable is used to store data including value, vector, data frame, *etc*, which ``R`` could use to manipulate [@tutorialspoint2]. This chapter introduces variable types, operations between variables, data structures, conditional statements, loops, and functions.
 
-Before we start, let's first see how to name a variable. The valid variable name could be constructed with letters, numbers, the dot character (``.``), and underline character (``_``). Besides that, a valid variable name should start with a letter or the dot charater not followed by a number.
+Before we start, let's first see how to name a variable. The valid variable name could be constructed with letters, numbers, the dot character (``.``), and underline character (``_``). Besides that, a valid variable name should start with a letter or the dot character not followed by a number.
 
 | Examples   | Validity | Discussion                                                                |
 |------------|----------|---------------------------------------------------------------------------|
@@ -15,7 +15,7 @@ Before we start, let's first see how to name a variable. The valid variable name
 | 2var_name  | ☓        | Cannot start with a number                                                |
 
 ## Variable types 
-There are several types of variables which R could recognise, including character, numeric, integer, logical, and complex [@Blischak2019]. The type of one variable is decided by the type of value it stores. We can use ``class()`` function to check the type of each variable.
+There are several types of variables which R could recognize, including character, numeric, integer, logical, and complex [@Blischak2019]. The type of one variable is decided by the type of value it stores. We can use ``class()`` function to check the type of each variable.
 
 **Character** (also known as strings)
 
@@ -63,7 +63,7 @@ Here, the number has quotation marks outside, which means it has been transferre
 
 ## Operations
 
-An operation tells ``R`` the mathematical or logical munipulations [@tutorialspoint2019].
+An operation tells ``R`` the mathematical or logical manipulations [@tutorialspoint2019].
 
 ### Assignment operations
 

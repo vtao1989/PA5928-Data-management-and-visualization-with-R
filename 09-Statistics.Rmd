@@ -42,7 +42,7 @@ quantile(a, 0.4) # 40% of the dataset
 
 Before we start, let's review some related knowledge first.
 
-Regression is used to examine the linear relationships between the dependent variable and independent variables, where dependent variable is the one to be explained and independent variables (also called regressors, predictors, explanatory variables) are those may have influences on the dependent variable. For example, the dependent variable is personal income, and the independent variables are education, gender, age, *etc*. Among those independent variables, there are two types, one is continuous variable and the other is dummy variable. Continous variable is variable with continuous values, such as income and age. Dummy variable is variable with values of 0 and 1. For example, gender, and people could use 1 for male, and 0 for female.
+Regression is used to examine the linear relationships between the dependent variable and independent variables, where dependent variable is the one to be explained and independent variables (also called regressors, predictors, explanatory variables) are those may have influences on the dependent variable. For example, the dependent variable is personal income, and the independent variables are education, gender, age, *etc*. Among those independent variables, there are two types, one is continuous variable and the other is dummy variable. Continuous variable is variable with continuous values, such as income and age. Dummy variable is variable with values of 0 and 1. For example, gender, and people could use 1 for male, and 0 for female.
 
 Suppose we have a dependent variable $Y$, and two independent variables $X_1$ and $X_2$, the regression model in assumption could be expressed as below,
 
@@ -56,7 +56,7 @@ $$\hat{Y} = \hat{\beta_0} + \hat{\beta_1}X_1 + \hat{\beta_2}X_2$$
 
 Those variables with hat are estimated variables.
 
-While regression provides the estimated values of intercepts and coefficients, it also provides the significance of these estimates with p-values. When p-value is smaller, the estimates tend to be more significant. In R, the function will use some marks to indicate the sinificance levels. The significance level is the probability that the estimates are 'true'.
+While regression provides the estimated values of intercepts and coefficients, it also provides the significance of these estimates with p-values. When p-value is smaller, the estimates tend to be more significant. In R, the function will use some marks to indicate the significance levels. The significance level is the probability that the estimates are 'true'.
 
 | Mark | Descriptions of significance level |
 |------|------------------------------------|
@@ -122,7 +122,7 @@ And get the values of the coefficients directly.
 coefficients(lm_fit)        # only check the coefficient
 ```
 
-Most of the time, we need to examine the relationship between the dependent variable and more than one independent variables. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression dicrectly.
+Most of the time, we need to examine the relationship between the dependent variable and more than one independent variables. In this case, drawing a plot to check the relationship before the analysis is not a good idea. We just do the regression directly.
 
 The example below examines the relationship between mpg and disp, hp, and wt. when there is more than one independent variables, we use ``+`` to connect them in the formula.
 

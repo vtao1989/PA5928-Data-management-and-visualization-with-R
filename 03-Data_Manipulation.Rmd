@@ -64,13 +64,13 @@ Usually, it takes less time to save file in CSV and CSV file has a smaller size 
 
 As you can see in the examples, you need to specify the location (or path) of the file to make sure that R could find your file in the right position. Usually you could find it by checking the system property of the file.
 
-You could aovid this. First put your R file and dataset in the same folder. Then start the R file by double clicking. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.
+You could avoid this. First put your R file and dataset in the same folder. Then start the R file by double clicking. R will use the folder where the R file locates as the working folder. Then you could only specify the name of the file.
 
 This is recommended. Since it will easier for others to check your codes since they do not need to change the path of the file.
 
 ## View data
 
-You could view the variable names and simple discription in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, clik the variable name and view the variale in new window. Here, we use the built-in dataset ``mtcars`` as a example. By importing this dataset, use ``data()`` function.
+You could view the variable names and simple description in the ``Environment`` pane on the right-top position of RStudio. If you want to view more information, click the variable name and view the variable in new window. Here, we use the built-in dataset ``mtcars`` as a example. By importing this dataset, use ``data()`` function.
 
 ```{r}
 data(mtcars)
@@ -105,7 +105,7 @@ List the structure of the dataset.
 str(mtcars)
 ```
 
-List the dimentions of the dataset
+List the dimensions of the dataset
 ```{r}
 dim(mtcars)
 ```
@@ -169,7 +169,7 @@ Test the existence of missing values with ``is.na()`` function. We use an revise
 ID <- c(1:4) # create variable ID
 Name <- c('A', NA, 'C', 'D') # create variable Name
 Score <- c(69.5, 77.5, NA, 90) # create variable Score
-df <- data.frame(ID, Name, Score) # combine the varibles into one data frame called df
+df <- data.frame(ID, Name, Score) # combine the variables into one data frame called df
 is.na(df)
 ```
 
@@ -220,12 +220,12 @@ head(newdata, n = 5)
 ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
 Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
-df1 <- data.frame(ID, Name, Score1) # combine the varibles into one data frame called df1
+df1 <- data.frame(ID, Name, Score1) # combine the variables into one data frame called df1
 df1
 
 Name <- c('A', 'D', 'C') # create variable Name
 Score2 <- c(98, 46, 55) # create variable Score2
-df2 <- data.frame(Name, Score2) # combine the varibles into one data frame called df2
+df2 <- data.frame(Name, Score2) # combine the variables into one data frame called df2
 df2
 ```
 
@@ -251,7 +251,7 @@ ID <- c(1:4) # create variable ID
 Name <- c('A', 'B', 'C', 'D') # create variable Name
 Score1 <- c(69.5, 77.5, 99, 90) # create variable Score1
 Score2 <- c(98, 46, 55, 70) # create variable Score2
-df <- data.frame(ID, Name, Score1, Score2) # combine the varibles into one data frame called df
+df <- data.frame(ID, Name, Score1, Score2) # combine the variables into one data frame called df
 df
 ```
 

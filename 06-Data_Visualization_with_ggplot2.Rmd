@@ -8,7 +8,7 @@ install.packages("ggplot2")
 
 
 ## Grammer of Graphics (gg)
-We have grammar for languages. We also have grammar for graphcis. That's where ``gg`` of ``ggplot2`` comes from. For ``ggplot2``, it has seven grammatical elements listed in the table below [@datacamp1].
+We have grammar for languages. We also have grammar for graphics. That's where ``gg`` of ``ggplot2`` comes from. For ``ggplot2``, it has seven grammatical elements listed in the table below [@datacamp1].
 
 | Element     | Description                                       |
 |-------------|---------------------------------------------------|
@@ -40,7 +40,7 @@ ggplot(mtcars, # Data
 
 ## Data, Aesthetics, and Geometries
 
-Generally, if you want to draw figures with ``ggplot2``, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the varialbes of ``mpg`` and ``wp`` (aesthetic) of the dataset ``mtcars`` (data) with a scatter plot (geometry).
+Generally, if you want to draw figures with ``ggplot2``, you need at least three elements, which are data, aesthetics, and geometries. Data is the dataset we want to visualize. Aesthetic specifies the variables and related attributes. Geometry indicates the plot type and related attributes. Take the example above again. We want to visualize the variables of ``mpg`` and ``wp`` (aesthetic) of the dataset ``mtcars`` (data) with a scatter plot (geometry).
 
 Similar to ``dplyr``, ``ggplot2`` also has its own fashion of coding. We start with the ``ggplot()`` function. **Please pay attention that there is no ``2`` in the name of the function**. In the function, we first indicate the name of the dataset or data frame. Then we use ``aes()`` to indicate the scales we want to map our data. Here, we map ``mpg`` to x axis, and ``wt`` to y axis. Then we use a plus sign ``+`` to connect it to other functions. We are going to draw a scatter plot, so we use ``geom_point()``.
 
@@ -62,7 +62,7 @@ ggplot(mtcars,
 
 Now we have more information in the result. While the weight is heavier, the hourse power is stronger.
 
-Here, ``hp`` is a continous variable, so ``ggplot2`` uses the darkness of the color to indicate the value. However, if we use a categorical varibable or a factor (e.g. binomial variable), ``ggplot2`` will use different colors to show different types.
+Here, ``hp`` is a continuous variable, so ``ggplot2`` uses the darkness of the color to indicate the value. However, if we use a categorical variable or a factor (e.g. binomial variable), ``ggplot2`` will use different colors to show different types.
 
 ```{r}
 ggplot(mtcars,
@@ -70,7 +70,7 @@ ggplot(mtcars,
   geom_point()
 ```
 
-Here, ``am`` stands for the types of transmission system (0 = automatic, 1 = manual). We use ``factor()`` to transfer this variable to a categorical one. ``ggplot2`` uses one color for automatic transmission and another color for mannual transmission.
+Here, ``am`` stands for the types of transmission system (0 = automatic, 1 = manual). We use ``factor()`` to transfer this variable to a categorical one. ``ggplot2`` uses one color for automatic transmission and another color for manual transmission.
 
 Besides ``color``, there are several other parameters to show different aesthetics of the plots. There are differences between the usages of continuous variable and categorical variable. If you want to map variables in those aesthetics, you have to do it in the ``aes()`` function.
 
@@ -81,12 +81,12 @@ Besides ``color``, there are several other parameters to show different aestheti
 | size      | Diameter of points, thickness of lines  | ✓                   |                      |
 | alpha     | Transparency                            | ✓                   | ✓                    |
 | color     | Color of dots, outlines of other shapes | ✓                   | ✓                    |
-| fill      | Fill colour                             | ✓                   | ✓                    |
+| fill      | Fill color                              | ✓                   | ✓                    |
 | labels    | Text on a plot or axes                  |                     | ✓                    |
 | shape     | Shape of point                          |                     | ✓                    |
 | linetype  | Line dash pattern                       |                     | ✓                    |
 
-As for geometries, there are many different types you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar()`` for bar plot, ``geom_boxplot()`` for boxplot, *etc*. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as sactter plot, bar plot, line plot, *etc* in the following parts.
+As for geometries, there are many different types you can use for different plots. For examples, ``geom_point()`` for scatter plot, ``geom_bar()`` for bar plot, ``geom_boxplot()`` for boxplot, *etc*. Most functions of geometries are self-explained, so you could tell what their usages easily. We all talk about those commonly used geometries such as scatter plot, bar plot, line plot, *etc* in the following parts.
 
 ### Scatter plot
 
@@ -190,7 +190,7 @@ In the following example, we draw a scatter plot for each number of forward gear
 p <- ggplot(mtcars, # store the plot result in variable p
        aes(x = mpg, y = wt))
   geom_point()
-p + facet_grid(. ~ gear) # Facets, for each number of foward gears
+p + facet_grid(. ~ gear) # Facets, for each number of forward gears
 ```
 
 If we want to align the plots in a column, exchange the position of the varialbe in the function.

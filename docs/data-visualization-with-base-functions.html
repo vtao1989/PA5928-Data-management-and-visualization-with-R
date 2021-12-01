@@ -338,14 +338,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="add-more-elements-in-the-plots" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Add more elements in the plots</h2>
-<p>For a reader-friendly plots, you have to add more information such as titile, labels, and legend. For the plot above, we could use the codes below to make it more informative.</p>
+<p>For a reader-friendly plots, you have to add more information such as title, labels, and legend. For the plot above, we could use the codes below to make it more informative.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="data-visualization-with-base-functions.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(df<span class="sc">$</span>sales,</span>
 <span id="cb260-2"><a href="data-visualization-with-base-functions.html#cb260-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> df<span class="sc">$</span>year,</span>
 <span id="cb260-3"><a href="data-visualization-with-base-functions.html#cb260-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&#39;Bar plot of the sales for each year from 1998 to 2003&#39;</span>, <span class="co"># add title for the plot</span></span>
 <span id="cb260-4"><a href="data-visualization-with-base-functions.html#cb260-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&#39;Year&#39;</span>, <span class="co"># add label tag for the x-axis</span></span>
 <span id="cb260-5"><a href="data-visualization-with-base-functions.html#cb260-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Sales (million dollors)&#39;</span>,  <span class="co"># add label for the y-axis</span></span>
 <span id="cb260-6"><a href="data-visualization-with-base-functions.html#cb260-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>), <span class="co"># set the range of y axis, you could set the range of x axis with xlim</span></span>
-<span id="cb260-7"><a href="data-visualization-with-base-functions.html#cb260-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="st">&#39;Sales&#39;</span>) <span class="co"># add lengend name</span></span></code></pre></div>
+<span id="cb260-7"><a href="data-visualization-with-base-functions.html#cb260-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="st">&#39;Sales&#39;</span>) <span class="co"># add legend name</span></span></code></pre></div>
 <p><img src="PA5928-Data-management-and-visualization-with-R_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 </div>
 <div id="pie-chart" class="section level2" number="6.5">

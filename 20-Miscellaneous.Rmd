@@ -28,12 +28,12 @@ I covered several points in class simply which I think is not enough. I think th
 
 * Free and Open source
 * More advanced technique packages
-* Deal with more than one datasets (big data) at the same time
+* Deal with more than one dataset (big data) at the same time
 * Deal with not only data analysis tasks
 
 **Advantages of Stata** (More Formal but less Flexible)
 
-* More algorithms, packages, and implementations of econometircs
+* More algorithms, packages, and implementations of econometric
 * Faster
 * It is supported by Statacorp so the result is reliable
 * It presents results in a clear format

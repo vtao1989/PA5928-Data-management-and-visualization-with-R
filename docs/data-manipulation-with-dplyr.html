@@ -327,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Mazda RX4 Wag 21.0  160
 ## Datsun 710    22.8  108</code></pre>
 <p>The codes above is kind of a <em>traditional</em> way to do the work. We start with a function and put parameters in the function. However, this is not the typical way to use <code>dplyr</code>.</p>
-<p>The codes below is a more <code>dplyr</code> way people use <code>dplyr</code>. We start with the name of the data frame. Then, we put a speical sign <code>%&gt;%</code> called <code>pipe</code> after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with <code>head()</code> functions.</p>
+<p>The codes below is a more <code>dplyr</code> way people use <code>dplyr</code>. We start with the name of the data frame. Then, we put a special sign <code>%&gt;%</code> called <code>pipe</code> after it. We continue from a new line and write the function we want to use. Besides that, we could add more functions with the pipe operator. For example, only show first three observations with <code>head()</code> functions.</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-manipulation-with-dplyr.html#cb222-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="co"># name of the data frame</span></span>
 <span id="cb222-2"><a href="data-manipulation-with-dplyr.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, disp) <span class="sc">%&gt;%</span> <span class="co"># select the columns by their names</span></span>
 <span id="cb222-3"><a href="data-manipulation-with-dplyr.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div>
@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Mazda RX4     21.0  160
 ## Mazda RX4 Wag 21.0  160
 ## Datsun 710    22.8  108</code></pre>
-<p>We will keep using this fasion in the following lecutre.</p>
+<p>We will keep using this fashion in the following lecture.</p>
 <p>Besides choosing some columns you want, you could also exclude the column you do not want by putting a negative sign <code>-</code> before the variable.</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="data-manipulation-with-dplyr.html#cb224-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
 <span id="cb224-2"><a href="data-manipulation-with-dplyr.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>mpg, <span class="sc">-</span>disp) <span class="sc">%&gt;%</span></span>
