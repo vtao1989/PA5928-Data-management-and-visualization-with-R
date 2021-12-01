@@ -4,7 +4,7 @@ course-prerequisites
 logistics
 course-learning-outcomes
 in-class-exercise-and-final-project
-course-schedule-tentative
+course-schedule
 homework-and-projects-collaboration-and-submission-policy
 some-results-from-the-online-survey
 question-1
@@ -102,7 +102,7 @@ quantiles
 linear-regression
 logistic-regression
 miscellaneous
-something-related-to-in-class-exercises-and-grading-rubic
+something-related-to-in-class-exercises-and-grading-rubric
 comparison-between-r-and-stata
 final-project
 description
@@ -111,4 +111,3 @@ proposal
 data-analysis
 final-report
 references
-course-schedule
